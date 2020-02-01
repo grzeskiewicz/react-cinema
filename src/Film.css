@@ -1,0 +1,12 @@
+.filmTimes {
+    display: flex;
+    flex-flow: row;
+}
+
+.filmTimes p {
+    margin: 5px;
+}
+
+.filmDetails p {
+    font-size: 0.8rem;
+}

@@ -1,0 +1,13 @@
+#seats{
+    
+}
+.row button{
+    width: 2rem;
+    padding: 0px;
+}
+
+.selected {
+    background-color: #4CAF50; 
+}
+
+

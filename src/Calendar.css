@@ -1,0 +1,63 @@
+#calendar {
+    text-align: center;
+    line-height: 2;
+}
+
+#calendar p {
+    font-weight: 300;
+}
+
+.today {
+    background-color: #0078D7;
+}
+
+#calendar table {
+    vertical-align: top;
+    border-collapse: collapse;
+}
+
+#calendar tbody tr:hover {
+    background-color: #fff;
+}
+
+#calendar td {
+    text-align: center;
+    padding: 0.5rem;
+}
+
+#calendar thead td {
+    color: #999;
+    font-size: .75rem;
+    text-transform: uppercase;
+}
+
+#calendar tbody td {
+    font-size: .875rem;
+}
+
+#calendar tbody td:hover {
+    border: 1px solid #333;
+    cursor: pointer;
+}
+
+/*
+  td.before,
+  td.after {
+    color: #999;
+  }*/
+
+#next:hover, #previous:hover {
+    background-color: orange;
+}
+
+.not-selectable {
+    background-color: lightgrey;
+}
+
+.not-selectable:hover {
+    cursor: not-allowed;
+}
+
+.date-clicked {
+    background-color: orange;
+}
