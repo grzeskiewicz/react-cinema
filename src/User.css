@@ -1,0 +1,34 @@
+   #user >*{
+       margin:1rem;
+   }
+   
+   .login {
+        width:20vw;
+        
+        display: flex;
+        justify-content: center;
+        
+    }
+    .login form {
+        display: flex;
+        flex-flow: row wrap;
+        flex-basis: 60%;
+    }
+    .login form>* {
+        flex: 1 100%;
+    }
+
+
+    #user-register {
+        width:20vw;
+        display: flex;
+        justify-content: center;
+    }
+    #user-register form {
+        display: flex;
+        flex-flow: row wrap;
+        flex-basis: 60%;
+    }
+    #user-register form>* {
+        flex: 1 100%;
+    }

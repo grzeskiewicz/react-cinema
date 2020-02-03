@@ -21,6 +21,7 @@ export const authServices = {
     useCredentials(token) {
         this.isAuthenticated = true;
         this.authToken = token;
+        headers.delete('Authorization');
         headers.append('Authorization', this.authToken);
         // Set the token as header for your requests!
         //$http.defaults.headers.common.Authorization = authToken;
@@ -36,14 +37,14 @@ export const authServices = {
 
     register(user) {
         console.log(JSON.stringify(user));
-        return fetch(request(`${API_URL}registertest`, 'POST', user))
+        return fetch(request(`${API_URL}createuser`, 'POST', user))
             .then(res => res.json())
             .then(result => result)
             .catch(error => Promise.reject(new Error(error))); //Promise.reject(new Error(error))       
     },
 
     login(user) { //token? JWT!
-
+console.log(user);
         return fetch(request(`${API_URL}logintest`, 'POST', user))
             .then(res => res.json())
             .then(result => {
@@ -53,6 +54,33 @@ export const authServices = {
                     return result;
                 } else { return result; }
             }).catch(error => Promise.reject(new Error(error)));
+    },
+
+    getInfo() {
+        return fetch(request(`${API_URL}memberinfo`, 'GET'))
+            .then(res => res.json())
+            .then(result => {
+                //   console.log(result)
+                return result;
+            });
+    },
+
+    getUsers() {
+        return fetch(request(`${API_URL}getusers`, 'GET'))
+            .then(res => res.json())
+            .then(result => result);
+    },
+    resetPassword(user) {
+        return fetch(request(`${API_URL}resetpassword`, 'POST', user))
+            .then(res => res.json())
+            .then(result => result)
+            .catch(error => Promise.reject(new Error(error)));
+    },
+    deleteUser(user) {
+        return fetch(request(`${API_URL}deleteuser`, 'POST', { 'user': user }))
+            .then(res => res.json())
+            .then(result => result)
+            .catch(error => Promise.reject(new Error(error)));
     },
 
     logout() {
