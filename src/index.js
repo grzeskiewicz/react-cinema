@@ -7,8 +7,8 @@ import Summary from './Summary'
 import User from './User'
 import moment from 'moment';
 
-//import { authServices } from './services.js';
-import { API_URL, request } from './apiconnection.js';
+import { authServices } from './services.js';
+import { API_URL, request, headers } from './apiconnection.js';
 
 class Board extends React.Component {
     constructor(props) {
@@ -20,7 +20,16 @@ class Board extends React.Component {
     }
 
     componentDidMount() {
-        console.log(moment.now());
+        authServices.loadUserCredentials();
+        authServices.getInfo().then(res => {
+            if (res.success) {
+                console.log(res);
+            } else {
+                console.log(res);
+            }
+        })
+
+
         fetch(request(API_URL + "showings", 'GET'))
             .then(res => res.json())
             .then(showings => {

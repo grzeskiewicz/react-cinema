@@ -1,5 +1,6 @@
 import React from 'react';
 import { authServices } from './services.js';
+import { headers } from './apiconnection.js';
 
 class Login extends React.Component {
     constructor(props) {

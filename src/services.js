@@ -37,14 +37,14 @@ export const authServices = {
 
     register(user) {
         console.log(JSON.stringify(user));
-        return fetch(request(`${API_URL}createuser`, 'POST', user))
+        return fetch(request(`${API_URL}registertest`, 'POST', user))
             .then(res => res.json())
             .then(result => result)
             .catch(error => Promise.reject(new Error(error))); //Promise.reject(new Error(error))       
     },
 
     login(user) { //token? JWT!
-console.log(user);
+        console.log(user);
         return fetch(request(`${API_URL}logintest`, 'POST', user))
             .then(res => res.json())
             .then(result => {

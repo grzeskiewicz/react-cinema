@@ -4,42 +4,54 @@ import { authServices } from './services.js';
 class Register extends React.Component {
     constructor(props) {
         super(props);
-        this.newUser = this.newUser.bind(this);
-        this.handleUsername = this.handleUsername.bind(this);
+        // this.newUser = this.newUser.bind(this);
+        this.handleEmail = this.handleEmail.bind(this);
         this.handlePassword = this.handlePassword.bind(this);
-        this.state = { username: '', password: '' };
+        this.handleName = this.handleName.bind(this);
+        this.handleSurename = this.handleSurename.bind(this);
+        this.handleTelNum = this.handleTelNum.bind(this);
+
+        this.state = { email: '', password: '', name: '', surename: '', telnum: '', registered: false };
 
     }
     componentDidMount() { }
     componentWillUnmount() { }
 
-    handleUsername(event) {
-        this.setState({ username: event.target.value });
+    handleEmail(event) {
+        this.setState({ email: event.target.value });
     }
 
     handlePassword(event) {
         this.setState({ password: event.target.value });
     }
+    handleName(event) {
+        this.setState({ name: event.target.value });
+    }
+    handleSurename(event) {
+        this.setState({ surename: event.target.value });
+    }
+    handleTelNum(event) {
+        this.setState({ telnum: event.target.value });
+    }
 
     newUser(event) {
         event.preventDefault();
+        console.log(this);
         const user = {
-            username: this.state.username,
+            email: this.state.email,
             password: this.state.password,
-            role: "user"
+            name: this.state.name,
+            surename: this.state.surename,
+            telephone: this.state.telnum
         };
-
-        console.log(user);
-
-        //register handler
-       /* authServices.register(user)
+        authServices.register(user)
             .then(res => {
                 if (res.success) {
-                    socket.emit('newuser', user);
-                } else {
 
+                } else {
+                    console.log(res);
                 }
-            });*/
+            });
 
 
     }
@@ -48,9 +60,12 @@ class Register extends React.Component {
         return (
             <div id="user-register">
                 <form onSubmit={this.newUser}>
-                    <input name='username' autoFocus placeholder='Username' value={this.state.username} onChange={this.handleUsername} required></input>
+                    <input name='email' placeholder='E-mail' value={this.state.email} onChange={this.handleEmail} required></input>
                     <input type="password" name='password' placeholder='Password' value={this.state.password} onChange={this.handlePassword} required></input>
-                    <button type='submit'>Create user</button>
+                    <input name='name' placeholder='Name' value={this.state.name} onChange={this.handleName} required></input>
+                    <input name='surename' placeholder='Surename' value={this.state.surename} onChange={this.handleSurename} required></input>
+                    <input name='telephone' placeholder='Telephone number' value={this.state.telephone} onChange={this.handleTelNum} required></input>
+                    <button type='submit'>Sign-up</button>
                 </form>
             </div>
         );
