@@ -19,7 +19,7 @@ class Seat extends React.Component {
 
     render() {
         return (
-            <button className={this.props.className} onClick={() => this.handleButton(this.props.n)} > {this.props.n}</button >
+            <button className={this.props.className} disabled={this.props.disabled} onClick={() => this.handleButton(this.props.n)} > {this.props.n}</button >
         );
 
     }

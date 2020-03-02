@@ -32,3 +32,13 @@
     #user-register form>* {
         flex: 1 100%;
     }
+
+
+    #user-logged {
+        display:flex;
+    }
+
+    #user-logged button {
+       
+        padding: 0px;
+    }

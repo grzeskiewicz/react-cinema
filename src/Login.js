@@ -25,7 +25,7 @@ class Login extends React.Component {
                             console.log("Zalogowano");
                            // socket.emit('logged', this.state.username);
                             const admin = res.role === "admin" ? true : false;
-                            this.setState({ authorised: true, role: res.role, admin: admin, password: '' });
+                            //this.setState({ authorised: true, role: res.role, admin: admin, password: '' });
                             this.props.getUserData(user.email);
                         } else {
                             this.setState({ authorised: false });

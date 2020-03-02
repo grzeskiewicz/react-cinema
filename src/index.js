@@ -20,16 +20,6 @@ class Board extends React.Component {
     }
 
     componentDidMount() {
-        authServices.loadUserCredentials();
-        authServices.getInfo().then(res => {
-            if (res.success) {
-                console.log(res);
-            } else {
-                console.log(res);
-            }
-        })
-
-
         fetch(request(API_URL + "showings", 'GET'))
             .then(res => res.json())
             .then(showings => {
@@ -38,7 +28,8 @@ class Board extends React.Component {
     }
 
     handleDaySelection(day) {
-        this.setState({ selectedDay: day });
+        console.log(day);
+         this.setState({ selectedDay: day, selectedShowing: '', selectedSeats: '' });
     }
 
 
@@ -51,15 +42,16 @@ class Board extends React.Component {
     }
 
     render() {
-        console.log(this.state.selectedSeats);
+        console.log(this.state);
         return (
 
             <div>
                 <Calendar onDaySelection={this.handleDaySelection} />
-                {this.state.showings.length > 0 ?
-                    <Showings selectedDay={this.state.selectedDay} showings={this.state.showings} handleSummary={this.handleSummary} /> : ''}
-                {this.state.selectedSeats !== '' && this.state.selectedSeats.length > 0 ? <Summary seatsArray={this.state.selectedSeats} selectedShowing={this.state.selectedShowing} handleOrder={this.handleOrder} /> : ''}
-                {this.state.showUser ? <User /> : ''}
+                {(this.state.showings.length > 0 && this.state.selectedDay !== '') ?
+                    <Showings selectedDay={this.state.selectedDay} showings={this.state.showings} handleSummary={this.handleSummary} selectedShowing={this.selectedShowing} /> : ''}
+                {this.state.selectedSeats !== '' && this.state.selectedSeats.length > 0 ?
+                    <Summary seatsArray={this.state.selectedSeats} selectedShowing={this.state.selectedShowing} handleOrder={this.handleOrder} /> : ''}
+
             </div>
 
         );
@@ -71,5 +63,3 @@ class Board extends React.Component {
 
 
 ReactDOM.render(<Board />, document.getElementById('root'));
-
-

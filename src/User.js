@@ -9,19 +9,17 @@ class User extends React.Component {
     constructor(props) {
         super(props);
         this.getUserData = this.getUserData.bind(this);
+        this.logout = this.logout.bind(this);
         this.state = { userLogged: '' }
     }
 
     componentDidMount() {
-        let hehe=headers.entries();
-        for (const el of hehe){
-            console.log(el);
-        }
-        console.log(window.localStorage);
+        authServices.loadUserCredentials();
         authServices.getInfo().then(res => {
             if (res.success) {
-                console.log(res);
-                this.setState({ authorised: true, userLogged: '' });
+                this.props.loggedUsername(res.msg);
+                this.setState({ authorised: true, userLogged: res.msg });
+                console.log(this.state.userLogged);
             } else {
                 console.log(res);
                 this.setState({ authorised: false });
@@ -30,8 +28,17 @@ class User extends React.Component {
     }
 
     getUserData(user) {
+        this.props.loggedUsername(user);
         this.setState({ userLogged: user });
+
+
         console.log("Zalogowan user", user);
+    }
+
+//<div id="user-logged"><p>{this.state.userLogged}</p><button onClick={this.logout}>Logout</button></div>
+    logout() {
+        authServices.destroyUserCredentials();
+        this.setState({ userLogged: '' });
     }
 
     render() {
