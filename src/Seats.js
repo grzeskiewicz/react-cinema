@@ -1,34 +1,43 @@
 import React from 'react';
 import './Seats.css';
 import Seat from './Seat'
-import { API_URL, request, headers } from './apiconnection.js';
-
 
 class Seats extends React.Component {
     constructor(props) {
         super(props);
+        this.state = { seatsState: [] }
         this.handleSeats = this.handleSeats.bind(this);
     }
 
-
-
-    handleSeats(n) {
+    handleSeats(n) { //OGARCNAC TUTAj!!!!!!!!!!
+        console.log(this.state.seatsState);
         let selectedSeatsTemp = false;
-        if (this.props.seatsState !== undefined && this.props.seatsState !== false) { selectedSeatsTemp = this.props.seatsState; }
+        if (this.state.seatsState !== undefined && this.state.seatsState !== false) { selectedSeatsTemp = this.state.seatsState; }
         if (selectedSeatsTemp) {
-            let seatToRemoveIndex = this.props.seatsState.findIndex(element => element.number === n);
+            let seatToRemoveIndex = this.state.seatsState.findIndex(element => element.number === n);
             if (seatToRemoveIndex !== -1) {
                 selectedSeatsTemp.splice(seatToRemoveIndex, 1);
-                this.props.selectedSeatsHandler(selectedSeatsTemp);
+                this.selectedSeatsHandler(selectedSeatsTemp);
             } else {
-                let selectedSeatsTemp = this.props.seatsState;
-                console.log(this.props.seatsState);
+                let selectedSeatsTemp = this.state.seatsState;
+                console.log(this.state.seatsState);
                 selectedSeatsTemp.push({ number: n, cName: 'selected' });
-                this.props.selectedSeatsHandler(selectedSeatsTemp);
+                this.selectedSeatsHandler(selectedSeatsTemp);
                 this.setState({ seatsState: selectedSeatsTemp });
 
             }
         }
+
+    }
+
+
+
+    selectedSeatsHandler(selectedSeats) {
+        let seatsList = [];
+        for (const obj of selectedSeats) {
+            seatsList.push(obj.number);
+        }
+        //  this.props.handleSummary(seatsList);
 
     }
 
@@ -48,7 +57,7 @@ class Seats extends React.Component {
 
             }
 
-            if (this.props.seatsState.length > 0) {
+            if (this.state.seatsState.length > 0) {
                 for (const state of this.state.seatsState) {
                     if (state.number === i) tempSeat = state;
                 }

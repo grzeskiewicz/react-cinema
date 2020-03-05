@@ -1,23 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './Showings.css';
 import moment from 'moment';
 import Films from './Films';
-import Seats from './Seats'
-import { API_URL, request, headers } from './apiconnection.js';
+
+import { API_URL, request} from './apiconnection.js';
 
 class Showings extends React.Component {
     constructor(props) {
         super(props);
         this.handleSelectedShowing = this.handleSelectedShowing.bind(this);
-        this.selectedSeatsHandler = this.selectedSeatsHandler.bind(this);
-        this.state = { selectedShowing: '', selectedSeats: [], readyShowings: '' };
-
-    }
-
-
-    componentDidMount() {
-        console.log(this.props.selectedDay);
+        this.state = { selectedShowing: '', readyShowings: '' };
 
     }
 
@@ -66,31 +58,26 @@ class Showings extends React.Component {
     handleSelectedShowing(showing) {
         fetch(request(`${API_URL}seatstaken/${showing.id}`, 'GET'))
             .then(res => res.json()).
-            then(result => this.setState({ selectedShowing: showing, selectedSeats: [], seatsTaken: result })); //gotta reset Seats when showing is selected );
+            then(result => {
+                this.props.handleSelectedShowing(showing, result);
+                //   this.setState({ selectedShowing: showing,seatsTaken: result })
+            }); //gotta reset Seats when showing is selected );
 
     }
 
-    selectedSeatsHandler(selectedSeats) {
-        let seatsList = [];
-        for (const obj of selectedSeats) {
-            seatsList.push(obj.number);
-        }
-        this.setState({ seatsArray: seatsList });
-        this.props.handleSummary(this.state);
 
-    }
 
 
     render() {  //sprawdzic dlaczego seats nie resetuje sie po kliknieciu na godzine seansu
         const showingsOfTheDay = this.showingsOfTheDay(this.props.selectedDay, this.props.showings); //taking showings from selected day => array
         this.sortShowings(showingsOfTheDay); //sorting them
         const readyShowings = this.groupShowings(showingsOfTheDay); //groupping them and returning object to work with
-        console.log(this.state);
+        const selectedNow = this.dateParser(this.props.selectedDay, 'DD-MM-YYYY')
+        const selectedPast = this.dateParser(this.props.selectedDayPast, 'DD-MM-YYYY');
+        //  console.log(selectedPast !=selectedNow);
         return (
             <div>
                 {readyShowings !== '' ? <Films readyShowings={readyShowings} handleSelectedShowing={this.handleSelectedShowing} /> : ''}
-                {this.state.selectedShowing !== '' ? //dodatkowy warunek
-                    <Seats showing={this.state.selectedShowing} selectedSeatsHandler={this.selectedSeatsHandler} seatsState={this.state.selectedSeats} seatsTaken={this.state.seatsTaken} /> : ''}
             </div>
 
         );

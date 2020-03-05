@@ -6,13 +6,6 @@ class Seat extends React.Component {
         super(props);
     }
 
-    componentDidMount() {
-    }
-
-    componentWillUnmount() {
-
-    }
-
     handleButton(n) {
         this.props.seatsHandler(n);
     }
@@ -24,8 +17,5 @@ class Seat extends React.Component {
 
     }
 }
-
-
-
 
 export default Seat;

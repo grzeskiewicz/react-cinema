@@ -4,7 +4,7 @@ import './Film.css';
 class Film extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { detailsVisible: false, seatsVisible: false, seats: '' };
+        this.state = { detailsVisible: false };
         this.toggleView = this.toggleView.bind(this);
     }
 
@@ -18,7 +18,6 @@ class Film extends React.Component {
 
     showSeats(showing) {
         this.props.handleSelectedShowing(showing);
-        // this.setState({ seatsVisible: true, seats: showing.seats, selectedShowing: showing.id });
     }
 
     toggleView() {
@@ -40,7 +39,6 @@ class Film extends React.Component {
                         <p>Age category: {filmSpecs.category}</p>
                         <p>Price normal/discount: {filmSpecs.normal}/{filmSpecs.discount}</p>
                     </div> : ''}
-                {this.state.seatsVisible ? '' : ''}
             </div>
         );
 
