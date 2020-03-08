@@ -3,14 +3,13 @@ import './Showings.css';
 import moment from 'moment';
 import Films from './Films';
 
-import { API_URL, request} from './apiconnection.js';
+import { API_URL, request } from './apiconnection.js';
 
 class Showings extends React.Component {
     constructor(props) {
         super(props);
         this.handleSelectedShowing = this.handleSelectedShowing.bind(this);
         this.state = { selectedShowing: '', readyShowings: '' };
-
     }
 
 
@@ -59,6 +58,7 @@ class Showings extends React.Component {
         fetch(request(`${API_URL}seatstaken/${showing.id}`, 'GET'))
             .then(res => res.json()).
             then(result => {
+                console.log(result);
                 this.props.handleSelectedShowing(showing, result);
                 //   this.setState({ selectedShowing: showing,seatsTaken: result })
             }); //gotta reset Seats when showing is selected );
@@ -68,13 +68,10 @@ class Showings extends React.Component {
 
 
 
-    render() {  //sprawdzic dlaczego seats nie resetuje sie po kliknieciu na godzine seansu
+    render() {  
         const showingsOfTheDay = this.showingsOfTheDay(this.props.selectedDay, this.props.showings); //taking showings from selected day => array
         this.sortShowings(showingsOfTheDay); //sorting them
         const readyShowings = this.groupShowings(showingsOfTheDay); //groupping them and returning object to work with
-        const selectedNow = this.dateParser(this.props.selectedDay, 'DD-MM-YYYY')
-        const selectedPast = this.dateParser(this.props.selectedDayPast, 'DD-MM-YYYY');
-        //  console.log(selectedPast !=selectedNow);
         return (
             <div>
                 {readyShowings !== '' ? <Films readyShowings={readyShowings} handleSelectedShowing={this.handleSelectedShowing} /> : ''}

@@ -14,7 +14,7 @@ import { API_URL, request, headers } from './apiconnection.js';
 class Board extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { showings: '', selectedDay: '', selectedDayPast: '', selectedSeats: [], seatsTaken: '', selectedShowing: '', showUser: false};
+        this.state = { showings: '', selectedDay: '', selectedDayPast: '', selectedSeats: [], seatsTaken: '', selectedShowing: '', showUser: false };
         this.handleDaySelection = this.handleDaySelection.bind(this);
         this.handleSelectedShowing = this.handleSelectedShowing.bind(this);
         this.handleSummary = this.handleSummary.bind(this);
@@ -36,28 +36,27 @@ class Board extends React.Component {
 
 
     handleSelectedShowing(showing, seatsTaken) {
-        this.setState({ selectedShowing: showing, seatsTaken: seatsTaken });
+        this.setState({ selectedShowing: showing, seatsTaken: seatsTaken, selectedSeats: [] });
     }
 
 
     handleSummary(selectedSeats) {
-        //this.setState({ selectedSeats: selectedSeats });
+        this.setState({ selectedSeats: selectedSeats });
     }
 
     handleOrder() {
-        this.setState({ showUser: true });
+        this.setState({ showUser: true});
     }
 
     render() {
-        console.log(this.state);
         return (
 
             <div>
                 <Calendar onDaySelection={this.handleDaySelection} />
                 {(this.state.showings.length > 0 && this.state.selectedDay !== '') ?
-                    <Showings selectedDay={this.state.selectedDay} showings={this.state.showings} handleSummary={this.handleSummary} handleSelectedShowing={this.handleSelectedShowing} /> : ''}
+                    <Showings selectedDay={this.state.selectedDay} showings={this.state.showings} handleSelectedShowing={this.handleSelectedShowing} /> : ''}
 
-                <Seats showing={this.state.selectedShowing} selectedSeatsHandler={this.selectedSeatsHandler} seatsState={this.state.selectedSeats} seatsTaken={this.state.seatsTaken} />
+                <Seats showing={this.state.selectedShowing} selectedSeatsHandler={this.selectedSeatsHandler} seatsState={this.state.selectedSeats} seatsTaken={this.state.seatsTaken} handleSummary={this.handleSummary} />
 
                 {this.state.selectedSeats !== '' && this.state.selectedSeats.length > 0 ?
                     <Summary seatsArray={this.state.selectedSeats} selectedShowing={this.state.selectedShowing} handleOrder={this.handleOrder} /> : ''}

@@ -16,8 +16,9 @@ class Summary extends React.Component {
     }
 
     handleOrder() {
-        //   this.props.handleOrder();
+//           
         this.setState({ showUser: true });
+      //  
     }
 
 
@@ -34,32 +35,40 @@ class Summary extends React.Component {
 
 
     createTickets() {
-        const seatsOnly = [];
+        /*const seatsOnly = [];
         for (const seat of this.props.seatsArray) {
             seatsOnly.push(seat.number);
-        }
+        }*/
+
+
+        console.log(this.props.seatsArray);
 
         const ticket = {
             showing: this.props.selectedShowing.id,
-            seats: seatsOnly,
+            seats: this.props.seatsArray,
             price: this.props.selectedShowing.normal, //change to handle prices!!
             email: this.state.username,
         };
+
+
+        console.log(ticket);
 
         fetch(request(`${API_URL}newticket`, 'POST', ticket))
             .then(res => res.json())
             .then(result => {
                 // socket.emit('ticketordered', ticket);
                 console.log(result)
+                this.props.handleOrder();
             }).catch(error => Promise.reject(new Error(error)));
     }
 
     render() {
         const seatsArray = this.props.seatsArray;
+        console.log(seatsArray)
         let seatsArrayMap;
         if (seatsArray.length > 0) {
             seatsArrayMap = seatsArray.map((seat) => {
-                return <p key={seat.number}>{seat.number} </p>
+                return <p key={seat}>{seat} </p>
             });
         }
         const showing = this.props.selectedShowing.id;

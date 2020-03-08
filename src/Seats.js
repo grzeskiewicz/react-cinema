@@ -7,10 +7,10 @@ class Seats extends React.Component {
         super(props);
         this.state = { seatsState: [] }
         this.handleSeats = this.handleSeats.bind(this);
+
     }
 
     handleSeats(n) { //OGARCNAC TUTAj!!!!!!!!!!
-        console.log(this.state.seatsState);
         let selectedSeatsTemp = false;
         if (this.state.seatsState !== undefined && this.state.seatsState !== false) { selectedSeatsTemp = this.state.seatsState; }
         if (selectedSeatsTemp) {
@@ -18,9 +18,10 @@ class Seats extends React.Component {
             if (seatToRemoveIndex !== -1) {
                 selectedSeatsTemp.splice(seatToRemoveIndex, 1);
                 this.selectedSeatsHandler(selectedSeatsTemp);
+                this.setState({ seatsState: selectedSeatsTemp });
+
             } else {
                 let selectedSeatsTemp = this.state.seatsState;
-                console.log(this.state.seatsState);
                 selectedSeatsTemp.push({ number: n, cName: 'selected' });
                 this.selectedSeatsHandler(selectedSeatsTemp);
                 this.setState({ seatsState: selectedSeatsTemp });
@@ -37,7 +38,7 @@ class Seats extends React.Component {
         for (const obj of selectedSeats) {
             seatsList.push(obj.number);
         }
-        //  this.props.handleSummary(seatsList);
+        this.props.handleSummary(seatsList);
 
     }
 
@@ -66,7 +67,7 @@ class Seats extends React.Component {
             if (i % 10) {
                 row.push(<Seat seatsHandler={this.handleSeats} key={i} className={tempSeat.cName} disabled={tempSeat.disabled} n={i} />);
             } else {
-                row.push(<Seat seatsHandler={this.handleSeats} key={i} n={i} className={tempSeat.cName} />);
+                row.push(<Seat seatsHandler={this.handleSeats} key={i} n={i} className={tempSeat.cName} disabled={tempSeat.disabled}/>);
                 seatsRender.push(row);
                 row = [];
             }
