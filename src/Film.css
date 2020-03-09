@@ -10,3 +10,8 @@
 .filmDetails p {
     font-size: 0.8rem;
 }
+
+
+.filmSelected {
+    background-color: red;
+}

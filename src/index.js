@@ -13,8 +13,7 @@ class Board extends React.Component {
         this.state = { showings: '', selectedDay: '', selectedDayPast: '', selectedSeats: [], seatsTaken: '', selectedShowing: '', showUser: false };
         this.handleDaySelection = this.handleDaySelection.bind(this);
         this.handleSelectedShowing = this.handleSelectedShowing.bind(this);
-        this.handleSummary = this.handleSummary.bind(this);
-        this.handleOrder = this.handleOrder.bind(this);
+        this.handleSelectedSeats = this.handleSelectedSeats.bind(this);
         this.resetSeatsState = this.resetSeatsState.bind(this);
     }
 
@@ -29,6 +28,7 @@ class Board extends React.Component {
     resetSeatsState(showing) {
         const seats = showing.seats;
         const seatsState = [];
+        seatsState[0] = "dummy";
         for (let i = 1; i <= seats; i++) {
             seatsState.push({ number: i, cName: '', disabled: false });
         }
@@ -36,24 +36,19 @@ class Board extends React.Component {
     }
 
     handleDaySelection(day) {
-        this.setState({ selectedDay: day, selectedDayPast: this.state.selectedDay ? this.state.selectedDay : '', selectedShowing: '', selectedSeats: '', dayChange: true });
-        console.log(this.state);
+        this.setState({ selectedDay: day, selectedShowing: '', selectedSeats: [] });
     }
 
 
     handleSelectedShowing(showing, seatsTaken) {
-        this.setState({ selectedShowing: showing, seatsTaken: seatsTaken, selectedSeats: [], ss2: this.resetSeatsState(showing) });
-        console.log(this.state);
+        this.setState({ selectedShowing: showing, seatsTaken: seatsTaken, selectedSeats: [], seatsState: this.resetSeatsState(showing) });
     }
 
 
-    handleSummary(selectedSeats, ss2) {
-        this.setState({ selectedSeats: selectedSeats, ss2 });
+    handleSelectedSeats(selectedSeats) {
+        this.setState({ selectedSeats: selectedSeats });
     }
 
-    handleOrder() {
-        this.setState({ showUser: true });
-    }
 
     render() {
         return (
@@ -63,7 +58,7 @@ class Board extends React.Component {
                 {(this.state.showings.length > 0 && this.state.selectedDay !== '') ?
                     <Showings selectedDay={this.state.selectedDay} showings={this.state.showings} handleSelectedShowing={this.handleSelectedShowing} /> : ''}
                 {this.state.selectedShowing ?
-                    <Seats showing={this.state.selectedShowing} selectedSeatsHandler={this.selectedSeatsHandler} seatsState={this.state.ss2} seatsTaken={this.state.seatsTaken} handleSummary={this.handleSummary} />
+                    <Seats showing={this.state.selectedShowing} seatsState={this.state.seatsState} seatsTaken={this.state.seatsTaken} handleSelectedSeats={this.handleSelectedSeats} />
                     : ''}
 
                 {this.state.selectedSeats !== '' && this.state.selectedSeats.length > 0 ?

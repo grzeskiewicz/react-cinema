@@ -1,7 +1,7 @@
 import React from 'react';
 import User from './User'
 import { authServices } from './services.js';
-import { API_URL, request} from './apiconnection.js';
+import { API_URL, request } from './apiconnection.js';
 
 
 class Summary extends React.Component {
@@ -12,18 +12,15 @@ class Summary extends React.Component {
         this.createTickets = this.createTickets.bind(this);
         this.logout = this.logout.bind(this);
 
-        this.state = { showUser: false, username: '' };
+        this.state = { showUser: false, username: '', ticketStatus: '' };
     }
 
     handleOrder() {
-//           
         this.setState({ showUser: true });
-      //  
     }
 
 
     loggedUsername(user) {
-
         console.log(user);
         this.setState({ username: user });
     }
@@ -35,36 +32,24 @@ class Summary extends React.Component {
 
 
     createTickets() {
-        /*const seatsOnly = [];
-        for (const seat of this.props.seatsArray) {
-            seatsOnly.push(seat.number);
-        }*/
-
-
-        console.log(this.props.seatsArray);
-
         const ticket = {
             showing: this.props.selectedShowing.id,
             seats: this.props.seatsArray,
-            price: this.props.selectedShowing.normal, //change to handle prices!!
+            price: this.props.selectedShowing.normal, //TODO: change to handle prices!!
             email: this.state.username,
         };
-
-
-        console.log(ticket);
 
         fetch(request(`${API_URL}newticket`, 'POST', ticket))
             .then(res => res.json())
             .then(result => {
                 // socket.emit('ticketordered', ticket);
-                console.log(result)
-                this.props.handleOrder();
+                this.setState({ ticketStatus: result.msg });
+                // consoleshowUser.log(result)
             }).catch(error => Promise.reject(new Error(error)));
     }
 
     render() {
         const seatsArray = this.props.seatsArray;
-        console.log(seatsArray)
         let seatsArrayMap;
         if (seatsArray.length > 0) {
             seatsArrayMap = seatsArray.map((seat) => {
@@ -73,7 +58,8 @@ class Summary extends React.Component {
         }
         const showing = this.props.selectedShowing.id;
         return (
-            <div><p>Showing:{showing}</p>
+            <div>
+                <p>Showing:{showing}</p>
                 <div id="seats-summary">
                     Seats chosen: {seatsArrayMap}
                 </div>
@@ -90,7 +76,7 @@ class Summary extends React.Component {
                             <button onClick={this.createTickets}>Order</button>
                         </div>
                     </div> : ''}
-
+                {this.state.ticketStatus !== '' ? this.state.ticketStatus : ''}
 
             </div>
 

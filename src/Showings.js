@@ -54,19 +54,14 @@ class Showings extends React.Component {
     }
 
 
-    handleSelectedShowing(showing) {
+    handleSelectedShowing(showing) { //gets seats which are taken already
         fetch(request(`${API_URL}seatstaken/${showing.id}`, 'GET'))
             .then(res => res.json())
             .then(result => {
-                //console.log(result);
                 this.props.handleSelectedShowing(showing, result);
-                //   this.setState({ selectedShowing: showing,seatsTaken: result })
-            }); //gotta reset Seats when showing is selected );
+            }); 
 
     }
-
-
-
 
     render() {  
         const showingsOfTheDay = this.showingsOfTheDay(this.props.selectedDay, this.props.showings); //taking showings from selected day => array
