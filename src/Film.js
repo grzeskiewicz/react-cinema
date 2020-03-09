@@ -4,7 +4,7 @@ import './Film.css';
 class Film extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { detailsVisible: false, cName: '' };
+        this.state = { detailsVisible: false};
         this.toggleView = this.toggleView.bind(this);
     }
 
@@ -17,7 +17,6 @@ class Film extends React.Component {
 
 
     showSeats(showing) {
-       // this.setState({ cName: 'filmSelected' })
         this.props.handleSelectedShowing(showing);
     }
 
@@ -29,10 +28,9 @@ class Film extends React.Component {
         const filmSpecs = this.props.data[0];
         const filmTitle = filmSpecs.title;
         const renderTimes = this.showTimes(this.props.data);
-        console.log(this.props.cName);
         return (
             <div>
-                <div className={"filmTimes " + this.props.cName}><p onClick={this.toggleView}>{filmTitle}</p>{renderTimes}</div>
+                <div className="filmTimes"><p onClick={this.toggleView}>{filmTitle}</p>{renderTimes}</div>
                 {this.state.detailsVisible === true ?
                     <div className="filmDetails">
                         <p>Director: {filmSpecs.director}</p>
