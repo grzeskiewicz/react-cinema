@@ -1,6 +1,5 @@
 import React from 'react';
 import { authServices } from './services.js';
-import { headers } from './apiconnection.js';
 
 class Login extends React.Component {
     constructor(props) {
@@ -24,7 +23,7 @@ class Login extends React.Component {
                         if (res.success) {
                             console.log("Zalogowano");
                            // socket.emit('logged', this.state.username);
-                            const admin = res.role === "admin" ? true : false;
+                         //   const admin = res.role === "admin" ? true : false;
                             //this.setState({ authorised: true, role: res.role, admin: admin, password: '' });
                             this.props.getUserData(user.email);
                         } else {

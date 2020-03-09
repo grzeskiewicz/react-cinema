@@ -2,10 +2,6 @@ import React from 'react';
 
 
 class Seat extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     handleButton(n) {
         this.props.seatsHandler(n);
     }

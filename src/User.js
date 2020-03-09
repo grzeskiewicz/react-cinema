@@ -3,7 +3,7 @@ import Login from './Login';
 import Register from './Register';
 import './User.css';
 import { authServices } from './services.js';
-import { headers } from './apiconnection.js';
+//import { headers } from './apiconnection.js';
 
 class User extends React.Component {
     constructor(props) {

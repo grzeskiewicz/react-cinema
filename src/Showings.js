@@ -56,9 +56,9 @@ class Showings extends React.Component {
 
     handleSelectedShowing(showing) {
         fetch(request(`${API_URL}seatstaken/${showing.id}`, 'GET'))
-            .then(res => res.json()).
-            then(result => {
-                console.log(result);
+            .then(res => res.json())
+            .then(result => {
+                //console.log(result);
                 this.props.handleSelectedShowing(showing, result);
                 //   this.setState({ selectedShowing: showing,seatsTaken: result })
             }); //gotta reset Seats when showing is selected );

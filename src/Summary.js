@@ -1,7 +1,7 @@
 import React from 'react';
 import User from './User'
 import { authServices } from './services.js';
-import { API_URL, request, headers } from './apiconnection.js';
+import { API_URL, request} from './apiconnection.js';
 
 
 class Summary extends React.Component {

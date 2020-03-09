@@ -2,10 +2,6 @@ import React from 'react';
 import Film from './Film';
 
 class Films extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const readyShowings = this.props.readyShowings;
         const readyToRender = readyShowings.filmTitles.map((filmTitle, index) => {
