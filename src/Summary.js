@@ -2,6 +2,9 @@ import React from 'react';
 import User from './User'
 import { authServices } from './services.js';
 import { API_URL, request } from './apiconnection.js';
+import io from 'socket.io-client';
+
+const socket = io('https://cinema-node.herokuapp.com');
 
 
 class Summary extends React.Component {
@@ -42,8 +45,9 @@ class Summary extends React.Component {
         fetch(request(`${API_URL}newticket`, 'POST', ticket))
             .then(res => res.json())
             .then(result => {
-                // socket.emit('ticketordered', ticket);
-                this.setState({ ticketStatus: result.msg });
+               socket.emit('ticketordered', ticket);
+                this.setState({ ticketStatus: result });
+                this.props.resetOrder(result);
                 // consoleshowUser.log(result)
             }).catch(error => Promise.reject(new Error(error)));
     }
@@ -76,7 +80,7 @@ class Summary extends React.Component {
                             <button onClick={this.createTickets}>Order</button>
                         </div>
                     </div> : ''}
-                {this.state.ticketStatus !== '' ? this.state.ticketStatus : ''}
+                {this.state.ticketStatus.msg !== '' ? this.state.ticketStatus.msg : ''}
 
             </div>
 

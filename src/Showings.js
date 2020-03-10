@@ -2,14 +2,25 @@ import React from 'react';
 import './Showings.css';
 import moment from 'moment';
 import Films from './Films';
+import io from 'socket.io-client';
+
+
 
 import { API_URL, request } from './apiconnection.js';
+
+const socket = io('https://cinema-node.herokuapp.com');
 
 class Showings extends React.Component {
     constructor(props) {
         super(props);
         this.handleSelectedShowing = this.handleSelectedShowing.bind(this);
         this.state = { selectedShowing: '', readyShowings: '' };
+
+        socket.on('seatstakennow', (msg => {
+            if (this.state.selectedShowing.id === msg.showing) {
+                this.handleSelectedShowing(this.state.selectedShowing);
+            }
+        }));
     }
 
 
@@ -45,10 +56,10 @@ class Showings extends React.Component {
 
         for (const showingElem of sList) { //selecting showings from picked date and adding to array
             if (showingElem.date.includes(parsedPickedDate)) {
-                let showcopy = JSON.parse(JSON.stringify(showingElem)); 
-                showcopy.fullDate= this.dateParser(showcopy.date, 'L');
+                let showcopy = JSON.parse(JSON.stringify(showingElem));
+                showcopy.fullDate = this.dateParser(showcopy.date, 'L');
                 showcopy.date = this.dateParser(showcopy.date, 'HH:mm');
-                
+
                 result.push(showcopy);
             }
         }
@@ -57,17 +68,16 @@ class Showings extends React.Component {
 
 
     handleSelectedShowing(showing) { //gets seats which are taken already
-        console.log(showing.title);
-        this.setState({selectedShowing: showing});
+        this.setState({ selectedShowing: showing });
         fetch(request(`${API_URL}seatstaken/${showing.id}`, 'GET'))
             .then(res => res.json())
             .then(result => {
                 this.props.handleSelectedShowing(showing, result);
-            }); 
+            });
 
     }
 
-    render() {  
+    render() {
         const showingsOfTheDay = this.showingsOfTheDay(this.props.selectedDay, this.props.showings); //taking showings from selected day => array
         this.sortShowings(showingsOfTheDay); //sorting them
         const readyShowings = this.groupShowings(showingsOfTheDay); //groupping them and returning object to work with

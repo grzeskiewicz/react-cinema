@@ -5,15 +5,20 @@ import Calendar from './Calendar';
 import Showings from './Showings';
 import Summary from './Summary'
 import Seats from './Seats'
+import io from 'socket.io-client';
 import { API_URL, request } from './apiconnection.js';
+
+
+const socket = io('https://cinema-node.herokuapp.com');
 
 class Board extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { showings: '', selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: '', showUser: false };
+        this.state = { showings: '', selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: '' };
         this.handleDaySelection = this.handleDaySelection.bind(this);
         this.handleSelectedShowing = this.handleSelectedShowing.bind(this);
         this.handleSelectedSeats = this.handleSelectedSeats.bind(this);
+        this.resetOrder = this.resetOrder.bind(this);
         this.resetSeatsState = this.resetSeatsState.bind(this);
     }
 
@@ -42,11 +47,18 @@ class Board extends React.Component {
 
     handleSelectedShowing(showing, seatsTaken) {
         this.setState({ selectedShowing: showing, seatsTaken: seatsTaken, selectedSeats: [], seatsState: this.resetSeatsState(showing) });
+        console.log(this.state);
     }
 
 
     handleSelectedSeats(selectedSeats) {
         this.setState({ selectedSeats: selectedSeats });
+    }
+
+
+    resetOrder(ticketStatus){
+        console.log(ticketStatus);
+        this.setState({selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: ''});
     }
 
 
@@ -63,7 +75,7 @@ class Board extends React.Component {
                     : ''}
 
                 {this.state.selectedSeats !== '' && this.state.selectedSeats.length > 0 ?
-                    <Summary seatsArray={this.state.selectedSeats} selectedShowing={this.state.selectedShowing} handleOrder={this.handleOrder} /> : ''}
+                    <Summary seatsArray={this.state.selectedSeats} selectedShowing={this.state.selectedShowing} resetOrder={this.resetOrder} /> : ''}
 
             </div>
 
@@ -76,3 +88,5 @@ class Board extends React.Component {
 
 
 ReactDOM.render(<Board />, document.getElementById('root'));
+
+export default socket;
