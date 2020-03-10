@@ -55,6 +55,8 @@ class Showings extends React.Component {
 
 
     handleSelectedShowing(showing) { //gets seats which are taken already
+        console.log(showing.title);
+        this.setState({selectedShowing: showing});
         fetch(request(`${API_URL}seatstaken/${showing.id}`, 'GET'))
             .then(res => res.json())
             .then(result => {
@@ -69,7 +71,7 @@ class Showings extends React.Component {
         const readyShowings = this.groupShowings(showingsOfTheDay); //groupping them and returning object to work with
         return (
             <div>
-                {readyShowings !== '' ? <Films readyShowings={readyShowings} handleSelectedShowing={this.handleSelectedShowing} /> : ''}
+                {readyShowings !== '' ? <Films titlePicked={this.state.selectedShowing.title} readyShowings={readyShowings} handleSelectedShowing={this.handleSelectedShowing} /> : ''}
             </div>
 
         );

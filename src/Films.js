@@ -13,9 +13,10 @@ class Films extends React.Component {
 
 
     render() {
+        console.log(this.props.titlePicked);
         const readyShowings = this.props.readyShowings;
         const readyToRender = readyShowings.filmTitles.map((filmTitle, index) => {
-            return <Film key={index} data={readyShowings.showingsGrouped[filmTitle]} handleSelectedShowing={this.handleSelectedShowing} />
+            return <Film isSelected={filmTitle===this.props.titlePicked ? 'true' : 'false'} key={index} data={readyShowings.showingsGrouped[filmTitle]} handleSelectedShowing={this.handleSelectedShowing} />
         });
         return (
             <div>{readyToRender}</div>

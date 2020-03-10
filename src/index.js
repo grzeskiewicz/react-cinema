@@ -50,13 +50,14 @@ class Board extends React.Component {
     }
 
 
-    render() {
+    render() { //PUT FILMS AFTER SHOWINGS
         return (
 
             <div>
                 <Calendar onDaySelection={this.handleDaySelection} />
                 {(this.state.showings.length > 0 && this.state.selectedDay !== '') ?
                     <Showings selectedDay={this.state.selectedDay} showings={this.state.showings} handleSelectedShowing={this.handleSelectedShowing} /> : ''}
+            
                 {this.state.selectedShowing ?
                     <Seats showing={this.state.selectedShowing} seatsState={this.state.seatsState} seatsTaken={this.state.seatsTaken} handleSelectedSeats={this.handleSelectedSeats} />
                     : ''}
