@@ -10,7 +10,8 @@ class Film extends React.Component {
 
     showTimes(readyShowings) {
         const times = readyShowings.map((showing, index) => {
-            return <p key={index} onClick={() => this.showSeats(showing)}>{showing.date}</p>
+            const cName= this.props.selectedShowing.id === showing.id ? 'hourSelected': '';     //lifted up or state here?
+            return <p className={cName} key={index} onClick={() => this.showSeats(showing)}>{showing.date}</p>
         });
         return times;
     }
@@ -28,9 +29,10 @@ class Film extends React.Component {
         const filmSpecs = this.props.data[0];
         const filmTitle = filmSpecs.title;
         const renderTimes = this.showTimes(this.props.data);
+        const cName=this.props.isSelected ? 'filmSelected': '';
         return (
             <div>
-                <div className={"filmTimes"}><p onClick={this.toggleView}>{filmTitle}</p>{renderTimes}</div>
+                <div className={"filmTimes " + cName}><p onClick={this.toggleView}>{filmTitle}</p>{renderTimes}</div>
                 {this.state.detailsVisible === true ?
                     <div className="filmDetails">
                         <p>Director: {filmSpecs.director}</p>

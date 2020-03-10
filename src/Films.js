@@ -5,20 +5,23 @@ class Films extends React.Component {
     constructor(props) {
         super(props);
         this.handleSelectedShowing = this.handleSelectedShowing.bind(this);
-        this.state={selectedShowing: ''};
+        this.state = { selectedShowing: '' };
     }
 
     handleSelectedShowing(showing) {
         this.props.handleSelectedShowing(showing);
-        this.setState({selectedShowing:showing});
+        this.setState({ selectedShowing: showing });
     }
 
 
     render() {
         const readyShowings = this.props.readyShowings;
-        //porownac date z readyShowings z wybranym?
+
+        const selectedShowing = this.state.selectedShowing;
+        const selectedShowingDate = this.state.selectedShowing.fullDate;
         const readyToRender = readyShowings.filmTitles.map((filmTitle, index) => {
-            return <Film key={index} data={readyShowings.showingsGrouped[filmTitle]} handleSelectedShowing={this.handleSelectedShowing} />
+            const isSelected = selectedShowing.title === filmTitle && selectedShowingDate === readyShowings.showingsGrouped[filmTitle][0].fullDate;
+            return <Film selectedShowing={this.state.selectedShowing} isSelected={isSelected} key={index} data={readyShowings.showingsGrouped[filmTitle]} handleSelectedShowing={this.handleSelectedShowing} />
         });
         return (
             <div>{readyToRender}</div>
