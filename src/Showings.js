@@ -45,8 +45,10 @@ class Showings extends React.Component {
 
         for (const showingElem of sList) { //selecting showings from picked date and adding to array
             if (showingElem.date.includes(parsedPickedDate)) {
-                let showcopy = JSON.parse(JSON.stringify(showingElem));
+                let showcopy = JSON.parse(JSON.stringify(showingElem)); 
+                showcopy.fullDate= this.dateParser(showcopy.date, 'L');
                 showcopy.date = this.dateParser(showcopy.date, 'HH:mm');
+                
                 result.push(showcopy);
             }
         }
@@ -71,7 +73,7 @@ class Showings extends React.Component {
         const readyShowings = this.groupShowings(showingsOfTheDay); //groupping them and returning object to work with
         return (
             <div>
-                {readyShowings !== '' ? <Films titlePicked={this.state.selectedShowing.title} readyShowings={readyShowings} handleSelectedShowing={this.handleSelectedShowing} /> : ''}
+                {readyShowings !== '' ? <Films readyShowings={readyShowings} handleSelectedShowing={this.handleSelectedShowing} /> : ''}
             </div>
 
         );
