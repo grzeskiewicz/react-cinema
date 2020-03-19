@@ -47,7 +47,7 @@ class Summary extends React.Component {
             .then(result => {
                socket.emit('ticketordered', ticket);
                 this.setState({ ticketStatus: result });
-                this.props.resetOrder(result);
+                this.props.resetOrder(ticket.email);
                 // consoleshowUser.log(result)
             }).catch(error => Promise.reject(new Error(error)));
     }

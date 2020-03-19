@@ -1,8 +1,8 @@
 #calendar {
     text-align: center;
     line-height: 2;
+   
 }
-
 #calendar p {
     font-weight: 300;
 }
@@ -14,6 +14,8 @@
 #calendar table {
     vertical-align: top;
     border-collapse: collapse;
+    background-color: #454343;
+    width:auto;
 }
 
 #calendar tbody tr:hover {
@@ -52,6 +54,7 @@
 
 .not-selectable {
     background-color: lightgrey;
+    
 }
 
 .not-selectable:hover {

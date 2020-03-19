@@ -15,12 +15,23 @@ class Showings extends React.Component {
         super(props);
         this.handleSelectedShowing = this.handleSelectedShowing.bind(this);
         this.state = { selectedShowing: '', readyShowings: '' };
+    }
 
-        socket.on('seatstakennow', (msg => {
-            if (this.state.selectedShowing.id === msg.showing) {
-                this.handleSelectedShowing(this.state.selectedShowing);
-            }
-        }));
+
+    seatsTakenSocket(msg) {
+        console.log(this.props);
+        if (this.state.selectedShowing.id === msg.ticket.showing) {
+            this.handleSelectedShowing(this.state.selectedShowing, msg.ticket.email);
+        }
+    }
+
+    componentDidMount() {
+        socket.on('seatstakennow2', (msg => this.seatsTakenSocket(msg)));
+    }
+
+    componentWillUnmount(){
+        socket.off('seatstakennow2', (msg => this.seatsTakenSocket(msg)));
+
     }
 
 
@@ -67,12 +78,19 @@ class Showings extends React.Component {
     }
 
 
-    handleSelectedShowing(showing) { //gets seats which are taken already
+    handleSelectedShowing(showing, username) { //gets seats which are taken already
         this.setState({ selectedShowing: showing });
         fetch(request(`${API_URL}seatstaken/${showing.id}`, 'GET'))
             .then(res => res.json())
             .then(result => {
-                this.props.handleSelectedShowing(showing, result);
+                console.log(username)
+                if (username===undefined) {
+                    this.props.handleSelectedShowing(showing, result, username)
+                } else {
+                    this.props.handleSelectedShowingSocket(showing, result, username);
+
+                }
+
             });
 
     }

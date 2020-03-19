@@ -13,7 +13,21 @@ code {
     monospace;
 }
 
+#main-panel{
+  display: flex;
+  flex-flow: row wrap;
+ /* background-color: #454343; */
+ background-color: black;
+  color: #ff8c00;
+}
 
+
+#main-panel > *{
+  flex: 1 100%;
+  display:flex;
+  flex-flow:row wrap;
+justify-content: center;
+}
 
 #seats-summary {
   display: flex;

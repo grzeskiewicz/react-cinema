@@ -20,6 +20,7 @@ class Board extends React.Component {
         this.handleSelectedSeats = this.handleSelectedSeats.bind(this);
         this.resetOrder = this.resetOrder.bind(this);
         this.resetSeatsState = this.resetSeatsState.bind(this);
+        this.handleSelectedShowingSocket = this.handleSelectedShowingSocket.bind(this);
     }
 
     componentDidMount() {
@@ -45,32 +46,35 @@ class Board extends React.Component {
     }
 
 
-    handleSelectedShowing(showing, seatsTaken) {
+    handleSelectedShowing(showing, seatsTaken, username) {
+        console.log("z wyboru showing", username)
         this.setState({ selectedShowing: showing, seatsTaken: seatsTaken, selectedSeats: [], seatsState: this.resetSeatsState(showing) });
-        console.log(this.state);
     }
 
+
+    handleSelectedShowingSocket(showing, seatsTaken, username) {
+        this.setState({ seatsTaken: seatsTaken })
+    }
 
     handleSelectedSeats(selectedSeats) {
         this.setState({ selectedSeats: selectedSeats });
     }
 
 
-    resetOrder(ticketStatus){
-        console.log(ticketStatus);
-        this.setState({selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: ''});
+    resetOrder(username) {
+        this.setState({ selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: '', userLogged: '' }); //userLogged:username
     }
 
 
     render() { //PUT FILMS AFTER SHOWINGS
         return (
 
-            <div>
+            <div id="main-panel">
                 <Calendar onDaySelection={this.handleDaySelection} />
                 {(this.state.showings.length > 0 && this.state.selectedDay !== '') ?
-                    <Showings selectedDay={this.state.selectedDay} showings={this.state.showings} handleSelectedShowing={this.handleSelectedShowing} /> : ''}
-            
-                {this.state.selectedShowing ?
+                    <Showings selectedDay={this.state.selectedDay} showings={this.state.showings} handleSelectedShowing={this.handleSelectedShowing} handleSelectedShowingSocket={this.handleSelectedShowingSocket} /> : ''}
+
+                {this.state.selectedShowing !== '' ?
                     <Seats showing={this.state.selectedShowing} seatsState={this.state.seatsState} seatsTaken={this.state.seatsTaken} handleSelectedSeats={this.handleSelectedSeats} />
                     : ''}
 

@@ -4,7 +4,7 @@ import { authServices } from './services.js';
 class Register extends React.Component {
     constructor(props) {
         super(props);
-        // this.newUser = this.newUser.bind(this);
+        this.newUser = this.newUser.bind(this);
         this.handleEmail = this.handleEmail.bind(this);
         this.handlePassword = this.handlePassword.bind(this);
         this.handleName = this.handleName.bind(this);
@@ -35,8 +35,9 @@ class Register extends React.Component {
     }
 
     newUser(event) {
+        console.log("HEHEHEHEHE");
         event.preventDefault();
-        console.log(this);
+        console.log(this.state);
         const user = {
             email: this.state.email,
             password: this.state.password,
