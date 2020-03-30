@@ -3,6 +3,7 @@ import User from './User'
 import { authServices } from './services.js';
 import { API_URL, request } from './apiconnection.js';
 import io from 'socket.io-client';
+import './Summary.css';
 
 const socket = io('https://cinema-node.herokuapp.com');
 
@@ -47,7 +48,7 @@ class Summary extends React.Component {
             .then(result => {
                socket.emit('ticketordered', ticket);
                 this.setState({ ticketStatus: result });
-                this.props.resetOrder(ticket.email);
+                this.props.resetOrder(ticket);
                 // consoleshowUser.log(result)
             }).catch(error => Promise.reject(new Error(error)));
     }
@@ -57,27 +58,28 @@ class Summary extends React.Component {
         let seatsArrayMap;
         if (seatsArray.length > 0) {
             seatsArrayMap = seatsArray.map((seat) => {
-                return <p key={seat}>{seat} </p>
+                return <p key={seat}>{seat}</p>
             });
         }
         const showing = this.props.selectedShowing.id;
         return (
-            <div>
+            <div id="ordering">
                 <p>Showing:{showing}</p>
                 <div id="seats-summary">
-                    Seats chosen: {seatsArrayMap}
+                    <p>Seats chosen:  </p>{seatsArrayMap}
                 </div>
                 {!this.state.showUser ? <button onClick={this.handleOrder}>Next step</button> : ''}
+
                 <div>{this.state.showUser ? <User loggedUsername={this.loggedUsername} /> : ''}</div>
                 {this.state.username !== '' ?
                     <div>
-                        <div>
+                        <div id="user-data">
                             <p>{this.state.username}</p>
                             <button onClick={this.logout}>Logout</button>
                         </div>
 
-                        <div>
-                            <button onClick={this.createTickets}>Order</button>
+                        <div id="last-step">
+                            <button id="create-ticket" onClick={this.createTickets}>Order</button>
                         </div>
                     </div> : ''}
                 {this.state.ticketStatus.msg !== '' ? this.state.ticketStatus.msg : ''}

@@ -3,7 +3,6 @@
    }
    
    .login {
-        width:20vw;
         
         display: flex;
         justify-content: center;
@@ -20,7 +19,6 @@
 
 
     #user-register {
-        width:20vw;
         display: flex;
         justify-content: center;
     }

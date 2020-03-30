@@ -1,8 +1,8 @@
 #calendar {
     text-align: center;
     line-height: 2;
-   
 }
+
 #calendar p {
     font-weight: 300;
 }
@@ -15,12 +15,17 @@
     vertical-align: top;
     border-collapse: collapse;
     background-color: #454343;
-    width:auto;
+    width: 100%;
+    margin: 0 2rem;
+    table-layout: fixed
 }
 
 #calendar tbody tr:hover {
     background-color: #fff;
 }
+
+
+/* ==========================================*/
 
 #calendar td {
     text-align: center;
@@ -42,19 +47,20 @@
     cursor: pointer;
 }
 
+
 /*
   td.before,
   td.after {
     color: #999;
   }*/
 
-#next:hover, #previous:hover {
+#next:hover,
+#previous:hover {
     background-color: orange;
 }
 
 .not-selectable {
     background-color: lightgrey;
-    
 }
 
 .not-selectable:hover {

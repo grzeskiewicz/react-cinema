@@ -1,9 +1,16 @@
 #seats{
-    
+    width:100%;
+    margin:0 2rem;
+}
+.row{
+    display:flex;
+    justify-content: space-between;
+    margin-top:0.5rem;
 }
 .row button{
     width: 2rem;
     padding: 0px;
+ 
 }
 
 .selected {

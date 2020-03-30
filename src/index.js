@@ -5,8 +5,11 @@ import Calendar from './Calendar';
 import Showings from './Showings';
 import Summary from './Summary'
 import Seats from './Seats'
+import Tickets from './Tickets'
 import io from 'socket.io-client';
 import { API_URL, request } from './apiconnection.js';
+console.log = function() {} //removing console.log comments
+
 
 
 const socket = io('https://cinema-node.herokuapp.com');
@@ -14,7 +17,7 @@ const socket = io('https://cinema-node.herokuapp.com');
 class Board extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { showings: '', selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: '' };
+        this.state = { showings: '', selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: '',tickets:'' };
         this.handleDaySelection = this.handleDaySelection.bind(this);
         this.handleSelectedShowing = this.handleSelectedShowing.bind(this);
         this.handleSelectedSeats = this.handleSelectedSeats.bind(this);
@@ -42,7 +45,7 @@ class Board extends React.Component {
     }
 
     handleDaySelection(day) {
-        this.setState({ selectedDay: day, selectedShowing: '', selectedSeats: [] });
+        this.setState({ selectedDay: day, selectedShowing: '', selectedSeats: [],tickets:'' });
     }
 
 
@@ -61,14 +64,15 @@ class Board extends React.Component {
     }
 
 
-    resetOrder(username) {
-        this.setState({ selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: '', userLogged: '' }); //userLogged:username
+    resetOrder(tickets) {
+        console.log(this.state.showings);
+        this.setState({ selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: '', userLogged: '', tickets:tickets,lastOrderedShowing:this.state.selectedShowing }); //userLogged:username
     }
 
 
     render() { //PUT FILMS AFTER SHOWINGS
         return (
-
+<div id="board">
             <div id="main-panel">
                 <Calendar onDaySelection={this.handleDaySelection} />
                 {(this.state.showings.length > 0 && this.state.selectedDay !== '') ?
@@ -80,9 +84,9 @@ class Board extends React.Component {
 
                 {this.state.selectedSeats !== '' && this.state.selectedSeats.length > 0 ?
                     <Summary seatsArray={this.state.selectedSeats} selectedShowing={this.state.selectedShowing} resetOrder={this.resetOrder} /> : ''}
-
+                    {this.state.tickets !== '' ? <Tickets tickets={this.state.tickets} lastOS={this.state.lastOrderedShowing} />:''} 
             </div>
-
+            </div>
         );
 
 

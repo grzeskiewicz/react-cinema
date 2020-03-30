@@ -24,7 +24,7 @@ class Films extends React.Component {
             return <Film selectedShowing={this.state.selectedShowing} isSelected={isSelected} key={index} data={readyShowings.showingsGrouped[filmTitle]} handleSelectedShowing={this.handleSelectedShowing} />
         });
         return (
-            <div>{readyToRender}</div>
+            <div id="films">{readyToRender}</div>
         );
 
     }

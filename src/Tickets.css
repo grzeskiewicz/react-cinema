@@ -1,0 +1,23 @@
+#tickets {
+    display:flex;
+    flex-flow:row wrap;
+    margin:2rem 2rem;
+}
+
+
+.ticket{
+    border:1px solid orange;
+    font-size:0.8rem;
+    flex:1 100%;
+    margin-bottom:0.5rem;
+}
+
+
+.ticket p{
+margin:0.25rem 0.5rem;
+}
+
+
+#confirmation p{
+text-align:center;
+}

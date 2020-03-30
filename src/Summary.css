@@ -1,0 +1,41 @@
+#ordering {
+display: flex;
+flex-flow:column nowrap;
+margin:0 2rem;
+}
+
+#ordering > * {
+}
+
+
+
+#seats-summary {
+  display: flex;
+  flex-flow:row wrap;
+  }
+  
+  #seats-summary p:not(:first-child)  {
+  margin-left:0.2rem;
+  margin-right:0.2rem;
+  border: 1px solid red;
+  }
+
+
+#user-data {
+    display: flex;
+    flex-flow:row wrap;
+}
+#user-data > * {
+    margin-right:1rem;
+    padding:0;
+}
+
+
+#last-step {
+    display:flex;
+    flex-flow:row wrap;
+}
+
+#create-ticket{
+ flex:1 100%;
+}

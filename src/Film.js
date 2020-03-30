@@ -31,7 +31,7 @@ class Film extends React.Component {
         const renderTimes = this.showTimes(this.props.data);
         const cName=this.props.isSelected ? 'filmSelected': '';
         return (
-            <div>
+            <div className="film">
                 <div className={"filmTimes " + cName}><p onClick={this.toggleView}>{filmTitle}</p>{renderTimes}</div>
                 {this.state.detailsVisible === true ?
                     <div className="filmDetails">
