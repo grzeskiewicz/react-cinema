@@ -8,7 +8,7 @@ import Seats from './Seats'
 import Tickets from './Tickets'
 import io from 'socket.io-client';
 import { API_URL, request } from './apiconnection.js';
-console.log = function() {} //removing console.log comments
+//console.log = function() {} //removing console.log comments
 
 
 

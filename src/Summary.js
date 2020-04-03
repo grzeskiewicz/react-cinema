@@ -41,6 +41,7 @@ class Summary extends React.Component {
             seats: this.props.seatsArray,
             price: this.props.selectedShowing.normal, //TODO: change to handle prices!!
             email: this.state.username,
+            showingDesc: this.props.selectedShowing
         };
 
         fetch(request(`${API_URL}newticket`, 'POST', ticket))

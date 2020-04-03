@@ -11,7 +11,7 @@ class Register extends React.Component {
         this.handleSurename = this.handleSurename.bind(this);
         this.handleTelNum = this.handleTelNum.bind(this);
 
-        this.state = { email: '', password: '', name: '', surename: '', telnum: '', registered: false };
+        this.state = { email: '', password: '', name: '', surename: '', telnum: '', error: '',registered: false };
 
     }
     componentDidMount() { }
@@ -50,6 +50,7 @@ class Register extends React.Component {
                 if (res.success) {
 
                 } else {
+                    this.setState({error:res.msg})
                     console.log(res);
                 }
             });
@@ -67,6 +68,8 @@ class Register extends React.Component {
                     <input name='surename' placeholder='Surename' value={this.state.surename} onChange={this.handleSurename} required></input>
                     <input name='telephone' placeholder='Telephone number' value={this.state.telephone} onChange={this.handleTelNum} required></input>
                     <button type='submit'>Sign-up</button>
+                    {this.state.error !== '' ? <p className="error">{this.state.error}</p>: ''}
+
                 </form>
             </div>
         );
