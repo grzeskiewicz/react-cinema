@@ -47,10 +47,9 @@ class Summary extends React.Component {
         fetch(request(`${API_URL}newticket`, 'POST', ticket))
             .then(res => res.json())
             .then(result => {
-               socket.emit('ticketordered', ticket);
+                socket.emit('ticketordered', ticket);
                 this.setState({ ticketStatus: result });
                 this.props.resetOrder(ticket);
-                // consoleshowUser.log(result)
             }).catch(error => Promise.reject(new Error(error)));
     }
 
@@ -65,7 +64,7 @@ class Summary extends React.Component {
         const showing = this.props.selectedShowing.id;
         return (
             <div id="ordering">
-                <p>Showing:{showing}</p>
+                <p>Showing: #{showing} {this.props.selectedShowing.title}</p>
                 <div id="seats-summary">
                     <p>Seats chosen:  </p>{seatsArrayMap}
                 </div>

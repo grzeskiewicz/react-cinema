@@ -43,6 +43,11 @@
         flex: 1 100%;
     }
 
+    #user-register form div{
+display:flex;
+flex-flow:row nowrap;
+    }
+
 
     .error {
         color:red;
