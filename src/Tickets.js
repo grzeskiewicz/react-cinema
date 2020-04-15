@@ -57,7 +57,7 @@ class Tickets extends React.Component {
 
       ticketsRend = tickets.map((ticket, index) => {
         return (
-          <div className="ticket">
+          <div key={index} className="ticket">
             <p>Movie: {ticket.showing.title}</p>{" "}
             <p>
               {ticket.showing.fullDate} {ticket.showing.date}

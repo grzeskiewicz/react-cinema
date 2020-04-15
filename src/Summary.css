@@ -4,6 +4,7 @@
     display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
     display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
 flex-flow:column nowrap;
+align-content: stretch;
 margin:0 2rem;
 }
 
@@ -38,11 +39,13 @@ margin:0 2rem;
     display: -ms-flexbox;  /* TWEENER - IE 10 */
     display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
     display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */   
-     flex-flow:row wrap;
+     flex-flow:row nowrap;
+     align-items: baseline;
+       border-bottom: 2px solid black;
+
 }
 #user-data > * {
-    margin-right:1rem;
-    padding:0;
+    margin:0 1rem 0 0;
 }
 
 
@@ -54,6 +57,22 @@ margin:0 2rem;
     flex-flow:row wrap;
 }
 
-#create-ticket{
+#create-ticket-btn{
  flex:1 100%;
 }
+
+#showing-summary {
+    margin:0;
+}
+
+
+#signin-order{
+    align-self:center;
+    flex:1 100%;
+}
+
+/*
+#summary {
+flex-grow:2;
+} */
+

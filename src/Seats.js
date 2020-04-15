@@ -60,7 +60,7 @@ class Seats extends React.Component {
         });
 
         return (
-            <div>{this.props.seatsTaken !== '' ? <div id="seats">{wholeRender}</div> : ''}</div>
+            <div id="room">{this.props.seatsTaken !== '' ? <div id="seats"><div id="screen"><p>SCREEN</p></div>{wholeRender}</div> : ''}</div>
         );
 
     }

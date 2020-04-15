@@ -4,7 +4,6 @@
   display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
     flex-flow:row wrap;
-    margin:2rem 2rem;
 }
 
 

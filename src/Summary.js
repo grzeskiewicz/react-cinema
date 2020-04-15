@@ -64,22 +64,28 @@ class Summary extends React.Component {
         const showing = this.props.selectedShowing.id;
         return (
             <div id="ordering">
-                <p>Showing: #{showing} {this.props.selectedShowing.title}</p>
-                <div id="seats-summary">
-                    <p>Seats chosen:  </p>{seatsArrayMap}
+                {this.state.username !== '' ?
+                    <div id="user-data">
+                        <p>{this.state.username}</p>
+                        <button onClick={this.logout}>Logout</button>
+                    </div>
+                    : ''}
+
+
+                <div id="summary">
+                    <p id="showing-summary">Showing: #{showing} {this.props.selectedShowing.title}</p>
+                    <div id="seats-summary">
+                        <p>Seats chosen:  </p>{seatsArrayMap}
+                    </div>
                 </div>
                 {!this.state.showUser ? <button onClick={this.handleOrder}>Next step</button> : ''}
 
                 <div>{this.state.showUser ? <User loggedUsername={this.loggedUsername} /> : ''}</div>
-                {this.state.username !== '' ?
-                    <div>
-                        <div id="user-data">
-                            <p>{this.state.username}</p>
-                            <button onClick={this.logout}>Logout</button>
-                        </div>
 
+                {this.state.username !== '' ?
+                    <div id="signin-order">
                         <div id="last-step">
-                            <button id="create-ticket" onClick={this.createTickets}>Order</button>
+                            <button id="create-ticket-btn" onClick={this.createTickets}>Order</button>
                         </div>
                     </div> : ''}
                 {this.state.ticketStatus.msg !== '' ? this.state.ticketStatus.msg : ''}

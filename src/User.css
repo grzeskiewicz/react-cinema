@@ -17,11 +17,19 @@
   display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
         flex-flow: row wrap;
-        flex-basis: 60%;
+        flex: 1 100%;
+
     }
-    .login form>* {
+    .login form> * {
         flex: 1 100%;
     }
+    .login form div{
+        display:flex;
+        flex-flow:row nowrap;
+            }
+
+
+
 
 
     #user-register {
@@ -37,7 +45,7 @@
   display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
         flex-flow: row wrap;
-        flex-basis: 60%;
+  
     }
     #user-register form>* {
         flex: 1 100%;
