@@ -71,25 +71,23 @@ class Summary extends React.Component {
                     </div>
                     : ''}
 
-
-                <div id="summary">
-                    <p id="showing-summary">Showing: #{showing} {this.props.selectedShowing.title}</p>
-                    <div id="seats-summary">
-                        <p>Seats chosen:  </p>{seatsArrayMap}
+                <div id="final-steps">
+                    <div id="summary">
+                        <p id="showing-summary">Showing: #{showing} {this.props.selectedShowing.title}</p>
+                        <div id="seats-summary">
+                            <p>Seats chosen:  </p>{seatsArrayMap}
+                        </div>
                     </div>
-                </div>
-                {!this.state.showUser ? <button onClick={this.handleOrder}>Next step</button> : ''}
 
-                <div>{this.state.showUser ? <User loggedUsername={this.loggedUsername} /> : ''}</div>
+                    {this.state.showUser ? <User className={this.state.username  ? 'logged-in' :'not-logged'} loggedUsername={this.loggedUsername} /> : <div id="next"><button onClick={this.handleOrder}>Next step</button></div>}
 
-                {this.state.username !== '' ?
-                    <div id="signin-order">
+                    {this.state.username !== '' ?
                         <div id="last-step">
                             <button id="create-ticket-btn" onClick={this.createTickets}>Order</button>
                         </div>
-                    </div> : ''}
-                {this.state.ticketStatus.msg !== '' ? this.state.ticketStatus.msg : ''}
-
+                        : ''}
+                    {this.state.ticketStatus.msg !== '' ? this.state.ticketStatus.msg : ''}
+                </div>
             </div>
 
         );

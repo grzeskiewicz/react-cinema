@@ -43,7 +43,7 @@ class User extends React.Component {
 
     render() {
         return (
-            <div id="user">
+            <div className={this.props.className} id="user">
                 {this.state.userLogged === '' ?
                     <div>
                         <Login getUserData={this.getUserData}></Login>
