@@ -8,6 +8,7 @@
 
 .filmTimes p {
     margin: 5px;
+    padding:5px;
 }
 
 .filmDetails p {
@@ -16,12 +17,13 @@
 
 
 .filmSelected {
-    background-color: red;
+    border:1px dotted red;
 }
 
 
 .hourSelected {
-    background-color: green;
+    border:1px solid orange;
+    border-radius: 3px;
 }
 
 

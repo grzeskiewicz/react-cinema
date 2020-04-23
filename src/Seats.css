@@ -1,3 +1,7 @@
+#room {
+    display:flex;
+    flex-flow:column nowrap;
+}
 #seats{
     margin:0 4px;
     display: flex;
@@ -14,8 +18,11 @@
     justify-content: space-evenly;
 }
 .row button{
-    width: 2rem;
+    width: 1.8rem;
+    height: 2rem;
     padding: 0px;
+    border-radius:3px;
+    border:0;
  
 }
 
@@ -23,10 +30,47 @@
     background-color: #4CAF50; 
 }
 
+
+
+.taken{
+    background-color:  #800000;
+}
+
 #screen {
-flex:1 100%;
     display:flex;
     flex-flow: row nowrap;
-    align-items: center;
     justify-content: center;
+    border-bottom:2px solid grey;
+    margin-bottom:1rem;
 }
+
+
+#screen p{
+    margin:0;
+}
+
+
+#markings{
+    margin:0 4px;
+    flex:1 100%;
+      display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox;  /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+    justify-content: space-evenly;
+}
+
+#markings div{
+    flex:1 100%;
+}
+
+#markings button{
+    width: 1.8rem;
+    height: 2rem;
+    padding: 0px;
+    border-radius:3px;
+    border:0;
+    margin-right:0.5rem;
+}
+
+

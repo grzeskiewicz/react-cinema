@@ -80,13 +80,13 @@ class Calendar extends React.Component {
     const calendar = this.createCalendar(yearNow, monthNow);
 
     const week = weekdays.map((day, index) => {
-      return <td key={index}> {day} </td>;
+      return <td className="day-name" key={index}> {day} </td>;
     });
 
     const renderMonth = calendar.map((week, index) => {
       let renderWeek = week.map((day, index2) => {
         let className =
-          (day.date < today ? "not-selectable" : "") +
+          (day.date < today ? "not-selectable" : "selectable") +
           " " +
           (day.date.getMonth() === today.getMonth() &&
           day.date.getDate() === today.getDate()
@@ -117,7 +117,7 @@ class Calendar extends React.Component {
         <table>
           <thead>
             <tr>
-              <td colSpan="7">{MONTH_NAMES[monthNow]}</td>
+              <td id="month-name" colSpan="7">{MONTH_NAMES[monthNow]}</td>
             </tr>
             <tr>{week}</tr>
           </thead>

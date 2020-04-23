@@ -1,6 +1,5 @@
 #calendar {
-    text-align: center;
-    line-height: 2;
+        line-height: 2;
 }
 
 #calendar p {
@@ -8,7 +7,7 @@
 }
 
 .today {
-    background-color: #0078D7;
+    background-color: #a3797973;
 }
 
 #calendar table {
@@ -20,9 +19,6 @@
     table-layout: fixed
 }
 
-#calendar tbody tr:hover {
-    background-color: #fff;
-}
 
 
 /* ==========================================*/
@@ -43,8 +39,16 @@
 }
 
 #calendar tbody td:hover {
-    border: 1px solid #333;
-    cursor: pointer;
+    border: 3px dashed #333;
+}
+
+
+#month-name {
+cursor:none;
+}
+
+.day-name{
+cursor:default;
 }
 
 
@@ -59,13 +63,16 @@
     background-color: orange;
 }
 
-.not-selectable {
-    background-color: lightgrey;
+
+.selectable{
+    cursor:pointer;
 }
 
-.not-selectable:hover {
+.not-selectable {
+    background-color: #8b7f7fa6;
     cursor: not-allowed;
 }
+
 
 .date-clicked {
     background-color: orange;
