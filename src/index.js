@@ -72,7 +72,6 @@ class Board extends React.Component {
 
     render() { //PUT FILMS AFTER SHOWINGS
         return (
-<div id="board">
             <div id="main-panel">
                 <Calendar onDaySelection={this.handleDaySelection} />
                 {(this.state.showings.length > 0 && this.state.selectedDay !== '') ?
@@ -85,7 +84,6 @@ class Board extends React.Component {
                 {this.state.selectedSeats !== '' && this.state.selectedSeats.length > 0 ?
                     <Summary seatsArray={this.state.selectedSeats} selectedShowing={this.state.selectedShowing} resetOrder={this.resetOrder} /> : ''}
                     {this.state.tickets !== '' ? <Tickets tickets={this.state.tickets} lastOS={this.state.lastOrderedShowing} />:''} 
-            </div>
             </div>
         );
 

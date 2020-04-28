@@ -44,9 +44,7 @@ class Register extends React.Component {
     }
 
     newUser(event) {
-        console.log("HEHEHEHEHE");
         event.preventDefault();
-        console.log(this.state);
         const user = {
             email: this.state.email,
             password: this.state.password,
@@ -69,18 +67,15 @@ class Register extends React.Component {
 
     render() {
         return (
-            <div id="user-register">
-                <form onSubmit={this.newUser}>
-                    <input name='email' placeholder='E-mail' value={this.state.email} onChange={this.handleEmail} required></input>
-                    <input type="password" name='password' placeholder='Password' value={this.state.password} onChange={this.handlePassword} required></input>
-                    <input name='name' placeholder='Name' value={this.state.name} onChange={this.handleName} required></input>
-                    <input name='surename' placeholder='Surename' value={this.state.surename} onChange={this.handleSurename} required></input>
-                    <div><label>+48</label><input name='telephone' placeholder='Telephone number' value={this.state.telnum} onChange={this.handleTelNum} required></input></div>
-                    <button type='submit'>Sign-up</button>
-                    {this.state.error !== '' ? <p className="error">{this.state.error}</p> : ''}
-
-                </form>
-            </div>
+            <form id="user-register" onSubmit={this.newUser}>
+                <input name='email' placeholder='E-mail' value={this.state.email} onChange={this.handleEmail} required></input>
+                <input type="password" name='password' placeholder='Password' value={this.state.password} onChange={this.handlePassword} required></input>
+                <input name='name' placeholder='Name' value={this.state.name} onChange={this.handleName} required></input>
+                <input name='surename' placeholder='Surename' value={this.state.surename} onChange={this.handleSurename} required></input>
+                <input name='telephone' size="9" maxlength="9" placeholder='Telephone number' value={this.state.telnum} onChange={this.handleTelNum} required></input>
+                <button type='submit'>Sign-up</button>
+                {this.state.error !== '' ? <p className="error">{this.state.error}</p> : ''}
+            </form>
         );
     }
 }

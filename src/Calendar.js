@@ -10,7 +10,9 @@ class Calendar extends React.Component {
   constructor(props) {
     super(props);
     this.handleDaySelection = this.handleDaySelection.bind(this);
+    this.state = { dayClicked: '' };
   }
+
 
   createCalendar(year, month) {
     const results = [];
@@ -70,10 +72,12 @@ class Calendar extends React.Component {
 
   handleDaySelection(date) {
     //just render <Showings date> - new component from new file, ok?
+    this.setState({ dayClicked: date });
     this.props.onDaySelection(date);
   }
 
   render() {
+    console.log(this.state.dayClicked);
     const yearNow = new Date().getFullYear();
     const monthNow = new Date().getMonth();
     const today = new Date();
@@ -85,15 +89,18 @@ class Calendar extends React.Component {
 
     const renderMonth = calendar.map((week, index) => {
       let renderWeek = week.map((day, index2) => {
+        console.log(String(day.date)===String(this.state.dayClicked));
         let className =
           (day.date < today ? "not-selectable" : "selectable") +
           " " +
           (day.date.getMonth() === today.getMonth() &&
-          day.date.getDate() === today.getDate()
+            day.date.getDate() === today.getDate()
             ? "today"
             : "") +
           " " +
-          (day.before === true ? "before" : "after");
+          (day.before === true ? "before" : "") 
+          + " " +(day.after === true ? "after" : "")+ " " + 
+          (String(this.state.dayClicked) === String(day.date) ? "day-clicked": "");
         if (className.includes("today")) {
           className = className.replace("not-selectable", "");
         }

@@ -1,59 +1,44 @@
+#user{
+    display:flex;
+    flex-basis:70%;
+}
+#user > div {
+    display:flex;
+    flex-flow:column;
+    justify-content: space-around;
+}
 
-   
-   .login {
-        
-          display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+
+#login {
+  display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
   display: -ms-flexbox;  /* TWEENER - IE 10 */
   display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
-        justify-content: center;
-        
-    }
-    .login form {
-          display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-  display: -ms-flexbox;  /* TWEENER - IE 10 */
-  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-  display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
-        flex-flow: row wrap;
-        flex: 1 100%;
-
-    }
-    .login form> * {
-        flex: 1 100%;
-    }
-    .login form div{
-        display:flex;
-        flex-flow:row nowrap;
-            }
-
-
-
-
-
-    #user-register {
-          display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-  display: -ms-flexbox;  /* TWEENER - IE 10 */
-  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-  display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
-        justify-content: center;
-    }
-    #user-register form {
-          display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-  display: -ms-flexbox;  /* TWEENER - IE 10 */
-  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-  display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
-        flex-flow: row wrap;
-  
-    }
-    #user-register form>* {
-        flex: 1 100%;
+  flex-flow: row wrap;
+  justify-content: center;
+  flex-basis:30%;
     }
 
-    #user-register form div{
-display:flex;
-flex-flow:row nowrap;
+
+#login > * {
+flex-basis:70%;
+}
+
+
+#user-register {
+display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+display: -ms-flexbox;  /* TWEENER - IE 10 */
+display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+flex-flow: row wrap;
+justify-content: center;
+flex-basis:60%;
     }
 
+
+#user-register >* {
+flex-basis:70%;
+}
 
     .error {
         color:red;
@@ -70,9 +55,12 @@ flex-flow:row nowrap;
     }
 
     #user-logged button {
-       
         padding: 0px;
     }
+    
 
+    #user.logged-in{
+        flex:0;
+    }
 
 

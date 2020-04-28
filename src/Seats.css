@@ -61,7 +61,9 @@
 }
 
 #markings div{
-    flex:1 100%;
+    display:flex;
+    flex-flow:row nowrap;
+    font-size:0.85rem;
 }
 
 #markings button{
