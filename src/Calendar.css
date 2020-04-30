@@ -6,12 +6,6 @@
     font-weight: 300;
 }
 
-.today {
-    background-color: #8b7f7fa6;
-    cursor:pointer;
-
-}
-
 #calendar table {
     vertical-align: top;
     border-collapse: collapse;
@@ -29,37 +23,34 @@
 #calendar td {
     text-align: center;
     padding: 0.5rem;
-    
     border-radius:4px;
     position: relative;
 }
 
 #calendar thead td {
     color: #999;
-    font-size: .75rem;
     text-transform: uppercase;
+    cursor: default;
+
 }
+
 
 #calendar tbody td {
     font-size: 1.1rem;
 }
 
 
-#month-name {
-cursor:default;
-}
-
 .day-name{
-cursor:default;
+font-weight:bold;
+
 }
 
 
-
+/*
   td.before.selectable:hover,
-  td.after:hover {
-    background-color: #8b7f7fa6;
+  td.after {
     color:#FFCF9E;
-  }
+  } */
 
 
 
@@ -70,23 +61,36 @@ cursor:default;
 }
 
 
-.selectable:hover{
-
-    background-color: #8b7f7fa6;
-color:darkorange;
+.today {
     cursor:pointer;
 }
 
-.not-selectable:hover {
-    background-color: #8b7f7fa6;
-    opacity:0.5;
-    color:darkorange;
+.today:hover{
+    border:1px double black;
+}
 
+.selectable:hover{
+    cursor:pointer;
+    border:1px double black;
+}
+
+.selectable.after{
+    filter: brightness(1.3);
+}
+
+.not-selectable{
+color:darkorange;
+opacity:0.5;
+
+}
+
+.not-selectable:hover {
     cursor: not-allowed;
+    border:1px double black;
 }
 
 
-.day-clicked, .after.day-clicked{
-background-color: lightgray;
+.selectable.day-clicked, .after.day-clicked, .today.day-clicked{
+background-color: whitesmoke;
 color:darkorange;
 }
