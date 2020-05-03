@@ -1,94 +1,91 @@
 #ordering {
-    display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-    display: -ms-flexbox;  /* TWEENER - IE 10 */
-    display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-    display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
-flex-flow:column nowrap;
-justify-content:flex-start;
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
+  flex-flow: column nowrap;
+  justify-content: center;
 }
-
-
 
 #user-data {
-  display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-  display: -ms-flexbox;  /* TWEENER - IE 10 */
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
   display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-  display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */   
-   flex-flow:row nowrap;
-   align-items: baseline;
-     border-bottom: 2px solid grey;
-
+  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
+  flex-flow: row nowrap;
+  align-items: baseline;
+  border-bottom: 2px solid grey;
+  margin-bottom:2rem;
 }
 #user-data > * {
-  margin:0 1rem 0 0;
+  margin: 0 1rem 0 0;
 }
 
-
-#summary { /* ? */
-
-} 
-
+#summary {
+  /* ? */
+}
 
 #seats-summary {
-    display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-    display: -ms-flexbox;  /* TWEENER - IE 10 */
-    display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-    display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */  flex-flow:row wrap;
-  }
-  
-  #seats-summary p:not(:first-child)  {
-  margin-left:0.2rem;
-  margin-right:0.2rem;
-  border: 1px solid red;
-  }
-
-  #seats-summary p{
-      margin-top:0;
-      margin-bottom:0;
-  }
-
-
-
-
-#final-steps{
-  display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-  display: -ms-flexbox;  /* TWEENER - IE 10 */
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
   display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-  display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
-flex-flow:column nowrap;
-flex-grow:10; /* ? */
+  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
+  flex-flow: row wrap;
 }
 
-.logged-in{
-  flex:0;
-      }
+#seats-summary p:not(:first-child) {
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+  border: 1px solid red;
+}
 
-#next{
-display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-display: -ms-flexbox;  /* TWEENER - IE 10 */
-display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+#seats-summary p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#final-steps {
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
+  flex-flow: column nowrap;
+  flex-basis:10%;
+}
+
+
+#final-steps.resize-user{
+  flex-grow: 10; /* ? */
+justify-content: center;
+}
+
+.logged-in {
+  flex: 0;
+}
+
+#next {
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
+  flex-basis:10%;
 }
 
 #next button {
-  flex:1 100%;
-
+  flex: 1 100%;
 }
 #last-step {
-  display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-  display: -ms-flexbox;  /* TWEENER - IE 10 */
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
   display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-  display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
+  flex-basis:100%;
 }
 
-#create-ticket-btn{
-  flex:1 100%;
+#create-ticket-btn {
+  flex: 1 100%;
 }
 
 #showing-summary {
-    margin:0;
+  margin: 0;
 }
-
-
-
-

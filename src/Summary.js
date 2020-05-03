@@ -61,7 +61,10 @@ class Summary extends React.Component {
                 return <p key={seat}>{seat}</p>
             });
         }
-        const showing = this.props.selectedShowing.id;
+        const romanNum = ['0','I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
+        const roomRoman = romanNum[this.props.selectedShowing.room];
+        console.log(this.props.selectedShowing);
+        console.log(roomRoman);
         return (
             <div id="ordering">
                 {this.state.username !== '' ?
@@ -71,15 +74,8 @@ class Summary extends React.Component {
                     </div>
                     : ''}
 
-                <div id="final-steps">
-                    <div id="summary">
-                        <p id="showing-summary">Showing: #{showing} {this.props.selectedShowing.title}</p>
-                        <div id="seats-summary">
-                            <p>Seats chosen:  </p>{seatsArrayMap}
-                        </div>
-                    </div>
-
-                    {this.state.showUser ? <User className={this.state.username  ? 'logged-in' :'not-logged'} loggedUsername={this.loggedUsername} /> : <div id="next"><button onClick={this.handleOrder}>Next step</button></div>}
+                <div id="final-steps" className={this.state.username ? '' : 'resize-user'}>
+                    {this.state.showUser ? <User className={this.state.username ? 'logged-in' : 'not-logged'} loggedUsername={this.loggedUsername} /> : <div id="next"><button onClick={this.handleOrder}>Next step</button></div>}
 
                     {this.state.username !== '' ?
                         <div id="last-step">

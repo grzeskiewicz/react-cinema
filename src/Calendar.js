@@ -84,7 +84,7 @@ class Calendar extends React.Component {
     const calendar = this.createCalendar(yearNow, monthNow);
 
     const week = weekdays.map((day, index) => {
-      return <td className="day-name" key={index}> {day} </td>;
+      return <td className="day-name" key={index}><p>{day}</p></td>;
     });
 
     const renderMonth = calendar.map((week, index) => {
@@ -111,7 +111,7 @@ class Calendar extends React.Component {
             className={className}
             onClick={() => this.handleDaySelection(day.date)}
           >
-            {day.date.getDate()}
+           <p>{day.date.getDate()}</p>
           </td>
         );
       });

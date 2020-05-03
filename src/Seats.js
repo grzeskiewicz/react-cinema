@@ -59,8 +59,11 @@ class Seats extends React.Component {
             return <div className="row" key={index}>{row}</div>;
         });
 
+        const romanNum = ['0','I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
+        const roomRoman = romanNum[this.props.showing.room];
+
         return (
-            <div id="room"><div id="screen"><p>SCREEN</p></div>{this.props.seatsTaken !== '' ? <div id="seats">{wholeRender}</div> : ''}
+            <div id="room"><p>ROOM {roomRoman}</p><div id="screen"></div>{this.props.seatsTaken !== '' ? <div id="seats">{wholeRender}</div> : ''}
                 <div id="markings">
                     <div><button diasbled={true}></button><p>Free</p></div>
                     <div><button className="taken" diasbled={true}></button><p>Taken</p></div>

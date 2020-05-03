@@ -1,78 +1,77 @@
 #room {
-    display:flex;
-    flex-flow:column nowrap;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
 }
-#seats{
-    margin:0 4px;
-    display: flex;
-    flex-flow:row wrap;
-}
-.row{
-    flex:1 100%;
 
-      display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-  display: -ms-flexbox;  /* TWEENER - IE 10 */
-  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-  display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
-    margin-bottom:0.5rem;
-    justify-content: space-evenly;
+#room > p {
+  display:flex;
+  justify-content: center;;
 }
-.row button{
-    width: 1.8rem;
-    height: 2rem;
-    padding: 0px;
-    border-radius:3px;
-    border:0;
- 
+#seats {
+  margin: 0 4px;
+  display: flex;
+  flex-flow: row wrap;
+}
+.row {
+  flex: 1 100%;
+
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
+  margin-bottom: 0.5rem;
+  justify-content: space-evenly;
+}
+.row button {
+  width: 1.8rem;
+  height: 2rem;
+  padding: 0px;
+  border-radius: 3px;
+  border: 0;
 }
 
 .selected {
-    background-color: #4CAF50; 
+  background-color: #4caf50;
 }
 
-
-
-.taken{
-    background-color:  #800000;
+.taken {
+  background-color: #800000;
 }
 
 #screen {
-    display:flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    border-bottom:2px solid grey;
-    margin-bottom:1rem;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  border-bottom: 0.8rem solid black;
+  margin-bottom: 1rem;
 }
 
-
-#screen p{
-    margin:0;
+#screen p {
+  margin: 0;
 }
 
-
-#markings{
-    margin:0 4px;
-    flex:1 100%;
-      display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-  display: -ms-flexbox;  /* TWEENER - IE 10 */
+#markings {
+  margin: 0 4px;
+  flex: 1 100%;
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
   display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-  display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
-    justify-content: space-evenly;
+  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
+  justify-content: space-evenly;
 }
 
-#markings div{
-    display:flex;
-    flex-flow:row nowrap;
-    font-size:0.85rem;
+#markings div {
+  display: flex;
+  flex-flow: row nowrap;
+  font-size: 0.85rem;
 }
 
-#markings button{
-    width: 1.8rem;
-    height: 2rem;
-    padding: 0px;
-    border-radius:3px;
-    border:0;
-    margin-right:0.5rem;
+#markings button {
+  width: 1.8rem;
+  height: 2rem;
+  padding: 0px;
+  border-radius: 3px;
+  border: 0;
+  margin-right: 0.5rem;
 }
-
-

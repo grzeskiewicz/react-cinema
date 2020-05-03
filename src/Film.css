@@ -1,67 +1,58 @@
-#films{
-    width:100%;
-    margin:0 2px;
+#films {
+  width: 100%;
+  margin: 0 2px;
 }
 
-
-
-
-.filmTT{
-    display:flex;
-    flex-flow:row nowrap;
-    align-items:baseline;
+.filmTT {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: baseline;
 }
 
-.filmTitle{
-flex-basis:45%;
-
+.filmTitle {
+  flex-basis: 45%;
 }
 
-.filmTitle > p { word-break: normal }
-
+.filmTitle > p {
+  word-break: normal;
+}
 
 .filmTimes {
-      display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-  display: -ms-flexbox;  /* TWEENER - IE 10 */
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
   display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-  display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
-    flex-flow: row wrap;
-    flex-basis:55%;
+  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
+  flex-flow: row wrap;
+  flex-basis: 55%;
 }
 
 .filmTimes p {
-    margin: 5px;
-    padding:5px;
+  margin: 5px;
+  padding: 5px;
 }
 
 .filmDetailsContainer p {
-    font-size: 0.8rem;
+  font-size: 0.8rem;
 }
 
-.filmDetailsContainer{
-display:flex;
-flex-flow:row nowrap;
+.filmDetailsContainer {
+  display: flex;
+  flex-flow: row nowrap;
 }
 
-.filmDetailsContainer > div{
-flex-basis:50%;
+.filmDetailsContainer > div {
+  flex-basis: 50%;
 }
 
-
-
-
-.poster-img{
-width: 100%;
-height:auto;
+.poster-img {
+  width: 100%;
+  height: auto;
 }
 
-
-.film:hover{
+.film:hover {
 }
-
-
 
 .hourSelected {
-    border:1px solid orange;
-    border-radius: 3px;
+  border: 1px solid orange;
+  border-radius: 3px;
 }
