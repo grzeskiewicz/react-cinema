@@ -9,10 +9,16 @@ body {
   background-color: black;
 }
 
+* {
+  box-sizing:border-box;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
 
 p {
   cursor: default;
@@ -40,10 +46,11 @@ p {
   display: -ms-flexbox; /* TWEENER - IE 10 */
   display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   background-color: #454343;
-  justify-content: stretch;
+/*  justify-content: stretch; */
   color: #ff8c00;
+  height: 71vh;
 }
 
 #main-panel > * {
@@ -51,5 +58,15 @@ p {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
-  height: 71vh;
+  overflow:hidden;
+  transition:flex 0.5s ease-out;
 }
+
+
+
+
+
+
+
+
+

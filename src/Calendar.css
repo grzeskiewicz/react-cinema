@@ -2,12 +2,8 @@
 }
 
 #calendar table {
-    vertical-align: top;
-    border-collapse: collapse;
-    width: 100%;
     table-layout: fixed;
-    border-collapse:separate; 
-    border-spacing:3x;
+    border-spacing:3px;
 }
 /*
 #calendar p {

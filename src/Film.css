@@ -1,12 +1,64 @@
+#showing-selection {
+  flex-basis: 50%;
+}
+
+#showing-selection > div {
+  display: flex;
+  flex-basis: 100%;
+}
+
 #films {
-  width: 100%;
+  flex-basis: 50%;
   margin: 0 2px;
 }
 
-.filmTT {
+#film-description {
+  flex-basis: 50%;
+  display: flex;
+  flex-flow: column;
+}
+
+.filmDetails {
+  display: flex;
+  flex-flow: column;
+}
+
+.filmDetails > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filmDetails > div > p {
+  flex-basis: 50%;
+  margin: 0.3rem;
+}
+
+
+.filmDetails > div > p:nth-child(1) {
+  text-align:right;
+}
+
+.filmDetails > div > p:nth-child(2) {
+}
+
+/* ===========================FILM================================= */
+
+.film {
   display: flex;
   flex-flow: row nowrap;
   align-items: baseline;
+}
+
+.poster {
+  display: flex;
+  justify-content: center;
+  
+}
+
+.poster-img {
+  width: 70%;
+  height: auto;
+  opacity: 0.5;
 }
 
 .filmTitle {
@@ -29,27 +81,6 @@
 .filmTimes p {
   margin: 5px;
   padding: 5px;
-}
-
-.filmDetailsContainer p {
-  font-size: 0.8rem;
-}
-
-.filmDetailsContainer {
-  display: flex;
-  flex-flow: row nowrap;
-}
-
-.filmDetailsContainer > div {
-  flex-basis: 50%;
-}
-
-.poster-img {
-  width: 100%;
-  height: auto;
-}
-
-.film:hover {
 }
 
 .hourSelected {

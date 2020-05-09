@@ -21,11 +21,11 @@ class Summary extends React.Component {
 
     handleOrder() {
         this.setState({ showUser: true });
+        this.props.wrapShowingSelection();
     }
 
 
     loggedUsername(user) {
-        console.log(user);
         this.setState({ username: user });
     }
 
@@ -61,10 +61,8 @@ class Summary extends React.Component {
                 return <p key={seat}>{seat}</p>
             });
         }
-        const romanNum = ['0','I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
+        const romanNum = ['0', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
         const roomRoman = romanNum[this.props.selectedShowing.room];
-        console.log(this.props.selectedShowing);
-        console.log(roomRoman);
         return (
             <div id="ordering">
                 {this.state.username !== '' ?

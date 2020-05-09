@@ -99,8 +99,9 @@ class Showings extends React.Component {
         const showingsOfTheDay = this.showingsOfTheDay(this.props.selectedDay, this.props.showings); //taking showings from selected day => array
         this.sortShowings(showingsOfTheDay); //sorting them
         const readyShowings = this.groupShowings(showingsOfTheDay); //groupping them and returning object to work with
+        console.log(readyShowings);
         return (
-            <div>
+            <div id="showing-selection" className={this.props.className}>
                 {readyShowings !== '' ? <Films readyShowings={readyShowings} handleSelectedShowing={this.handleSelectedShowing} /> : ''}
             </div>
 

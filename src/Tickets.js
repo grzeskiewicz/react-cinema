@@ -1,24 +1,6 @@
 import React from "react";
 import "./Tickets.css";
-//import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
-import ReactDOMServer from 'react-dom/server';
-//import ReactPDF from '@react-pdf/renderer';
-import { API_URL, request } from './apiconnection.js';
 
-/*
-// Create styles
-const styles = StyleSheet.create({
-  page: {
-    flexDirection: 'row',
-    backgroundColor: '#E4E4E4'
-  },
-  section: {
-    margin: 10,
-    padding: 10,
-    flexGrow: 1
-  }
-});
-*/
 
 
 
@@ -31,19 +13,6 @@ class Tickets extends React.Component {
   makepdf(ticket) {
 
   }
-
-/*sendEmail(tickets) {
-    console.log("Heheh",tickets);
-    //const htmlString = ReactDOMServer.renderToStaticMarkup(tickets);
-    //console.log(htmlString);
-    fetch(request(`${API_URL}sendtickets`, 'POST', { tickets: tickets }))
-      .then(res => res.json())
-      .then(result => {
-        console.log(result);
-      }).catch(error => Promise.reject(new Error(error))); 
-  } */
-
-
 
   render() {
     console.log(this.props.tickets);

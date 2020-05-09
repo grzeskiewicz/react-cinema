@@ -1,0 +1,15 @@
+#showing-selection.wrapped{
+    flex:0;
+}
+
+#showing-icon{
+    flex-basis:10%;
+    align-items: center;
+}
+
+
+#showing-icon i{
+    font-size:8vw;
+    cursor: pointer;
+    color:orange;
+}

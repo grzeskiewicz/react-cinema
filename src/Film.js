@@ -39,22 +39,8 @@ class Film extends React.Component {
         console.log(filmSpecs);
         return (
             <div className="film">
-                <div className="filmTT">
                     <div className="filmTitle" onClick={()=>this.titleClicked(filmSpecs)}><p>{filmTitle}</p></div>
                     <div className={"filmTimes " + cName}>{renderTimes}</div>
-                </div>
-                {this.props.isSelected ?
-                    <div className="filmDetailsContainer">
-                        <div className="filmDetails">
-                            <p>Director: {filmSpecs.director}</p>
-                            <p>Genre: {filmSpecs.genre}</p>
-                            <p>Length: {filmSpecs.length}</p>
-                            <p>Age category: {filmSpecs.category}</p>
-                            <p>Price normal/discount: {filmSpecs.normal}/{filmSpecs.discount}</p>
-                        </div>
-                        <div className="poster"><img className="poster-img" src={filmSpecs.imageurl} alt="Poster"></img></div>
-                    </div>
-                    : ''}
             </div>
         );
 

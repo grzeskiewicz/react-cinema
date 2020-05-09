@@ -65,9 +65,9 @@ class Seats extends React.Component {
         return (
             <div id="room"><p>ROOM {roomRoman}</p><div id="screen"></div>{this.props.seatsTaken !== '' ? <div id="seats">{wholeRender}</div> : ''}
                 <div id="markings">
-                    <div><button diasbled={true}></button><p>Free</p></div>
-                    <div><button className="taken" diasbled={true}></button><p>Taken</p></div>
-                    <div><button className="selected"diasbled={true}></button><p>Selected</p></div>
+                    <div><button diasbled="true"></button><p>Free</p></div>
+                    <div><button className="taken" diasbled="true"></button><p>Taken</p></div>
+                    <div><button className="selected"diasbled="true"></button><p>Selected</p></div>
                 </div>
             </div>
         );

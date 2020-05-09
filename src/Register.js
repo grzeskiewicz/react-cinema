@@ -72,7 +72,7 @@ class Register extends React.Component {
                 <input type="password" name='password' placeholder='Password' value={this.state.password} onChange={this.handlePassword} required></input>
                 <input name='name' placeholder='Name' value={this.state.name} onChange={this.handleName} required></input>
                 <input name='surename' placeholder='Surename' value={this.state.surename} onChange={this.handleSurename} required></input>
-                <input name='telephone' size="9" maxlength="9" placeholder='Telephone number' value={this.state.telnum} onChange={this.handleTelNum} required></input>
+                <input name='telephone' size="9" maxLength="9" placeholder='Telephone number' value={this.state.telnum} onChange={this.handleTelNum} required></input>
                 <button type='submit'>Sign-up</button>
                 {this.state.error !== '' ? <p className="error">{this.state.error}</p> : ''}
             </form>

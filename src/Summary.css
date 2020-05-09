@@ -5,6 +5,7 @@
   display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
   flex-flow: column nowrap;
   justify-content: center;
+  flex-basis:20%;
 }
 
 #user-data {

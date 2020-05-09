@@ -35,8 +35,24 @@ class Films extends React.Component {
             const isSelected = selectedShowing.title === filmTitle && selectedShowingDate === readyShowings.showingsGrouped[filmTitle][0].fullDate;
             return <Film selectedShowing={this.state.selectedShowing} isSelected={isSelected} key={index} data={readyShowings.showingsGrouped[filmTitle]} handleSelectedShowing={this.handleSelectedShowing} titleClicked={this.titleClicked} />
         });
+        console.log(readyToRender);
+        const filmSpecs = this.state.selectedShowing;
+        console.log(filmSpecs);
         return (
-            <div id="films">{readyToRender}</div>
+            <div>
+                <div id="films">{readyToRender}</div>
+                {this.state.selectedShowing !== '' && readyShowings.filmTitles.length ?
+                    <div id="film-description">
+                        <div className="poster"><img className="poster-img" src={filmSpecs.imageurl} alt="Poster"></img></div>
+                        <div className="filmDetails">
+                            <div><p>Director:</p> <p>{filmSpecs.director}</p></div>
+                            <div><p>Genre: </p><p>{filmSpecs.genre}</p></div>
+                            <div><p>Length: </p><p>{filmSpecs.length}</p></div>
+                            <div><p>Age category: </p><p>{filmSpecs.category}</p></div>
+                            <div><p>Price normal/discount: </p><p>{filmSpecs.normal}/{filmSpecs.discount}</p></div>
+                        </div>
+                    </div> : ''}
+            </div>
         );
 
     }

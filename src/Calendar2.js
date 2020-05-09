@@ -1,12 +1,12 @@
 import React from "react";
-import "./Calendar.css";
+import "./Calendar2.css";
 
 const MONTH_NAMES = "January February March April May June July August September October November December".split(
   " "
 );
 const weekdays = "Mo Tu We Th Fr Sa Su".split(" ");
 
-class Calendar extends React.Component {
+class Calendar2 extends React.Component {
   constructor(props) {
     super(props);
     this.handleDaySelection = this.handleDaySelection.bind(this);
@@ -82,7 +82,7 @@ class Calendar extends React.Component {
     const calendar = this.createCalendar(yearNow, monthNow);
 
     const week = weekdays.map((day, index) => {
-      return <td className="day-name" key={index}><p>{day}</p></td>;
+      return <p className="day-name" key={index}>{day}</p>;
     });
 
     const renderMonth = calendar.map((week, index) => {
@@ -102,34 +102,30 @@ class Calendar extends React.Component {
           className = className.replace("not-selectable", "");
         }
         return (
-          <td
+          <p
             key={index2}
             date={day.date}
             className={className}
             onClick={() => this.handleDaySelection(day.date)}
           >
-            <p>{day.date.getDate()}</p>
-          </td>
+            {day.date.getDate()}
+          </p>
         );
       });
 
-      return <tr key={index}>{renderWeek}</tr>;
+      return <div key={index}>{renderWeek}</div>;
     });
 
     return (
       <div id="calendar" className={this.props.className}>
-        <table>
-          <thead>
-            <tr>
-              <td id="month-name" colSpan="7">{MONTH_NAMES[monthNow]}</td>
-            </tr>
-            <tr>{week}</tr>
-          </thead>
-          <tbody>{renderMonth}</tbody>
-        </table>
+        <div id="calendar-head">
+          <p id="month-name" colSpan="7">{MONTH_NAMES[monthNow]}</p>
+          <div id="day-names">{week}</div>
+        </div>
+        <div id="main-calendar">{renderMonth}</div>
       </div>
     );
   }
 }
 
-export default Calendar;
+export default Calendar2;
