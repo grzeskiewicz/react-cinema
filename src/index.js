@@ -60,7 +60,7 @@ class Board extends React.Component {
     }
 
 
-    handleSelectedShowingSocket(showing, seatsTaken, username) {
+    handleSelectedShowingSocket(seatsTaken) {
         this.setState({ seatsTaken: seatsTaken })
     }
 
@@ -71,7 +71,8 @@ class Board extends React.Component {
 
     resetOrder(tickets) {
         console.log(this.state.showings);
-        this.setState({ selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: '', userLogged: '', tickets: tickets, lastOrderedShowing: this.state.selectedShowing }); //userLogged:username
+        this.setState({ selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: '', userLogged: '', 
+        tickets: tickets, lastOrderedShowing: this.state.selectedShowing, wrapShowingSelection: false }); //userLogged:username
     }
 
     showCalAgain() {
