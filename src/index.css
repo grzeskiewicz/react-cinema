@@ -46,7 +46,7 @@ p {
   display: -ms-flexbox; /* TWEENER - IE 10 */
   display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   background-color: #454343;
 /*  justify-content: stretch; */
   color: #ff8c00;
@@ -62,11 +62,11 @@ p {
   transition:flex 0.5s ease-out;
 }
 
-
-
-
-
-
-
-
-
+#status-bar {
+  display: flex;
+  flex-flow:row nowrap;
+  flex:1 100%;
+  border:1px solid red;
+  height:10%;
+  justify-content: space-evenly;
+}

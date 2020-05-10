@@ -10,6 +10,10 @@ import Seats from './Seats'
 import Tickets from './Tickets'
 import io from 'socket.io-client';
 import { API_URL, request } from './apiconnection.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
+import { faFilm } from '@fortawesome/free-solid-svg-icons'
+
 //console.log = function() {} //removing console.log comments
 
 
@@ -71,8 +75,10 @@ class Board extends React.Component {
 
     resetOrder(tickets) {
         console.log(this.state.showings);
-        this.setState({ selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: '', userLogged: '', 
-        tickets: tickets, lastOrderedShowing: this.state.selectedShowing, wrapShowingSelection: false }); //userLogged:username
+        this.setState({
+            selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: '', userLogged: '',
+            tickets: tickets, lastOrderedShowing: this.state.selectedShowing, wrapShowingSelection: false
+        }); //userLogged:username
     }
 
     showCalAgain() {
@@ -99,6 +105,8 @@ class Board extends React.Component {
                         <i onClick={this.showCalAgain} className="fa fa-calendar"></i>
                         <p>{moment(this.state.selectedDay).format('DD-MM-YYYY')}</p>
                     </div> : ''}
+
+
                 {(this.state.showings.length > 0 && this.state.selectedDay !== '') ?
                     <Showings className={this.state.wrapShowingSelection ? "wrapped" : ''} selectedDay={this.state.selectedDay} showings={this.state.showings} handleSelectedShowing={this.handleSelectedShowing} handleSelectedShowingSocket={this.handleSelectedShowingSocket} /> : ''}
                 {this.state.wrapShowingSelection ?
@@ -106,9 +114,13 @@ class Board extends React.Component {
                         <i onClick={this.showShowingSelectionAgain} className="fa fa-film"></i>
                         <p>{this.state.selectedShowing.title}</p>
                     </div> : ''}
+
+
                 {this.state.selectedShowing !== '' ?
                     <Seats showing={this.state.selectedShowing} seatsState={this.state.seatsState} seatsTaken={this.state.seatsTaken} handleSelectedSeats={this.handleSelectedSeats} />
                     : ''}
+
+                    
 
                 {this.state.selectedSeats !== '' && this.state.selectedSeats.length > 0 ?
                     <Summary wrapShowingSelection={this.wrapShowingSelection} seatsArray={this.state.selectedSeats} selectedShowing={this.state.selectedShowing} resetOrder={this.resetOrder} /> : ''}
