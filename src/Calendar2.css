@@ -53,31 +53,21 @@
 
 #cal-icon {
   flex-basis: 10%;
-<<<<<<< HEAD
   display:flex;
   flex-flow:column;
   justify-content: space-between;
 }
 #cal-icon i {
   font-size: 7vw;
-=======
-  align-items: center;
-}
-#cal-icon i {
-  font-size: 8vw;
->>>>>>> 410f8e27777f31fb6460546ca20f57a92ba2a432
   color: orange;
   cursor:pointer;
 
 }
 
-<<<<<<< HEAD
 #cal-icon > * {
   text-align: center;
 }
 
-=======
->>>>>>> 410f8e27777f31fb6460546ca20f57a92ba2a432
 #cal-icon i:hover {
   opacity: 0.8;
 }
