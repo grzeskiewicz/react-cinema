@@ -50,7 +50,11 @@ p {
   background-color: #454343;
 /*  justify-content: stretch; */
   color: #ff8c00;
+<<<<<<< HEAD
+  height: 61vh;
+=======
   height: 71vh;
+>>>>>>> 410f8e27777f31fb6460546ca20f57a92ba2a432
 }
 
 #main-panel > * {

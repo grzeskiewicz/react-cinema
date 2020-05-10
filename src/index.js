@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+<<<<<<< HEAD
+import moment from 'moment';
+=======
+>>>>>>> 410f8e27777f31fb6460546ca20f57a92ba2a432
 import Calendar from './Calendar';
 import Calendar2 from './Calendar2';
 import Showings from './Showings';
@@ -27,7 +31,11 @@ class Board extends React.Component {
         this.handleSelectedShowingSocket = this.handleSelectedShowingSocket.bind(this);
         this.showCalAgain = this.showCalAgain.bind(this);
         this.wrapShowingSelection = this.wrapShowingSelection.bind(this);
+<<<<<<< HEAD
+        this.showShowingSelectionAgain = this.showShowingSelectionAgain.bind(this);
+=======
         this.showShowingSelectionAgain=this.showShowingSelectionAgain.bind(this);
+>>>>>>> 410f8e27777f31fb6460546ca20f57a92ba2a432
     }
 
     componentDidMount() {
@@ -89,6 +97,23 @@ class Board extends React.Component {
 
 
     render() {
+<<<<<<< HEAD
+        return (
+            <div id="main-panel">
+                <Calendar2 onDaySelection={this.handleDaySelection} className={this.state.selectedShowing !== '' ? "wrapped" : ''} />
+                {this.state.selectedShowing !== '' ?
+                    <div id="cal-icon">
+                        <i onClick={this.showCalAgain} className="fa fa-calendar"></i>
+                        <p>{moment(this.state.selectedDay).format('DD-MM-YYYY')}</p>
+                    </div> : ''}
+                {(this.state.showings.length > 0 && this.state.selectedDay !== '') ?
+                    <Showings className={this.state.wrapShowingSelection ? "wrapped" : ''} selectedDay={this.state.selectedDay} showings={this.state.showings} handleSelectedShowing={this.handleSelectedShowing} handleSelectedShowingSocket={this.handleSelectedShowingSocket} /> : ''}
+                {this.state.wrapShowingSelection ?
+                    <div id="showing-icon">
+                        <i onClick={this.showShowingSelectionAgain} className="fa fa-film"></i>
+                        <p>{this.state.selectedShowing.title}</p>
+                    </div> : ''}
+=======
         console.log(this.state.wrapShowingSelection);
 
         return (
@@ -98,6 +123,7 @@ class Board extends React.Component {
                 {(this.state.showings.length > 0 && this.state.selectedDay !== '') ?
                     <Showings className={this.state.wrapShowingSelection ? "wrapped" : ''} selectedDay={this.state.selectedDay} showings={this.state.showings} handleSelectedShowing={this.handleSelectedShowing} handleSelectedShowingSocket={this.handleSelectedShowingSocket} /> : ''}
                 {this.state.wrapShowingSelection ? <div id="showing-icon"><i onClick={this.showShowingSelectionAgain} className="fa fa-film"></i> </div> : ''}
+>>>>>>> 410f8e27777f31fb6460546ca20f57a92ba2a432
                 {this.state.selectedShowing !== '' ?
                     <Seats showing={this.state.selectedShowing} seatsState={this.state.seatsState} seatsTaken={this.state.seatsTaken} handleSelectedSeats={this.handleSelectedSeats} />
                     : ''}

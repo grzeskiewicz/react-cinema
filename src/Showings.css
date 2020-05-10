@@ -4,12 +4,26 @@
 
 #showing-icon{
     flex-basis:10%;
+<<<<<<< HEAD
+    display:flex;
+    flex-flow:column;
+    justify-content: space-between;
+}
+
+#showing-icon > * {
+    text-align: center;
+=======
     align-items: center;
+>>>>>>> 410f8e27777f31fb6460546ca20f57a92ba2a432
 }
 
 
 #showing-icon i{
+<<<<<<< HEAD
+    font-size:7vw;
+=======
     font-size:8vw;
+>>>>>>> 410f8e27777f31fb6460546ca20f57a92ba2a432
     cursor: pointer;
     color:orange;
 }
