@@ -18,7 +18,6 @@ class Films extends React.Component {
 
 
     handleSelectedShowingReset(filmTitle) {
-        console.log("ehehehegdsasadax", filmTitle);
     }
 
     titleClicked(showing) {
@@ -35,9 +34,7 @@ class Films extends React.Component {
             const isSelected = selectedShowing.title === filmTitle && selectedShowingDate === readyShowings.showingsGrouped[filmTitle][0].fullDate;
             return <Film selectedShowing={this.state.selectedShowing} isSelected={isSelected} key={index} data={readyShowings.showingsGrouped[filmTitle]} handleSelectedShowing={this.handleSelectedShowing} titleClicked={this.titleClicked} />
         });
-        console.log(readyToRender);
         const filmSpecs = this.state.selectedShowing;
-        console.log(filmSpecs);
         return (
             <div>
                 <div id="films">{readyToRender}</div>

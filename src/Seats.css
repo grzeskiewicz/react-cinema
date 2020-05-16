@@ -1,3 +1,6 @@
+#room-wrapper{
+  justify-content: space-between;
+}
 #room {
   display: flex;
   flex-flow: column nowrap;

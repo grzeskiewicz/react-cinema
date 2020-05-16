@@ -1,11 +1,13 @@
+#summary-wrapper{
+  justify-content: space-between;
+}
 #ordering {
   display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
   display: -ms-flexbox; /* TWEENER - IE 10 */
   display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
   flex-flow: column nowrap;
-  justify-content: center;
-  flex-basis:20%;
+  flex-basis:90%;
 }
 
 #user-data {

@@ -33,6 +33,7 @@ class Board extends React.Component {
         this.showCalAgain = this.showCalAgain.bind(this);
         this.wrapShowingSelection = this.wrapShowingSelection.bind(this);
         this.showShowingSelectionAgain = this.showShowingSelectionAgain.bind(this);
+        this.showRoomAgain = this.showRoomAgain.bind(this);
     }
 
     componentDidMount() {
@@ -95,35 +96,58 @@ class Board extends React.Component {
         this.setState({ wrapShowingSelection: true })
     }
 
+    showRoomAgain() {
+        this.setState({});
+    }
+
 
     render() {
+        console.log(this.state.wrapShowingSelection);
         return (
             <div id="main-panel">
-                <Calendar2 onDaySelection={this.handleDaySelection} className={this.state.selectedShowing !== '' ? "wrapped" : ''} />
-                {this.state.selectedShowing !== '' ?
-                    <div id="cal-icon">
-                        <i onClick={this.showCalAgain} className="fa fa-calendar"></i>
-                        <p>{moment(this.state.selectedDay).format('DD-MM-YYYY')}</p>
-                    </div> : ''}
+                <div id="calendar-wrapper" className={this.state.selectedShowing !== '' ? "wrapped" : ''} >
+                    <div id="first">I</div>
+                    <Calendar2 onDaySelection={this.handleDaySelection} className={this.state.selectedShowing !== '' ? "wrapped" : ''} />
+                    {this.state.selectedShowing !== '' ?
+                        <div id="cal-icon">
+                            <i onClick={this.showCalAgain} className="fa fa-calendar"></i>
+                            <p>{moment(this.state.selectedDay).format('DD-MM-YYYY')}</p>
+                        </div> : ''}
+                </div>
 
 
                 {(this.state.showings.length > 0 && this.state.selectedDay !== '') ?
-                    <Showings className={this.state.wrapShowingSelection ? "wrapped" : ''} selectedDay={this.state.selectedDay} showings={this.state.showings} handleSelectedShowing={this.handleSelectedShowing} handleSelectedShowingSocket={this.handleSelectedShowingSocket} /> : ''}
-                {this.state.wrapShowingSelection ?
-                    <div id="showing-icon">
-                        <i onClick={this.showShowingSelectionAgain} className="fa fa-film"></i>
-                        <p>{this.state.selectedShowing.title}</p>
+                    <div id="showing-selection-wrapper" className={this.state.wrapShowingSelection ? "wrapped" : ''}>
+                        <div id="second">II</div>
+                        <Showings className={this.state.wrapShowingSelection ? "wrapped" : ''} selectedDay={this.state.selectedDay}
+                            showings={this.state.showings} handleSelectedShowing={this.handleSelectedShowing} handleSelectedShowingSocket={this.handleSelectedShowingSocket} />
+
+                        {this.state.wrapShowingSelection ?
+                            <div id="showing-icon">
+                                <i onClick={this.showShowingSelectionAgain} className="fa fa-film"></i>
+                                <p>{this.state.selectedShowing.title}</p>
+                            </div> : ''}
                     </div> : ''}
 
-
                 {this.state.selectedShowing !== '' ?
-                    <Seats showing={this.state.selectedShowing} seatsState={this.state.seatsState} seatsTaken={this.state.seatsTaken} handleSelectedSeats={this.handleSelectedSeats} />
+                    <div id="room-wrapper">
+                        <div id="third">III</div>
+                        <Seats showing={this.state.selectedShowing} seatsState={this.state.seatsState} seatsTaken={this.state.seatsTaken} handleSelectedSeats={this.handleSelectedSeats} />
+                        <div id="room-icon">
+                            <i onClick={this.showRoomAgain} className="fa fa-cinema"></i>
+                            <p>{this.state.selectedSeats}</p>
+                        </div>
+                    </div>
                     : ''}
 
-                    
+
 
                 {this.state.selectedSeats !== '' && this.state.selectedSeats.length > 0 ?
-                    <Summary wrapShowingSelection={this.wrapShowingSelection} seatsArray={this.state.selectedSeats} selectedShowing={this.state.selectedShowing} resetOrder={this.resetOrder} /> : ''}
+                    <div id="summary-wrapper">
+                        <div id="fourth">IV</div>
+                        <Summary wrapShowingSelection={this.wrapShowingSelection} seatsArray={this.state.selectedSeats} selectedShowing={this.state.selectedShowing} resetOrder={this.resetOrder} />
+                    </div>
+                    : ''}
                 {this.state.tickets !== '' ? <Tickets tickets={this.state.tickets} lastOS={this.state.lastOrderedShowing} /> : ''}
             </div>
         );

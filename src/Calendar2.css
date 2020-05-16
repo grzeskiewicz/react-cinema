@@ -47,12 +47,19 @@
 
 /* ================================== */
 
+
+#calendar-wrapper {
+  justify-content: space-between;
+}
+#calendar-wrapper.wrapped{
+  flex-basis: 10%;
+}
 #calendar.wrapped {
   flex: 0;
 }
 
 #cal-icon {
-  flex-basis: 10%;
+
   display:flex;
   flex-flow:column;
   justify-content: space-between;

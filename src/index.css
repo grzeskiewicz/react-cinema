@@ -10,15 +10,13 @@ body {
 }
 
 * {
-  box-sizing:border-box;
+  box-sizing: border-box;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
-
 
 p {
   cursor: default;
@@ -46,27 +44,40 @@ p {
   display: -ms-flexbox; /* TWEENER - IE 10 */
   display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   background-color: #454343;
-/*  justify-content: stretch; */
   color: #ff8c00;
-  height: 61vh;
+  height: 70vh;
 }
 
 #main-panel > * {
   flex-basis: 25%;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   justify-content: center;
-  overflow:hidden;
-  transition:flex 0.5s ease-out;
+  overflow: hidden;
+  transition: flex 0.5s ease-out;
+  border:1px solid orange;
 }
 
-#status-bar {
+#calendar-wrapper > *,
+#showing-selection-wrapper > *,
+#room-wrapper > *,
+#summary-wrapper > * {
   display: flex;
-  flex-flow:row nowrap;
-  flex:1 100%;
-  border:1px solid red;
-  height:10%;
-  justify-content: space-evenly;
+  justify-content: center;
+  overflow: hidden;
+  transition: flex 0.5s ease-out;
+}
+
+
+
+#first,
+#second,
+#third,
+#fourth,
+#fifth {
+flex-basis:10%;
+border:1px solid orange;
+
 }

@@ -36,7 +36,6 @@ class Film extends React.Component {
         const filmTitle = filmSpecs.title;
         const renderTimes = this.showTimes(this.props.data);
         const cName = this.props.isSelected || this.state.detailsVisible ? 'filmSelected' : '';
-        console.log(filmSpecs);
         return (
             <div className="film">
                     <div className="filmTitle" onClick={()=>this.titleClicked(filmSpecs)}><p>{filmTitle}</p></div>
