@@ -18,6 +18,12 @@
   text-align: center;
 }
 
+#room-icon svg {
+  color:orange;
+width:100%;
+cursor: pointer;
+}
+
 #room {
   display: flex;
   flex-flow: column nowrap;

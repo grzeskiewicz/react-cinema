@@ -81,3 +81,11 @@ flex-basis:10%;
 border:1px solid orange;
 
 }
+
+
+
+#selectedSeatsSummary {
+  display:flex;
+  flex-flow:row nowrap;
+  justify-content: space-evenly;
+}

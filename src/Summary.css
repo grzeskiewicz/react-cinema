@@ -1,4 +1,4 @@
-#summary-wrapper{
+#summary-wrapper {
   justify-content: space-between;
 }
 #ordering {
@@ -7,32 +7,11 @@
   display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
   flex-flow: column nowrap;
-  flex-basis:90%;
+  flex-basis: 10%;
 }
-
-#user-data {
-  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-  display: -ms-flexbox; /* TWEENER - IE 10 */
-  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
-  flex-flow: row nowrap;
-  align-items: baseline;
-  border-bottom: 2px solid grey;
-  margin-bottom:2rem;
-}
-#user-data > * {
-  margin: 0 1rem 0 0;
-}
-
-#summary {
-  /* ? */
-}
-
+/*
 #seats-summary {
-  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-  display: -ms-flexbox; /* TWEENER - IE 10 */
-  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
+display:flex;
   flex-flow: row wrap;
 }
 
@@ -45,44 +24,18 @@
 #seats-summary p {
   margin-top: 0;
   margin-bottom: 0;
-}
-
-#final-steps {
-  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-  display: -ms-flexbox; /* TWEENER - IE 10 */
-  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
-  flex-flow: column nowrap;
-  flex-basis:10%;
-}
-
-
-#final-steps.resize-user{
-  flex-grow: 10; /* ? */
-justify-content: center;
-}
-
-.logged-in {
-  flex: 0;
-}
+} */
 
 #next {
   display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
   display: -ms-flexbox; /* TWEENER - IE 10 */
   display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
-  flex-basis:10%;
+  flex-basis: 10%;
 }
 
 #next button {
   flex: 1 100%;
-}
-#last-step {
-  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-  display: -ms-flexbox; /* TWEENER - IE 10 */
-  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
-  flex-basis:100%;
 }
 
 #create-ticket-btn {

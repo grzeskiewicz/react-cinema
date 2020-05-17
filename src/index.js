@@ -5,6 +5,7 @@ import moment from 'moment';
 import Calendar from './Calendar';
 import Calendar2 from './Calendar2';
 import Showings from './Showings';
+import User from './User'
 import Summary from './Summary'
 import Seats from './Seats'
 import Tickets from './Tickets'
@@ -12,7 +13,7 @@ import io from 'socket.io-client';
 import { API_URL, request } from './apiconnection.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
-import { faFilm } from '@fortawesome/free-solid-svg-icons'
+import { faChair } from '@fortawesome/free-solid-svg-icons'
 
 //console.log = function() {} //removing console.log comments
 
@@ -23,10 +24,11 @@ const socket = io('https://cinema-node.herokuapp.com');
 class Board extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { showings: '', selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: '', tickets: '', wrapShowingSelection: false };
+        this.state = { showings: '', selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: '', tickets: '', wrapShowingSelection: false, showUser: false, username: '', showRoom:true };
         this.handleDaySelection = this.handleDaySelection.bind(this);
         this.handleSelectedShowing = this.handleSelectedShowing.bind(this);
         this.handleSelectedSeats = this.handleSelectedSeats.bind(this);
+        this.loggedUsername = this.loggedUsername.bind(this);
         this.resetOrder = this.resetOrder.bind(this);
         this.resetSeatsState = this.resetSeatsState.bind(this);
         this.handleSelectedShowingSocket = this.handleSelectedShowingSocket.bind(this);
@@ -59,8 +61,7 @@ class Board extends React.Component {
     }
 
 
-    handleSelectedShowing(showing, seatsTaken, username) {
-        console.log("z wyboru showing", username)
+    handleSelectedShowing(showing, seatsTaken) {
         this.setState({ selectedShowing: showing, seatsTaken: seatsTaken, selectedSeats: [], seatsState: this.resetSeatsState(showing) });
     }
 
@@ -73,13 +74,16 @@ class Board extends React.Component {
         this.setState({ selectedSeats: selectedSeats });
     }
 
+    loggedUsername(user) {
+        this.setState({ username: user });
+    }
+
 
     resetOrder(tickets) {
-        console.log(this.state.showings);
         this.setState({
             selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: '', userLogged: '',
             tickets: tickets, lastOrderedShowing: this.state.selectedShowing, wrapShowingSelection: false
-        }); //userLogged:username
+        });
     }
 
     showCalAgain() {
@@ -93,16 +97,15 @@ class Board extends React.Component {
 
 
     wrapShowingSelection() {
-        this.setState({ wrapShowingSelection: true })
+        this.setState({ wrapShowingSelection: true, showUser: true, showRoom: false })
     }
 
     showRoomAgain() {
-        this.setState({ wrapShowingSelection: false })
+        this.setState({ showRoom: true })
     }
 
 
     render() {
-        console.log(this.state.wrapShowingSelection);
         return (
             <div id="main-panel">
                 <div id="calendar-wrapper" className={this.state.selectedShowing !== '' ? "wrapped" : ''} >
@@ -111,7 +114,7 @@ class Board extends React.Component {
                     {this.state.selectedShowing !== '' ?
                         <div id="cal-icon">
                             <i onClick={this.showCalAgain} className="fa fa-calendar"></i>
-                            <p>{moment(this.state.selectedDay).format('DD-MM-YYYY')}</p>
+                            <p>{moment(this.state.selectedDay).format('DD-MM-YYYY')} {this.state.selectedShowing.date}</p>
                         </div> : ''}
                 </div>
 
@@ -130,13 +133,15 @@ class Board extends React.Component {
                     </div> : ''}
 
                 {this.state.selectedShowing !== '' ?
-                    <div id="room-wrapper" className={this.state.wrapShowingSelection ? "wrapped" : ''}>
+                    <div id="room-wrapper" className={this.state.showRoom === false ? "wrapped" : ''}>
                         <div id="third">III</div>
-                        <Seats className={this.state.wrapShowingSelection ? "wrapped" : ''} showing={this.state.selectedShowing} seatsState={this.state.seatsState} seatsTaken={this.state.seatsTaken} handleSelectedSeats={this.handleSelectedSeats} />
-                        {this.state.wrapShowingSelection ?
+                        <Seats className={this.state.showRoom === false? "wrapped" : ''} showing={this.state.selectedShowing} seatsState={this.state.seatsState} seatsTaken={this.state.seatsTaken} handleSelectedSeats={this.handleSelectedSeats} />
+                        {this.state.showRoom === false?
                             <div id="room-icon">
-                                <i onClick={this.showRoomAgain} className="fas fa-chair"></i>
-                                <p>{this.state.selectedSeats}</p>
+                                <FontAwesomeIcon onClick={this.showRoomAgain} icon={faChair} size="7x" />
+                                <div id="selectedSeatsSummary">{this.state.selectedSeats.map((seat, index) => {
+                                    return <p>{seat}</p>
+                                })}</div>
                             </div> : ''}
                     </div>
                     : ''}
@@ -146,7 +151,11 @@ class Board extends React.Component {
                 {this.state.selectedSeats !== '' && this.state.selectedSeats.length > 0 ?
                     <div id="summary-wrapper">
                         <div id="fourth">IV</div>
-                        <Summary wrapShowingSelection={this.wrapShowingSelection} seatsArray={this.state.selectedSeats} selectedShowing={this.state.selectedShowing} resetOrder={this.resetOrder} />
+                        {this.state.showUser ?
+                            <User className={this.state.username ? 'logged-in' : 'not-logged'} loggedUsername={this.loggedUsername} /> :
+                            <div id="next"><button onClick={this.wrapShowingSelection}>Next step</button></div>
+                        }
+                        {this.state.username !== '' ? <Summary loggedUsername={this.state.username} seatsArray={this.state.selectedSeats} selectedShowing={this.state.selectedShowing} resetOrder={this.resetOrder} /> : ''}
                     </div>
                     : ''}
                 {this.state.tickets !== '' ? <Tickets tickets={this.state.tickets} lastOS={this.state.lastOrderedShowing} /> : ''}
