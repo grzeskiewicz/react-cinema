@@ -1,6 +1,23 @@
-#room-wrapper{
+#room-wrapper {
   justify-content: space-between;
 }
+
+#room-wrapper.wrapped {
+  flex-basis: 10%;
+}
+#room.wrapped {
+  flex: 0;
+}
+#room-icon {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+
+#room-icon > * {
+  text-align: center;
+}
+
 #room {
   display: flex;
   flex-flow: column nowrap;
@@ -8,8 +25,8 @@
 }
 
 #room > p {
-  display:flex;
-  justify-content: center;;
+  display: flex;
+  justify-content: center;
 }
 #seats {
   margin: 0 4px;

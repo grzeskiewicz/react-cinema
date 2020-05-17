@@ -63,7 +63,7 @@ class Seats extends React.Component {
         const roomRoman = romanNum[this.props.showing.room];
 
         return (
-            <div id="room"><p>ROOM {roomRoman}</p><div id="screen"></div>{this.props.seatsTaken !== '' ? <div id="seats">{wholeRender}</div> : ''}
+            <div className={this.props.className} id="room"><p>ROOM {roomRoman}</p><div id="screen"></div>{this.props.seatsTaken !== '' ? <div id="seats">{wholeRender}</div> : ''}
                 <div id="markings">
                     <div><button diasbled="true"></button><p>Free</p></div>
                     <div><button className="taken" diasbled="true"></button><p>Taken</p></div>

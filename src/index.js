@@ -97,7 +97,7 @@ class Board extends React.Component {
     }
 
     showRoomAgain() {
-        this.setState({});
+        this.setState({ wrapShowingSelection: false })
     }
 
 
@@ -130,13 +130,14 @@ class Board extends React.Component {
                     </div> : ''}
 
                 {this.state.selectedShowing !== '' ?
-                    <div id="room-wrapper">
+                    <div id="room-wrapper" className={this.state.wrapShowingSelection ? "wrapped" : ''}>
                         <div id="third">III</div>
-                        <Seats showing={this.state.selectedShowing} seatsState={this.state.seatsState} seatsTaken={this.state.seatsTaken} handleSelectedSeats={this.handleSelectedSeats} />
-                        <div id="room-icon">
-                            <i onClick={this.showRoomAgain} className="fa fa-cinema"></i>
-                            <p>{this.state.selectedSeats}</p>
-                        </div>
+                        <Seats className={this.state.wrapShowingSelection ? "wrapped" : ''} showing={this.state.selectedShowing} seatsState={this.state.seatsState} seatsTaken={this.state.seatsTaken} handleSelectedSeats={this.handleSelectedSeats} />
+                        {this.state.wrapShowingSelection ?
+                            <div id="room-icon">
+                                <i onClick={this.showRoomAgain} className="fas fa-chair"></i>
+                                <p>{this.state.selectedSeats}</p>
+                            </div> : ''}
                     </div>
                     : ''}
 
