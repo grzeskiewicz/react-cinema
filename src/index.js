@@ -62,7 +62,7 @@ class Board extends React.Component {
 
 
     handleSelectedShowing(showing, seatsTaken) {
-        this.setState({ selectedShowing: showing, seatsTaken: seatsTaken, selectedSeats: [], seatsState: this.resetSeatsState(showing) });
+        this.setState({ selectedShowing: showing, seatsTaken: seatsTaken, selectedSeats: [], seatsState: this.resetSeatsState(showing), showRoom:true,showUser:false });
     }
 
 
@@ -87,12 +87,7 @@ class Board extends React.Component {
     }
 
     showCalAgain() {
-        this.setState({ selectedShowing: '' });
-    }
-
-    showShowingSelectionAgain() {
-        this.setState({ wrapShowingSelection: false })
-
+        this.setState({ selectedShowing: '', wrapShowingSelection:false, selectedSeats:[] });
     }
 
 
@@ -100,8 +95,17 @@ class Board extends React.Component {
         this.setState({ wrapShowingSelection: true, showUser: true, showRoom: false })
     }
 
+
+    showShowingSelectionAgain() {
+        this.setState({ wrapShowingSelection: false })
+        this.showRoomAgain();
+
+    }
+
+
+
     showRoomAgain() {
-        this.setState({ showRoom: true })
+        this.setState({ showRoom: true , showUser:false})
     }
 
 
