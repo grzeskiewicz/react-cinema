@@ -6,7 +6,7 @@ import Calendar from './Calendar';
 import Calendar2 from './Calendar2';
 import Showings from './Showings';
 import User from './User'
-import Summary from './Summary'
+import Order from './Order'
 import Seats from './Seats'
 import Tickets from './Tickets'
 import io from 'socket.io-client';
@@ -24,7 +24,7 @@ const socket = io('https://cinema-node.herokuapp.com');
 class Board extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { showings: '', selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: '', tickets: '', wrapShowingSelection: false, showUser: false, username: '', showRoom:true };
+        this.state = { showings: '', selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: '', tickets: '', wrapShowingSelection: false, showUser: false, username: '', showRoom: true };
         this.handleDaySelection = this.handleDaySelection.bind(this);
         this.handleSelectedShowing = this.handleSelectedShowing.bind(this);
         this.handleSelectedSeats = this.handleSelectedSeats.bind(this);
@@ -62,7 +62,7 @@ class Board extends React.Component {
 
 
     handleSelectedShowing(showing, seatsTaken) {
-        this.setState({ selectedShowing: showing, seatsTaken: seatsTaken, selectedSeats: [], seatsState: this.resetSeatsState(showing), showRoom:true,showUser:false });
+        this.setState({ selectedShowing: showing, seatsTaken: seatsTaken, selectedSeats: [], seatsState: this.resetSeatsState(showing), showRoom: true, showUser: false });
     }
 
 
@@ -81,13 +81,13 @@ class Board extends React.Component {
 
     resetOrder(tickets) {
         this.setState({
-            selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: '', userLogged: '',
+            selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: '', userLogged: '',showUser:false,
             tickets: tickets, lastOrderedShowing: this.state.selectedShowing, wrapShowingSelection: false
         });
     }
 
     showCalAgain() {
-        this.setState({ selectedShowing: '', wrapShowingSelection:false, selectedSeats:[] });
+        this.setState({ selectedShowing: '', wrapShowingSelection: false, selectedSeats: [], username: '' });
     }
 
 
@@ -97,7 +97,7 @@ class Board extends React.Component {
 
 
     showShowingSelectionAgain() {
-        this.setState({ wrapShowingSelection: false })
+        this.setState({ wrapShowingSelection: false, username: '' })
         this.showRoomAgain();
 
     }
@@ -105,11 +105,12 @@ class Board extends React.Component {
 
 
     showRoomAgain() {
-        this.setState({ showRoom: true , showUser:false})
+        this.setState({ showRoom: true, showUser: false, username: '' })
     }
 
 
     render() {
+        console.log(this.state.username);
         return (
             <div id="main-panel">
                 <div id="calendar-wrapper" className={this.state.selectedShowing !== '' ? "wrapped" : ''} >
@@ -139,8 +140,8 @@ class Board extends React.Component {
                 {this.state.selectedShowing !== '' ?
                     <div id="room-wrapper" className={this.state.showRoom === false ? "wrapped" : ''}>
                         <div id="third">III</div>
-                        <Seats className={this.state.showRoom === false? "wrapped" : ''} showing={this.state.selectedShowing} seatsState={this.state.seatsState} seatsTaken={this.state.seatsTaken} handleSelectedSeats={this.handleSelectedSeats} />
-                        {this.state.showRoom === false?
+                        <Seats className={this.state.showRoom === false ? "wrapped" : ''} showing={this.state.selectedShowing} seatsState={this.state.seatsState} seatsTaken={this.state.seatsTaken} handleSelectedSeats={this.handleSelectedSeats} />
+                        {this.state.showRoom === false ?
                             <div id="room-icon">
                                 <FontAwesomeIcon onClick={this.showRoomAgain} icon={faChair} size="7x" />
                                 <div id="selectedSeatsSummary">{this.state.selectedSeats.map((seat, index) => {
@@ -153,13 +154,15 @@ class Board extends React.Component {
 
 
                 {this.state.selectedSeats !== '' && this.state.selectedSeats.length > 0 ?
-                    <div id="summary-wrapper">
+                    <div id="order-wrapper">
                         <div id="fourth">IV</div>
-                        {this.state.showUser ?
-                            <User className={this.state.username ? 'logged-in' : 'not-logged'} loggedUsername={this.loggedUsername} /> :
-                            <div id="next"><button onClick={this.wrapShowingSelection}>Next step</button></div>
-                        }
-                        {this.state.username !== '' ? <Summary loggedUsername={this.state.username} seatsArray={this.state.selectedSeats} selectedShowing={this.state.selectedShowing} resetOrder={this.resetOrder} /> : ''}
+                        <div id="user-order">
+                            {this.state.showUser ?
+                                <User className={this.state.username ? 'logged-in' : 'not-logged'} loggedUsername={this.loggedUsername} /> :
+                                <div id="next"><button onClick={this.wrapShowingSelection}>Go to order</button></div>
+                            }
+                            {this.state.username !== '' ? <Order showUser={this.state.showUser} loggedUsername={this.state.username} seatsArray={this.state.selectedSeats} selectedShowing={this.state.selectedShowing} resetOrder={this.resetOrder} /> : ''}
+                        </div>
                     </div>
                     : ''}
                 {this.state.tickets !== '' ? <Tickets tickets={this.state.tickets} lastOS={this.state.lastOrderedShowing} /> : ''}

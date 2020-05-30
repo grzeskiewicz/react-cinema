@@ -3,6 +3,7 @@
 #calendar {
   display: flex;
   flex-flow: column;
+  flex-basis:90%;
 }
 
 

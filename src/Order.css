@@ -1,0 +1,35 @@
+#order-wrapper {
+  justify-content: flex-start;
+}
+
+
+#next {
+  text-align: center;
+}
+
+
+#next button {
+  width:80%;
+}
+
+
+#user-order{
+  display:flex;
+  flex-flow:column nowrap;
+  flex-basis:90%;
+  justify-content: center;
+}
+
+#ordering {
+  text-align:center;
+}
+
+
+#ordering button {
+  width:80%;
+}
+
+
+
+
+

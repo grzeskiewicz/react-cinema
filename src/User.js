@@ -38,11 +38,12 @@ class User extends React.Component {
     logout() {
         authServices.destroyUserCredentials();
         this.setState({ userLogged: '' });
+        this.props.loggedUsername('');
     }
 
     render() {
         return (
-            <div className={this.props.className} id="user">
+            <div className={this.props.className} id="user-wrapper">
                 {this.state.userLogged !== '' ?
                     <div id="user-data">
                         <p>{this.state.userLogged}</p>
@@ -50,7 +51,7 @@ class User extends React.Component {
                     </div> : ''}
 
                 {this.state.userLogged === '' ?
-                    <div>
+                    <div id="user">
                         <Login getUserData={this.getUserData}></Login>
                         <Register></Register>
                     </div>

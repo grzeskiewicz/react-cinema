@@ -7,22 +7,31 @@
   align-items: baseline;
   border-bottom: 2px solid grey;
   margin-bottom:2rem;
+  justify-content: center;
+  flex:1 100%;
 }
 #user-data > * {
   margin: 0 1rem 0 0;
 }
 
-#user {
+#user-wrapper {
   display: flex;
+  align-items:flex-start;
+}
+
+#user-wrapper.not-logged{
+  flex-basis:90%;
+  align-items: stretch;
 }
 
 
-/*
-#user > div {
+
+#user {
   display: flex;
   flex-flow: column;
   justify-content: space-around;
-} */
+  flex-basis:100%;
+} 
 
 #login {
   display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
@@ -31,11 +40,16 @@
   display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
   flex-flow: row wrap;
   justify-content: center;
-  flex-basis: 20%;
+  flex-basis: 40%;
 }
 
 #login > * {
-  flex-basis: 70%;
+  flex-basis: 80%;
+}
+
+#login p.error {
+text-align:center;
+flex-basis:100%;
 }
 
 #user-register {
@@ -49,7 +63,7 @@
 }
 
 #user-register > * {
-  flex-basis: 70%;
+  flex-basis: 80%;
 }
 
 .error {

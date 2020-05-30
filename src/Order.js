@@ -2,12 +2,12 @@ import React from 'react';
 import { authServices } from './services.js';
 import { API_URL, request } from './apiconnection.js';
 import io from 'socket.io-client';
-import './Summary.css';
+import './Order.css';
 
 const socket = io('https://cinema-node.herokuapp.com');
 
 
-class Summary extends React.Component {
+class Order extends React.Component {
     constructor(props) {
         super(props);
         this.createTickets = this.createTickets.bind(this);
@@ -58,4 +58,4 @@ class Summary extends React.Component {
 
 
 
-export default Summary;
+export default Order;

@@ -27,7 +27,7 @@ cursor: pointer;
 #room {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
+  flex-basis:90%;
 }
 
 #room > p {
