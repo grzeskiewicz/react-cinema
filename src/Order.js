@@ -16,7 +16,6 @@ class Order extends React.Component {
 
 
     createTickets() {
-        console.log(this.props.loggedUsername);
         const ticket = {
             showing: this.props.selectedShowing.id,
             seats: this.props.seatsArray,

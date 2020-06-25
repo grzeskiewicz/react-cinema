@@ -1,4 +1,5 @@
 #calendar {
+    justify-content: flex-start;
 }
 
 #calendar table {

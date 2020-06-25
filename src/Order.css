@@ -1,7 +1,13 @@
 #order-wrapper {
   justify-content: flex-start;
+  height:100vh;
 }
 
+@media (min-width: 600px) {
+  #order-wrapper {
+    height:100%;
+  }
+}
 
 #next {
   text-align: center;

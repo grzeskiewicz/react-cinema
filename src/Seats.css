@@ -2,32 +2,24 @@
   justify-content: space-between;
 }
 
-#room-wrapper.wrapped {
-  flex-basis: 10%;
-}
-#room.wrapped {
-  flex: 0;
-}
 #room-icon {
-  display: flex;
-  flex-flow: column;
-  justify-content: space-between;
-}
-
-#room-icon > * {
-  text-align: center;
+  flex: 0;
 }
 
 #room-icon svg {
-  color:orange;
+  color: orange;
+  cursor: pointer;
 width:100%;
-cursor: pointer;
+height:auto;
 }
 
+#room-icon svg path {
+  width: 7vw;
+}
 #room {
   display: flex;
   flex-flow: column nowrap;
-  flex-basis:90%;
+  flex-basis: 90%;
 }
 
 #room > p {
@@ -100,4 +92,28 @@ cursor: pointer;
   border-radius: 3px;
   border: 0;
   margin-right: 0.5rem;
+}
+
+@media (min-width: 600px) {
+  #room-wrapper {
+    height: 100%;
+  }
+
+  #room-wrapper.wrapped {
+    flex-basis: 10%;
+  }
+  #room.wrapped {
+    flex: 0;
+  }
+
+  #room-icon {
+    flex: 1;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+  }
+
+  #room-icon > * {
+    text-align: center;
+  }
 }

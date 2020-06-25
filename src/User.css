@@ -24,7 +24,9 @@
   align-items: stretch;
 }
 
-
+#show-register, #hide-register {
+  text-align: center;
+}
 
 #user {
   display: flex;

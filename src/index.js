@@ -12,11 +12,23 @@ import Tickets from './Tickets'
 import io from 'socket.io-client';
 import { API_URL, request } from './apiconnection.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
 import { faChair } from '@fortawesome/free-solid-svg-icons'
 
 //console.log = function() {} //removing console.log comments
 
+// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+let vh = window.innerHeight * 0.01;
+// Then we set the value in the --vh custom property to the root of the document
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+console.log(document);
+
+
+// We listen to the resize event
+window.addEventListener('resize', () => {
+    // We execute the same script as before
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+});
 
 
 const socket = io('https://cinema-node.herokuapp.com');
@@ -36,6 +48,8 @@ class Board extends React.Component {
         this.wrapShowingSelection = this.wrapShowingSelection.bind(this);
         this.showShowingSelectionAgain = this.showShowingSelectionAgain.bind(this);
         this.showRoomAgain = this.showRoomAgain.bind(this);
+
+        this.scrollToNode = this.scrollToNode.bind(this);
     }
 
     componentDidMount() {
@@ -44,6 +58,13 @@ class Board extends React.Component {
             .then(showings => {
                 this.setState({ showings: showings })
             });
+    }
+
+    scrollToNode(node) {
+        setTimeout(function () {
+            node.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+
     }
 
     resetSeatsState(showing) {
@@ -58,6 +79,8 @@ class Board extends React.Component {
 
     handleDaySelection(day) {
         this.setState({ selectedDay: day, selectedShowing: '', selectedSeats: [], tickets: '' });
+        this.scrollToNode(this.showings);
+
     }
 
 
@@ -81,9 +104,11 @@ class Board extends React.Component {
 
     resetOrder(tickets) {
         this.setState({
-            selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: '', userLogged: '',showUser:false,
+            selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: '', userLogged: '', showUser: false,
             tickets: tickets, lastOrderedShowing: this.state.selectedShowing, wrapShowingSelection: false
         });
+        this.scrollToNode(this.tickets);
+
     }
 
     showCalAgain() {
@@ -92,7 +117,11 @@ class Board extends React.Component {
 
 
     wrapShowingSelection() {
-        this.setState({ wrapShowingSelection: true, showUser: true, showRoom: false })
+
+        this.setState({ wrapShowingSelection: true, showUser: true, showRoom: false });
+        this.scrollToNode(this.order);
+
+
     }
 
 
@@ -110,7 +139,6 @@ class Board extends React.Component {
 
 
     render() {
-        console.log(this.state.username);
         return (
             <div id="main-panel">
                 <div id="calendar-wrapper" className={this.state.selectedShowing !== '' ? "wrapped" : ''} >
@@ -124,48 +152,53 @@ class Board extends React.Component {
                 </div>
 
 
-                {(this.state.showings.length > 0 && this.state.selectedDay !== '') ?
-                    <div id="showing-selection-wrapper" className={this.state.wrapShowingSelection ? "wrapped" : ''}>
-                        <div id="second">II</div>
-                        <Showings className={this.state.wrapShowingSelection ? "wrapped" : ''} selectedDay={this.state.selectedDay}
-                            showings={this.state.showings} handleSelectedShowing={this.handleSelectedShowing} handleSelectedShowingSocket={this.handleSelectedShowingSocket} />
-
-                        {this.state.wrapShowingSelection ?
-                            <div id="showing-icon">
-                                <i onClick={this.showShowingSelectionAgain} className="fa fa-film"></i>
-                                <p>{this.state.selectedShowing.title}</p>
-                            </div> : ''}
-                    </div> : ''}
+                <div id="showing-selection-wrapper" className={(this.state.wrapShowingSelection ? "wrapped" : '') + " " + (this.state.tickets!=='' ? 'hidden':'')} ref={(node) => this.showings = node}>
+                    <div id="second">II</div>
+                    <Showings className={this.state.wrapShowingSelection ? "wrapped" : ''} selectedDay={this.state.selectedDay}
+                        showings={this.state.showings} handleSelectedShowing={this.handleSelectedShowing} handleSelectedShowingSocket={this.handleSelectedShowingSocket} />
+                    {this.state.selectedShowing !== '' ? <button id="scroll-to-seats" onClick={() => this.scrollToNode(this.room)}>Select seats</button> : ''}
+                    {this.state.wrapShowingSelection ?
+                        <div id="showing-icon">
+                            <i onClick={this.showShowingSelectionAgain} className="fa fa-film"></i>
+                            <p>{this.state.selectedShowing.title}</p>
+                        </div> : ''}
+                </div>
 
                 {this.state.selectedShowing !== '' ?
-                    <div id="room-wrapper" className={this.state.showRoom === false ? "wrapped" : ''}>
+                    <div id="room-wrapper" className={this.state.showRoom === false ? "wrapped" : ''} ref={(node) => this.room = node}>
                         <div id="third">III</div>
                         <Seats className={this.state.showRoom === false ? "wrapped" : ''} showing={this.state.selectedShowing} seatsState={this.state.seatsState} seatsTaken={this.state.seatsTaken} handleSelectedSeats={this.handleSelectedSeats} />
                         {this.state.showRoom === false ?
                             <div id="room-icon">
-                                <FontAwesomeIcon onClick={this.showRoomAgain} icon={faChair} size="7x" />
-                                <div id="selectedSeatsSummary">{this.state.selectedSeats.map((seat, index) => {
-                                    return <p>{seat}</p>
-                                })}</div>
-                            </div> : ''}
+                                <FontAwesomeIcon id="chair-icon" onClick={this.showRoomAgain} icon={faChair} />
+                                <div id="selectedSeatsSummary">
+                                    {this.state.selectedSeats.map((seat, index) => { return <p>{seat}</p> })}
+                                </div>
+                            </div> : <div id="next"><button onClick={this.wrapShowingSelection}>Go to order</button></div>
+                        }
+
                     </div>
                     : ''}
 
 
 
                 {this.state.selectedSeats !== '' && this.state.selectedSeats.length > 0 ?
-                    <div id="order-wrapper">
+                    <div id="order-wrapper" ref={(node) => this.order = node}>
                         <div id="fourth">IV</div>
                         <div id="user-order">
                             {this.state.showUser ?
-                                <User className={this.state.username ? 'logged-in' : 'not-logged'} loggedUsername={this.loggedUsername} /> :
-                                <div id="next"><button onClick={this.wrapShowingSelection}>Go to order</button></div>
+                                <User className={this.state.username ? 'logged-in' : 'not-logged'} loggedUsername={this.loggedUsername} ref={(node) => this.user = node} /> : ''
                             }
                             {this.state.username !== '' ? <Order showUser={this.state.showUser} loggedUsername={this.state.username} seatsArray={this.state.selectedSeats} selectedShowing={this.state.selectedShowing} resetOrder={this.resetOrder} /> : ''}
                         </div>
                     </div>
                     : ''}
-                {this.state.tickets !== '' ? <Tickets tickets={this.state.tickets} lastOS={this.state.lastOrderedShowing} /> : ''}
+                {this.state.tickets !== '' ?
+                    <div id="tickets-wrapper" ref={(node) => this.tickets = node}>
+                                                <div id="fifth">V</div>
+                        <Tickets tickets={this.state.tickets} lastOS={this.state.lastOrderedShowing} />
+                    </div>
+                    : ''}
             </div>
         );
 

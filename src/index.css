@@ -33,10 +33,7 @@ p {
 * * * * * * * * * { background-color:lightblue} */
 
 #root {
-  min-height: 100vh;
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
+
 }
 
 #main-panel {
@@ -44,48 +41,100 @@ p {
   display: -ms-flexbox; /* TWEENER - IE 10 */
   display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
+  justify-content: center;
   background-color: #454343;
   color: #ff8c00;
-  height: 70vh;
 }
 
 #main-panel > * {
-  flex-basis: 25%;
-  display: flex;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
   flex-flow: column nowrap;
   justify-content: center;
   overflow: hidden;
   transition: flex 0.5s ease-out;
-  border:1px solid orange;
+  border: 1px solid orange;
 }
 
 #calendar-wrapper > *,
 #showing-selection-wrapper > *,
 #room-wrapper > *,
-#summary-wrapper > * {
-  display: flex;
+#order-wrapper > *,
+#tickets-wrapper > *{
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
   justify-content: center;
   overflow: hidden;
   transition: flex 0.5s ease-out;
 }
 
+@media (min-width: 600px) {
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+  }
+  #main-panel {
+    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox; /* TWEENER - IE 10 */
+    display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+    display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
+    flex-flow: row nowrap;
+    background-color: #454343;
+    color: #ff8c00;
+    height: 70vh;
+  }
 
+  #main-panel > * {
+    flex-basis: 25%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    overflow: hidden;
+    transition: flex 0.5s ease-out;
+    border: 1px solid orange;
+  }
+
+
+  #calendar-wrapper > *,
+  #showing-selection-wrapper > *,
+  #room-wrapper > *,
+  #summary-wrapper > * ,
+  #tickets-wrapper > *{
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    transition: flex 0.5s ease-out;
+  }
+
+  #first,
+#second,
+#third,
+#fourth,
+#fifth {
+  flex-basis: 10%;
+  border: 1px solid orange;
+}
+}
 
 #first,
 #second,
 #third,
 #fourth,
 #fifth {
-flex-basis:10%;
-border:1px solid orange;
-
+  border: 1px solid orange;
 }
 
-
-
 #selectedSeatsSummary {
-  display:flex;
-  flex-flow:row nowrap;
+  display: flex;
+  flex-flow: row nowrap;
   justify-content: space-evenly;
 }

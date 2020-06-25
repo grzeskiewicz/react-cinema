@@ -10,7 +10,9 @@ class User extends React.Component {
         super(props);
         this.getUserData = this.getUserData.bind(this);
         this.logout = this.logout.bind(this);
-        this.state = { userLogged: '' }
+        this.showRegister= this.showRegister.bind(this);
+        this.hideRegister=this.hideRegister.bind(this);
+        this.state = { userLogged: '', showRegister: false }
     }
 
     componentDidMount() {
@@ -18,11 +20,9 @@ class User extends React.Component {
         authServices.getInfo().then(res => {
             if (res.success) {
                 this.props.loggedUsername(res.msg);
-                this.setState({ authorised: true, userLogged: res.msg });
-                console.log(this.state.userLogged);
+                this.setState({ authorised: true, userLogged: res.msg, showRegister: false });
             } else {
-                console.log(res);
-                this.setState({ authorised: false });
+                this.setState({ authorised: false, showRegister: false });
             }
         })
     }
@@ -32,13 +32,22 @@ class User extends React.Component {
         this.setState({ userLogged: user });
 
 
-        console.log("Zalogowan user", user);
     }
 
     logout() {
         authServices.destroyUserCredentials();
-        this.setState({ userLogged: '' });
+        this.setState({ userLogged: '', showRegister: false });
         this.props.loggedUsername('');
+    }
+
+
+    showRegister() {
+        this.setState({ showRegister: true});
+    }
+
+    hideRegister(){
+        this.setState({ showRegister: false});
+
     }
 
     render() {
@@ -52,8 +61,9 @@ class User extends React.Component {
 
                 {this.state.userLogged === '' ?
                     <div id="user">
-                        <Login getUserData={this.getUserData}></Login>
-                        <Register></Register>
+                        {this.state.showRegister === true ?
+                            <div><p id="hide-register" onClick={this.hideRegister}>Login</p><Register></Register></div> :
+                            <div><Login getUserData={this.getUserData}></Login> <p id="show-register" onClick={this.showRegister}>Register</p></div>}
                     </div>
                     : ''}
             </div>
