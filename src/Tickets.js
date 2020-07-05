@@ -1,15 +1,7 @@
 import React from "react";
 import "./Tickets.css";
 
-
-
-
 class Tickets extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-
   makepdf(ticket) {
 
   }
@@ -47,7 +39,7 @@ class Tickets extends React.Component {
         <div id="confirmation">
           <p>Your tickets has been sent to your e-mail address!</p>
           <p>
-            Download your ticket here <a href="">Download PDF</a>
+            Download your ticket here <a href="\">Download PDF</a>
           </p>
         </div>
       </div>

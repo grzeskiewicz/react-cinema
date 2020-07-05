@@ -32,10 +32,6 @@ p {
 * * * * * * * * { background-color: rgba(0,255,0,.2); }
 * * * * * * * * * { background-color:lightblue} */
 
-#root {
-
-}
-
 #main-panel {
   display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
   display: -ms-flexbox; /* TWEENER - IE 10 */
@@ -46,6 +42,9 @@ p {
   background-color: #454343;
   color: #ff8c00;
 }
+
+body.no-scroll {margin: 0; height: 100%; overflow: hidden}
+
 
 #main-panel > * {
   height: 100vh;
@@ -65,7 +64,7 @@ p {
 #showing-selection-wrapper > *,
 #room-wrapper > *,
 #order-wrapper > *,
-#tickets-wrapper > *{
+#tickets-wrapper > * {
   display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
   display: -ms-flexbox; /* TWEENER - IE 10 */
   display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
@@ -74,6 +73,16 @@ p {
   overflow: hidden;
   transition: flex 0.5s ease-out;
 }
+
+#first,
+#second,
+#third,
+#fourth,
+#fifth {
+  border: 1px solid orange;
+}
+
+
 
 @media (min-width: 600px) {
   #root {
@@ -91,6 +100,8 @@ p {
     background-color: #454343;
     color: #ff8c00;
     height: 70vh;
+    justify-content: stretch;
+
   }
 
   #main-panel > * {
@@ -103,12 +114,11 @@ p {
     border: 1px solid orange;
   }
 
-
   #calendar-wrapper > *,
   #showing-selection-wrapper > *,
   #room-wrapper > *,
-  #summary-wrapper > * ,
-  #tickets-wrapper > *{
+  #summary-wrapper > *,
+  #tickets-wrapper > * {
     display: flex;
     justify-content: center;
     overflow: hidden;
@@ -116,25 +126,11 @@ p {
   }
 
   #first,
-#second,
-#third,
-#fourth,
-#fifth {
-  flex-basis: 10%;
-  border: 1px solid orange;
-}
-}
-
-#first,
-#second,
-#third,
-#fourth,
-#fifth {
-  border: 1px solid orange;
-}
-
-#selectedSeatsSummary {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-evenly;
+  #second,
+  #third,
+  #fourth,
+  #fifth {
+    flex-basis: 10%;
+    border: 1px solid orange;
+  }
 }

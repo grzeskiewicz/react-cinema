@@ -53,10 +53,11 @@
   }
 
   .filmDetails > div > p:nth-child(1) {
-    text-align: right;
+    text-align: left;
   }
 
   .filmDetails > div > p:nth-child(2) {
+    text-align: right;
   }
 }
 /* ===========================FILM================================= */

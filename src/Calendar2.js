@@ -107,14 +107,14 @@ class Calendar2 extends React.Component {
           className = className.replace("not-selectable", "");
         }
         return (
-          <p
+          <div
             key={index2}
             date={day.date}
-            className={className}
+            className={"day " + className}
             onClick={() => this.handleDaySelection(day.date)}
           >
-            {day.date.getDate()}
-          </p>
+            <p>{day.date.getDate()}</p>
+          </div>
         );
       });
 

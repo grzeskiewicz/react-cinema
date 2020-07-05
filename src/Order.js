@@ -1,5 +1,4 @@
 import React from 'react';
-import { authServices } from './services.js';
 import { API_URL, request } from './apiconnection.js';
 import io from 'socket.io-client';
 import './Order.css';
@@ -34,19 +33,18 @@ class Order extends React.Component {
     }
 
     render() {
-        const seatsArray = this.props.seatsArray;
-        let seatsArrayMap;
-        if (seatsArray.length > 0) {
-            seatsArrayMap = seatsArray.map((seat) => {
-                return <p key={seat}>{seat}</p>
-            });
-        }
+        /* const seatsArray = this.props.seatsArray;
+         let seatsArrayMap;
+         if (seatsArray.length > 0) {
+             seatsArrayMap = seatsArray.map((seat) => {
+                 return <p key={seat}>{seat}</p>
+             });
+         } */
         /*  const romanNum = ['0', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
           const roomRoman = romanNum[this.props.selectedShowing.room]; */
         return (
             <div id="ordering">
                 <button id="create-ticket-btn" onClick={this.createTickets}>Order</button>
-                {this.state.ticketStatus.msg !== '' ? this.state.ticketStatus.msg : ''}
             </div>
 
         );
