@@ -6,7 +6,20 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: black;
+  background-color: #454343;
+}
+
+#root.scroll-lock-horizontal {
+  overflow-x: hidden;
+  position: relative;
+  max-height: calc(var(--vh, 1vh) * 100);
+}
+
+#root.scroll-lock-vertical {
+  overflow-y: hidden;
+  position: relative;
+
+  max-height: calc(var(--vh, 1vh) * 100);
 }
 
 * {
@@ -40,11 +53,9 @@ p {
   flex-flow: column nowrap;
   justify-content: center;
   background-color: #454343;
-  color: #ff8c00;
+  /*color: #ff8c00;*/
+  color: #f5821e;
 }
-
-body.no-scroll {margin: 0; height: 100%; overflow: hidden}
-
 
 #main-panel > * {
   height: 100vh;
@@ -57,7 +68,6 @@ body.no-scroll {margin: 0; height: 100%; overflow: hidden}
   justify-content: center;
   overflow: hidden;
   transition: flex 0.5s ease-out;
-  border: 1px solid orange;
 }
 
 #calendar-wrapper > *,
@@ -79,17 +89,39 @@ body.no-scroll {margin: 0; height: 100%; overflow: hidden}
 #third,
 #fourth,
 #fifth {
-  border: 1px solid orange;
+  border: 1px solid #f5821e;
 }
 
+#second-mobile {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+}
 
+#second-mobile p {
+  border: 1px solid #f5821e;
+  flex: 1 100%;
+  text-align: center;
+  margin: 0;
+}
+
+#second {
+  display: none;
+}
 
 @media (min-width: 600px) {
-  #root {
+  #second-mobile {
+    flex: 0;
+  }
+  #second {
+    display: flex;
+  }
+  body {
     min-height: 100vh;
     display: flex;
     flex-flow: column;
     justify-content: center;
+    background-color: black;
   }
   #main-panel {
     display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
@@ -98,10 +130,10 @@ body.no-scroll {margin: 0; height: 100%; overflow: hidden}
     display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
     flex-flow: row nowrap;
     background-color: #454343;
-    color: #ff8c00;
+  /*  color: #ff8c00;*/
+  color: #f5821e;
     height: 70vh;
     justify-content: stretch;
-
   }
 
   #main-panel > * {
@@ -111,7 +143,7 @@ body.no-scroll {margin: 0; height: 100%; overflow: hidden}
     justify-content: center;
     overflow: hidden;
     transition: flex 0.5s ease-out;
-    border: 1px solid orange;
+    border: 1px solid #f5821e;
   }
 
   #calendar-wrapper > *,
@@ -131,6 +163,6 @@ body.no-scroll {margin: 0; height: 100%; overflow: hidden}
   #fourth,
   #fifth {
     flex-basis: 10%;
-    border: 1px solid orange;
+    border: 1px solid #f5821e;
   }
 }

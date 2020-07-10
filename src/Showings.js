@@ -6,6 +6,8 @@ import io from 'socket.io-client';
 
 
 
+
+
 import { API_URL, request } from './apiconnection.js';
 
 const socket = io('https://cinema-node.herokuapp.com');
@@ -17,8 +19,13 @@ class Showings extends React.Component {
     constructor(props) {
         super(props);
         this.handleSelectedShowing = this.handleSelectedShowing.bind(this);
+        this.scrollLeft=this.scrollLeft.bind(this);
     }
 
+    scrollLeft(){
+        this.props.scrollLeft();
+    }
+    
 
     seatsTakenSocket(msg) {
         if (this.props.selectedShowing.id === msg.ticket.showing) {
@@ -101,7 +108,7 @@ class Showings extends React.Component {
         const readyShowings = this.groupShowings(showingsOfTheDay); //groupping them and returning object to work with
         return (
             <div id="showing-selection" className={this.props.className}>
-                {readyShowings.filmTitles.length > 0 ? <Films readyShowings={readyShowings} handleSelectedShowing={this.handleSelectedShowing} selectedShowing={this.props.selectedShowing} /> : <p id="no-showings-info">Unfortunately there are no showings today.</p>}
+                {readyShowings.filmTitles.length > 0 ? <Films readyShowings={readyShowings} handleSelectedShowing={this.handleSelectedShowing} selectedShowing={this.props.selectedShowing} scrollLeft={this.props.scrollLeft} /> : <p id="no-showings-info">Unfortunately there are no showings today.</p>}
             </div>
 
         );

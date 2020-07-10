@@ -31,7 +31,7 @@ const socket = io('https://cinema-node.herokuapp.com');
 class Board extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { showings: '', selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: '', tickets: '', wrapShowingSelection: false, showUser: false, username: '', showRoom: true };
+        this.state = { locked: false, showings: '', selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: '', scrolledToDescription: false, tickets: '', wrapShowingSelection: false, showUser: false, username: '', showRoom: true };
         this.handleDaySelection = this.handleDaySelection.bind(this);
         this.handleSelectedShowing = this.handleSelectedShowing.bind(this);
         this.handleSelectedSeats = this.handleSelectedSeats.bind(this);
@@ -47,7 +47,12 @@ class Board extends React.Component {
 
 
         this.scrollToNode = this.scrollToNode.bind(this);
+        this.scrollSide = this.scrollSide.bind(this);
+        this.scrollToLeft = this.scrollToLeft.bind(this);
+        this.scrollLeft = this.scrollLeft.bind(this);
+        this.scrollToSeats = this.scrollToSeats.bind(this);
     }
+
 
     componentDidMount() {
         fetch(request(API_URL + "showings", 'GET'))
@@ -55,15 +60,41 @@ class Board extends React.Component {
             .then(showings => {
                 this.setState({ showings: showings })
             });
+
     }
 
-    scrollToNode(node) {
+    scrollToNode(node, behavior) {
         setTimeout(function () {
-            node.scrollIntoView({ behavior: 'smooth' });
+            node.scrollIntoView({ behavior: behavior });
         }, 300);
     }
 
 
+    scrollSide(node) {
+        setTimeout(function () {
+            node.scrollIntoView({ behavior: 'smooth', inline: "end" });
+        }, 300);
+    }
+
+    scrollToLeft(node) {
+        setTimeout(function () {
+            node.scrollIntoView({ behavior: 'smooth', inline: "start" });
+        }, 300);
+    }
+
+
+    scrollLeft() {
+        this.setState({ scrolledToDescription: false });
+        document.querySelector('#root').classList.remove('scroll-lock-vertical');
+        this.scrollToLeft(this.showings);
+    }
+
+
+    scrollToSeats() {
+        this.scrollToNode(this.room, 'auto');
+        document.querySelector('#root').classList.remove('scroll-lock-vertical');
+
+    }
 
     resetSeatsState(showing) {
         const seats = showing.seats;
@@ -77,12 +108,15 @@ class Board extends React.Component {
 
     handleDaySelection(day) {
         this.setState({ selectedDay: day, selectedShowing: '', selectedSeats: [], tickets: '' });
-        this.scrollToNode(this.showings);
+        this.scrollToNode(this.showings, 'smooth');
+        document.querySelector('#root').classList.add('scroll-lock-horizontal');
     }
 
 
     handleSelectedShowing(showing, seatsTaken) {
-        this.setState({ selectedShowing: showing, seatsTaken: seatsTaken, selectedSeats: [], seatsState: this.resetSeatsState(showing), showRoom: true, showUser: false });
+        this.setState({ selectedShowing: showing, seatsTaken: seatsTaken, selectedSeats: [], seatsState: this.resetSeatsState(showing), showRoom: true, showUser: false, scrolledToDescription: true });
+        this.scrollSide(this.showings);
+        document.querySelector('#root').classList.add('scroll-lock-vertical');
     }
 
 
@@ -104,7 +138,7 @@ class Board extends React.Component {
             selectedDay: '', selectedSeats: [], seatsTaken: '', selectedShowing: '', userLogged: '', showUser: false,
             tickets: tickets, lastOrderedShowing: this.state.selectedShowing, wrapShowingSelection: false
         });
-        this.scrollToNode(this.tickets);
+        this.scrollToNode(this.tickets, 'smooth');
     }
 
     showCalAgain() {
@@ -114,7 +148,7 @@ class Board extends React.Component {
 
     wrapShowingSelection() {
         this.setState({ wrapShowingSelection: true, showUser: true, showRoom: false });
-        this.scrollToNode(this.order);
+        this.scrollToNode(this.order, 'smooth');
     }
 
     showShowingSelectionAgain() {
@@ -128,10 +162,13 @@ class Board extends React.Component {
     }
 
 
+
+
     render() {
-        const romanNum = ['0', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
+       // const romanNum = ['0', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
+        const romanNum = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
         const roomRoman = romanNum[this.state.selectedShowing.room];
-        console.log(this.state.showRoom);
+        console.log(this.state.scrolledToDescription)
         return (
             <div id="main-panel">
                 <div id="calendar-wrapper" className={this.state.selectedShowing !== '' ? "wrapped" : ''} ref={(node) => this.calendar = node} >
@@ -146,12 +183,16 @@ class Board extends React.Component {
 
 
                 <div id="showing-selection-wrapper" className={(this.state.wrapShowingSelection ? "wrapped" : '') + " " + (this.state.tickets !== '' || this.state.selectedDay === '' ? 'hidden' : '')} ref={(node) => this.showings = node}>
+                    <div id="second-mobile"><p>II</p><p>II</p></div>
                     <div id="second">II</div>
                     <Showings className={this.state.wrapShowingSelection ? "wrapped" : ''}
                         selectedDay={this.state.selectedDay}
                         showings={this.state.showings} handleSelectedShowing={this.handleSelectedShowing}
-                        handleSelectedShowingSocket={this.handleSelectedShowingSocket} selectedShowing={this.state.selectedShowing} />
-                    {this.state.selectedShowing !== '' ? <button id="scroll-to-seats" onClick={() => this.scrollToNode(this.room)}>Select seats</button> : ''}
+                        handleSelectedShowingSocket={this.handleSelectedShowingSocket} selectedShowing={this.state.selectedShowing} scrollLeft={this.scrollLeft} />
+                    {this.state.selectedShowing !== '' ?
+                    <div id="scroll-to-seats" className={this.state.scrolledToDescription ? 'right' : 'left'} >
+                       <button onClick={this.scrollToSeats}>SELECT SEATS</button>
+                    </div> : '' }
                     {this.state.wrapShowingSelection ?
                         <div id="showing-icon">
                             <i onClick={this.showShowingSelectionAgain} className="fa fa-film"></i>
@@ -170,14 +211,13 @@ class Board extends React.Component {
                                 <div id="selectedSeatsSummary">
                                     <div><p>Room: {roomRoman}</p></div>
                                     <div id="selectedSeatsList">
-                                        <p>Seats:</p>
                                         {this.state.selectedSeats.map((seat, index) => { return <p key={index}>{seat}</p> })}
                                     </div>
                                 </div>
                             </div> : ''
                         }
                         {this.state.selectedSeats.length > 0 ?
-                            <div id="next" className={(this.state.selectedSeats.length > 0 ? 'show-order-btn ' : '') + (this.state.showRoom ? '':'room-icon')}><button onClick={this.wrapShowingSelection}>Go to order</button></div>
+                            <div id="next" className={(this.state.selectedSeats.length > 0 ? 'show-order-btn ' : '') + (this.state.showRoom ? '' : 'room-icon')}><button onClick={this.wrapShowingSelection}>GO TO ORDER</button></div>
                             : ''}
 
                     </div>
@@ -188,7 +228,7 @@ class Board extends React.Component {
                 {this.state.selectedSeats.length > 0 ?
                     <div id="order-wrapper" className={this.state.showRoom ? "hidden" : ''} ref={(node) => this.order = node}>
                         <div id="fourth">IV</div>
-                        <div id="user-order">
+                        <div id="user-order" className={this.state.username !=='' ? 'logged-in':''}>
                             {this.state.showUser ?
                                 <User className={this.state.username ? 'logged-in' : 'not-logged'} loggedUsername={this.loggedUsername} ref={(node) => this.user = node} /> : ''
                             }
@@ -206,8 +246,6 @@ class Board extends React.Component {
                     : ''}
             </div>
         );
-
-
     }
 
 }

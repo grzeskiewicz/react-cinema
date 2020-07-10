@@ -44,7 +44,7 @@ class Order extends React.Component {
           const roomRoman = romanNum[this.props.selectedShowing.room]; */
         return (
             <div id="ordering">
-                <button id="create-ticket-btn" onClick={this.createTickets}>Order</button>
+                <button id="create-ticket-btn" onClick={this.createTickets}>ORDER</button>
             </div>
 
         );

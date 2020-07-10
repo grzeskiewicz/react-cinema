@@ -7,6 +7,14 @@
   visibility: hidden;
 }
 
+#user-order.logged-in{
+  justify-content: space-between;
+}
+
+#user-order {
+flex:1 100%;
+}
+
 @media (min-width: 600px) {
   #order-wrapper {
     height: 100%;
@@ -18,7 +26,11 @@
 }
 
 #next button {
-  width: 80%;
+  background-color: #f5821e;
+  border: none;
+  color: black;
+  width: 100vw;
+  padding: 15px 32px;
 }
 
 #user-order {
@@ -33,5 +45,9 @@
 }
 
 #ordering button {
-  width: 80%;
+  width: 100%;
+  background-color: #f5821e;
+  border:none;
+  color:black;
+  padding: 15px 32px;
 }

@@ -1,15 +1,40 @@
 #films {
-  margin: 0 2px;
+  display: flex;
+  flex-flow: column wrap;
+  width: 100vw;
+}
+
+#film-description-wrapper {
+  display: flex;
+  flex: 1 50%;
+  flex-flow: row nowrap;
+}
+#film-description-wrapper.hidden {
+  visibility: hidden;
 }
 
 #film-description {
   display: flex;
   flex-flow: column;
+  flex-basis: 90%;
+}
+
+#back-to-showings {
+  flex-basis:10%;
+  background-color: #454343;
+  border: 1px solid #f5821e;
+  border-top:none;
+  border-bottom:none;
+  color: #f5821e;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.5rem;
 }
 
 .filmDetails {
   display: flex;
   flex-flow: column;
+  margin-left:0.8rem;
 }
 
 .filmDetails > div {
@@ -20,10 +45,8 @@
 .filmDetails > div > p {
   flex-basis: 50%;
   margin: 0.3rem;
+  font-size:0.8rem;
 }
-
-
-
 
 @media (min-width: 600px) {
   #films {
@@ -31,7 +54,7 @@
     margin: 0 2px;
   }
 
-  #film-description {
+  #film-description-wrapper {
     flex-basis: 50%;
     display: flex;
     flex-flow: column;
@@ -50,6 +73,8 @@
   .filmDetails > div > p {
     flex-basis: 50%;
     margin: 0.3rem;
+    font-size:1rem;
+
   }
 
   .filmDetails > div > p:nth-child(1) {
@@ -71,6 +96,7 @@
 .poster {
   display: flex;
   justify-content: center;
+  margin-top: 0.8rem;
 }
 
 .poster-img {
@@ -85,6 +111,7 @@
 
 .filmTitle > p {
   word-break: normal;
+  text-transform: uppercase;
 }
 
 .filmTimes {
@@ -102,6 +129,6 @@
 }
 
 .hourSelected {
-  border: 1px solid orange;
+  border: 1px solid #f5821e;
   border-radius: 3px;
 }

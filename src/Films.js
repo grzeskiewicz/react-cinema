@@ -5,10 +5,15 @@ class Films extends React.Component {
     constructor(props) {
         super(props);
         this.handleSelectedShowing = this.handleSelectedShowing.bind(this);
+        this.scrollLeft = this.scrollLeft.bind(this);
+
     }
 
     handleSelectedShowing(showing) {
         this.props.handleSelectedShowing(showing);
+    }
+    scrollLeft() {
+        this.props.scrollLeft();
     }
 
 
@@ -25,7 +30,8 @@ class Films extends React.Component {
         return (
             <div>
                 <div id="films">{readyToRender}</div>
-                {selectedShowing !== '' && readyShowings.filmTitles.length ?
+                <div id="film-description-wrapper" className={selectedShowing !== '' && readyShowings.filmTitles.length ? '' : 'hidden'}>
+                    <button id="back-to-showings" onClick={() => this.scrollLeft()}>&lt;</button>
                     <div id="film-description">
                         <div className="poster"><img className="poster-img" src={selectedShowing.imageurl} alt="Poster"></img></div>
                         <div className="filmDetails">
@@ -35,7 +41,8 @@ class Films extends React.Component {
                             <div><p>Age category: </p><p>{selectedShowing.category}</p></div>
                             <div><p>Price normal/discount: </p><p>{selectedShowing.normal}/{selectedShowing.discount}</p></div>
                         </div>
-                    </div> : ''}
+                    </div>
+                </div>
             </div>
         );
 

@@ -59,7 +59,9 @@ class Seats extends React.Component {
             return <div className="row" key={index}>{row}</div>;
         });
 
-        const romanNum = ['0','I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
+       // const romanNum = ['0','I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
+        const romanNum = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
+
         const roomRoman = romanNum[this.props.showing.room];
 
         return (

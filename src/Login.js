@@ -45,7 +45,7 @@ class Login extends React.Component {
     render() {
         return (
                 <form id="login" onSubmit={this.handleLogin}>
-                    <input name='username' autoFocus placeholder='Your username' value={this.state.username} onChange={this.handleUsername} required></input>
+                    <input name='username' placeholder='Your username' value={this.state.username} onChange={this.handleUsername} required></input>
                     <input type='password' id='password' name='password' placeholder='Password' value={this.state.password} onChange={this.handlePassword} required></input>
                     <button type='submit'>Login</button>
                     {this.state.error !== '' ? <p className="error">{this.state.error}</p> : ''}

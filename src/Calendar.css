@@ -64,7 +64,7 @@ font-weight:bold;
 
 #next:hover,
 #previous:hover {
-    background-color: orange;
+    background-color: #f5821e;
 }
 
 
@@ -86,7 +86,7 @@ font-weight:bold;
 }
 
 .not-selectable{
-color:darkorange;
+color:#f5821e;;
 opacity:0.5;
 
 }
@@ -98,5 +98,5 @@ opacity:0.5;
 
 
 .selectable.day-clicked, .after.day-clicked, .today.day-clicked{
-color:darkorange;
+color:#f5821e;;
 }

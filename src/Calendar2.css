@@ -73,7 +73,7 @@
 
 #next:hover,
 #previous:hover {
-  background-color: orange;
+  background-color: #f5821e;
 }
 
 .today {
@@ -96,7 +96,7 @@ color: red;
 }
 
 .not-selectable {
-  color: darkorange;
+  color: #f5821e;;
   opacity: 0.5;
 }
 
@@ -108,7 +108,7 @@ color: red;
 .selectable.day-clicked,
 .after.day-clicked,
 .today.day-clicked {
-  border: 3px solid orange;
+  border: 3px solid #f5821e;
 }
 
 @media (min-width: 600px) {
@@ -133,7 +133,7 @@ color: red;
 
   #cal-icon i {
     font-size: 8vw;
-    color: orange;
+    color: #f5821e;
     cursor: pointer;
   }
 

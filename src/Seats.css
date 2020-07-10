@@ -7,7 +7,7 @@
 }
 
 #room-icon svg {
-  color: orange;
+  color: #f5821e;
   cursor: pointer;
   width: 100%;
   height: auto;
@@ -18,8 +18,8 @@
 }
 #room {
   display: flex;
+  flex-basis:80%;
   flex-flow: column nowrap;
-  flex-basis: 90%;
 }
 
 #room > p {
@@ -32,14 +32,19 @@
   flex-flow: column wrap;
 }
 
+#selectedSeatsSummary {
+margin:0;
+}
+
 #selectedSeatsList {
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-evenly;
+  flex-flow: row wrap;
+  justify-content: center;
 }
-#selectedSeatsList p:not(:first-child) {
-  border: 1px solid orange;
+#selectedSeatsList p{
+  border: 1px solid #f5821e;
   padding:3px;
+  margin:1px;
 }
 
 #seats {
@@ -109,6 +114,8 @@
   border: 0;
   margin-right: 0.5rem;
 }
+
+
 
 @media (min-width: 600px) {
 
