@@ -34,6 +34,7 @@
 }
 
 #scroll-to-seats button {
+  font-weight: bold;
   background-color: #f5821e;
   border:none;
   color:black;

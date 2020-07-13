@@ -16,6 +16,10 @@
 #room-icon svg path {
   width: 7vw;
 }
+
+#next button{
+  font-weight: bold;
+}
 #room {
   display: flex;
   flex-basis:80%;

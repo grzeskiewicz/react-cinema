@@ -165,7 +165,7 @@ class Board extends React.Component {
 
 
     render() {
-       // const romanNum = ['0', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
+        // const romanNum = ['0', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
         const romanNum = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
         const roomRoman = romanNum[this.state.selectedShowing.room];
         console.log(this.state.scrolledToDescription)
@@ -176,7 +176,7 @@ class Board extends React.Component {
                     <Calendar2 onDaySelection={this.handleDaySelection} className={this.state.selectedShowing !== '' ? "wrapped" : ''} />
                     {this.state.selectedShowing !== '' ?
                         <div id="cal-icon">
-                            <i onClick={this.showCalAgain} className="fa fa-calendar"></i>
+                            <img src="https://img.icons8.com/officel/160/000000/calendar.png" />
                             <p>{moment(this.state.selectedDay).format('DD-MM-YYYY')} {this.state.selectedShowing.date}</p>
                         </div> : ''}
                 </div>
@@ -190,12 +190,12 @@ class Board extends React.Component {
                         showings={this.state.showings} handleSelectedShowing={this.handleSelectedShowing}
                         handleSelectedShowingSocket={this.handleSelectedShowingSocket} selectedShowing={this.state.selectedShowing} scrollLeft={this.scrollLeft} />
                     {this.state.selectedShowing !== '' ?
-                    <div id="scroll-to-seats" className={this.state.scrolledToDescription ? 'right' : 'left'} >
-                       <button onClick={this.scrollToSeats}>SELECT SEATS</button>
-                    </div> : '' }
+                        <div id="scroll-to-seats" className={this.state.scrolledToDescription ? 'right' : 'left'} >
+                            <button onClick={this.scrollToSeats}>SELECT SEATS</button>
+                        </div> : ''}
                     {this.state.wrapShowingSelection ?
                         <div id="showing-icon">
-                            <i onClick={this.showShowingSelectionAgain} className="fa fa-film"></i>
+                            <img width="150" alt="Clap cinema" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Clap_cinema.svg/128px-Clap_cinema.svg.png"></img>
                             <p>{this.state.selectedShowing.title}</p>
                         </div> : ''}
                 </div>
@@ -206,8 +206,7 @@ class Board extends React.Component {
                         <Seats className={this.state.showRoom === false ? "wrapped" : ''} showing={this.state.selectedShowing} seatsState={this.state.seatsState} seatsTaken={this.state.seatsTaken} handleSelectedSeats={this.handleSelectedSeats} />
                         {this.state.showRoom === false ?
                             <div id="room-icon">
-                                <FontAwesomeIcon id="chair-icon" onClick={this.showRoomAgain} icon={faChair} />
-
+                                <img src="https://imgur.com/TOZW6gs.png" alt="Chairs" width="128"></img>
                                 <div id="selectedSeatsSummary">
                                     <div><p>Room: {roomRoman}</p></div>
                                     <div id="selectedSeatsList">
@@ -228,7 +227,7 @@ class Board extends React.Component {
                 {this.state.selectedSeats.length > 0 ?
                     <div id="order-wrapper" className={this.state.showRoom ? "hidden" : ''} ref={(node) => this.order = node}>
                         <div id="fourth">IV</div>
-                        <div id="user-order" className={this.state.username !=='' ? 'logged-in':''}>
+                        <div id="user-order" className={this.state.username !== '' ? 'logged-in' : ''}>
                             {this.state.showUser ?
                                 <User className={this.state.username ? 'logged-in' : 'not-logged'} loggedUsername={this.loggedUsername} ref={(node) => this.user = node} /> : ''
                             }
