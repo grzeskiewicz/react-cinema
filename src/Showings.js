@@ -10,7 +10,7 @@ import io from 'socket.io-client';
 
 import { API_URL, request } from './apiconnection.js';
 
-const socket = io('https://cinema-node.herokuapp.com');
+const socket = io('http://localhost:3001');
 // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
 let vh = window.innerHeight * 0.01;
 // Then we set the value in the --vh custom property to the root of the document

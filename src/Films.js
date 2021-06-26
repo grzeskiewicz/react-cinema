@@ -1,5 +1,7 @@
 import React from 'react';
 import Film from './Film';
+import { API_URL } from './apiconnection.js';
+
 
 class Films extends React.Component {
     constructor(props) {
@@ -21,7 +23,6 @@ class Films extends React.Component {
         const readyShowings = this.props.readyShowings;
         const selectedShowing = this.props.selectedShowing;
         const selectedShowingDate = selectedShowing.fullDate;
-
         const readyToRender = readyShowings.filmTitles.map((filmTitle, index) => {
             const isSelected = selectedShowing.title === filmTitle && selectedShowingDate === readyShowings.showingsGrouped[filmTitle][0].fullDate;
             return <Film handleSelectedShowing={this.handleSelectedShowing} selectedShowing={this.props.selectedShowing} isSelected={isSelected} key={index} showingsGrouped={readyShowings.showingsGrouped[filmTitle]} />
@@ -33,7 +34,7 @@ class Films extends React.Component {
                 <div id="film-description-wrapper" className={selectedShowing !== '' && readyShowings.filmTitles.length ? '' : 'hidden'}>
                     <button id="back-to-showings" onClick={() => this.scrollLeft()}>&lt;</button>
                     <div id="film-description">
-                        <div className="poster"><img className="poster-img" src={selectedShowing.imageurl} alt="Poster"></img></div>
+                        <div className="poster"><img className="poster-img" src={API_URL + selectedShowing.imageUrl} alt="Poster"></img></div>
                         <div className="filmDetails">
                             <div><p>Director:</p> <p>{selectedShowing.director}</p></div>
                             <div><p>Genre: </p><p>{selectedShowing.genre}</p></div>

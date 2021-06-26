@@ -3,7 +3,7 @@ import { API_URL, request } from './apiconnection.js';
 import io from 'socket.io-client';
 import './Order.css';
 
-const socket = io('https://cinema-node.herokuapp.com');
+const socket = io('http://localhost:3001', { transport : ['websocket'] });
 
 
 class Order extends React.Component {

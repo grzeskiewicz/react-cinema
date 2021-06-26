@@ -9,8 +9,8 @@
 #room-icon svg {
   color: #f5821e;
   cursor: pointer;
-  width: 100%;
-  height: auto;
+  width:100px;
+  height:auto;
 }
 
 #room-icon svg path {

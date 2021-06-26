@@ -90,6 +90,8 @@ class Calendar2 extends React.Component {
       return <p className="day-name" key={index}>{day}</p>;
     });
 
+    console.log(calendar);
+
     const renderMonth = calendar.map((week, index) => {
       let renderWeek = week.map((day, index2) => {
         let className =

@@ -24,9 +24,9 @@ window.addEventListener('resize', () => {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
 });
+const socket = io('http://localhost:3001', { transport : ['websocket'] });
 
-
-const socket = io('https://cinema-node.herokuapp.com');
+//const socket = io('http://localhost:3001');
 
 class Board extends React.Component {
     constructor(props) {
@@ -206,7 +206,31 @@ class Board extends React.Component {
                         <Seats className={this.state.showRoom === false ? "wrapped" : ''} showing={this.state.selectedShowing} seatsState={this.state.seatsState} seatsTaken={this.state.seatsTaken} handleSelectedSeats={this.handleSelectedSeats} />
                         {this.state.showRoom === false ?
                             <div id="room-icon">
-                                <img src="https://imgur.com/TOZW6gs.png" alt="Chairs" width="128"></img>
+                                <svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+                                    <g>
+                                        <title>background</title>
+                                        <rect fill="#ffffff" id="canvas_background" height="602" width="802" y="-1" x="-1" />
+                                    </g>
+                                    <g>
+                                        <title>Layer 1</title>
+                                        <rect stroke="#000" id="svg_7" height="180.50067" width="328.00058" y="175.99954" x="235.49944" fill-opacity="null" stroke-opacity="null" stroke-width="14" fill="none" />
+                                        <path transform="rotate(-90 266.25033569335943,357.75079345703125) " stroke="#000" id="svg_75" d="m257.5002,354.50067l8.75013,0l0,0c4.83256,0 8.75013,1.45512 8.75013,3.2501c0,1.79498 -3.91757,3.2501 -8.75013,3.2501l-8.75013,0l0,-6.5002z" stroke-width="28" fill="none" />
+                                        <path transform="rotate(-90 310.2499389648438,359.2507629394531) " stroke="#000" id="svg_76" d="m301.49981,356.00066l8.75013,0l0,0c4.83256,0 8.75013,1.45512 8.75013,3.2501c0,1.79498 -3.91757,3.2501 -8.75013,3.2501l-8.75013,0l0,-6.5002z" stroke-width="28" fill="none" />
+                                        <path transform="rotate(-90 354.7495422363282,360.7507629394531) " stroke="#000" id="svg_77" d="m345.99942,357.50064l8.75013,0l0,0c4.83256,0 8.75013,1.45512 8.75013,3.2501c0,1.79498 -3.91757,3.2501 -8.75013,3.2501l-8.75013,0l0,-6.5002z" stroke-width="28" fill="none" />
+                                        <path transform="rotate(-90 538.7479858398439,360.2507629394532) " stroke="#000" id="svg_78" d="m529.99782,357.00065l8.75013,0l0,0c4.83256,0 8.75013,1.45512 8.75013,3.2501c0,1.79498 -3.91757,3.2501 -8.75013,3.2501l-8.75013,0l0,-6.5002z" stroke-width="28" fill="none" />
+                                        <path transform="rotate(-90 497.2483215332032,360.2507629394532) " stroke="#000" id="svg_79" d="m488.49818,357.00065l8.75013,0l0,0c4.83256,0 8.75013,1.45512 8.75013,3.2501c0,1.79498 -3.91757,3.2501 -8.75013,3.2501l-8.75013,0l0,-6.5002z" stroke-width="28" fill="none" />
+                                        <path transform="rotate(-90 444.74877929687506,361.2507629394531) " stroke="#000" id="svg_80" d="m435.99863,358.00064l8.75013,0l0,0c4.83256,0 8.75013,1.45512 8.75013,3.2501c0,1.79498 -3.91757,3.2501 -8.75013,3.2501l-8.75013,0l0,-6.5002z" stroke-width="28" fill="none" />
+                                        <path transform="rotate(-90 398.2491760253907,360.7507629394531) " stroke="#000" id="svg_81" d="m389.49904,357.50064l8.75013,0l0,0c4.83256,0 8.75013,1.45512 8.75013,3.2501c0,1.79498 -3.91757,3.2501 -8.75013,3.2501l-8.75013,0l0,-6.5002z" stroke-width="28" fill="none" />
+                                        <path transform="rotate(-90 244.7505035400391,388.7505187988281) " stroke="#000" id="svg_82" d="m236.00039,385.5004l8.75013,0l0,0c4.83256,0 8.75013,1.45512 8.75013,3.2501c0,1.79498 -3.91757,3.2501 -8.75013,3.2501l-8.75013,0l0,-6.5002z" stroke-width="28" fill="none" />
+                                        <path transform="rotate(-90 288.75012207031256,390.25048828125) " stroke="#000" id="svg_83" d="m280,387.00039l8.75013,0l0,0c4.83256,0 8.75013,1.45512 8.75013,3.2501c0,1.79498 -3.91757,3.2501 -8.75013,3.2501l-8.75013,0l0,-6.5002z" stroke-width="28" fill="none" />
+                                        <path transform="rotate(-90 333.24972534179693,391.75048828125) " stroke="#000" id="svg_84" d="m324.49961,388.50038l8.75013,0l0,0c4.83256,0 8.75013,1.45512 8.75013,3.2501c0,1.79498 -3.91757,3.2501 -8.75013,3.2501l-8.75013,0l0,-6.5002z" stroke-width="28" fill="none" />
+                                        <path transform="rotate(-90 522.7481079101564,390.75048828125006) " stroke="#000" id="svg_85" d="m513.99796,387.50038l8.75013,0l0,0c4.83256,0 8.75013,1.45512 8.75013,3.2501c0,1.79498 -3.91757,3.2501 -8.75013,3.2501l-8.75013,0l0,-6.5002z" stroke-width="28" fill="none" />
+                                        <path transform="rotate(-90 473.24853515625006,390.2505187988282) " stroke="#000" id="svg_86" d="m464.49839,387.00039l8.75013,0l0,0c4.83256,0 8.75013,1.45512 8.75013,3.2501c0,1.79498 -3.91757,3.2501 -8.75013,3.2501l-8.75013,0l0,-6.5002z" stroke-width="28" fill="none" />
+                                        <path transform="rotate(-90 429.74890136718756,391.2505187988281) " stroke="#000" id="svg_87" d="m420.99876,388.00038l8.75013,0l0,0c4.83256,0 8.75013,1.45512 8.75013,3.2501c0,1.79498 -3.91757,3.2501 -8.75013,3.2501l-8.75013,0l0,-6.5002z" stroke-width="28" fill="none" />
+                                        <path transform="rotate(-90 376.74935913085943,391.75048828125) " stroke="#000" id="svg_88" d="m367.99923,388.50038l8.75013,0l0,0c4.83256,0 8.75013,1.45512 8.75013,3.2501c0,1.79498 -3.91757,3.2501 -8.75013,3.2501l-8.75013,0l0,-6.5002z" stroke-width="28" fill="none" />
+                                        <path transform="rotate(-90 562.7477416992189,390.2505187988282) " stroke="#000" id="svg_89" d="m553.99759,387.00038l8.75013,0l0,0c4.83256,0 8.75013,1.45512 8.75013,3.2501c0,1.79498 -3.91757,3.2501 -8.75013,3.2501l-8.75013,0l0,-6.5002z" stroke-width="28" fill="none" />
+                                    </g>
+                                </svg>
                                 <div id="selectedSeatsSummary">
                                     <div><p>Room: {roomRoman}</p></div>
                                     <div id="selectedSeatsList">
