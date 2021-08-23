@@ -1,5 +1,5 @@
 import React from "react";
-import "./Tickets.css";
+import "./css/Tickets.css";
 
 class Tickets extends React.Component {
   makepdf(ticket) {

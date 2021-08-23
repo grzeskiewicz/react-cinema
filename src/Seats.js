@@ -1,5 +1,5 @@
 import React from 'react';
-import './Seats.css';
+import './css/Seats.css';
 import Seat from './Seat'
 
 class Seats extends React.Component {

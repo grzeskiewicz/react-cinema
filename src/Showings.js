@@ -1,5 +1,5 @@
 import React from 'react';
-import './Showings.css';
+import './css/Showings.css';
 import moment from 'moment';
 import Films from './Films';
 import io from 'socket.io-client';

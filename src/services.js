@@ -36,16 +36,16 @@ export const authServices = {
     },
 
     register(user) {
-        console.log(JSON.stringify(user));
-        return fetch(request(`${API_URL}registertest`, 'POST', user))
+      //  console.log(JSON.stringify(user));
+        return fetch(request(`${API_URL}register`, 'POST', user))
             .then(res => res.json())
-            .then(result => result)
+            .then(result => {console.log(result); return result})
             .catch(error => Promise.reject(new Error(error))); //Promise.reject(new Error(error))       
     },
 
     login(user) { //token? JWT!
         console.log(user);
-        return fetch(request(`${API_URL}logintest`, 'POST', user))
+        return fetch(request(`${API_URL}login`, 'POST', user))
             .then(res => res.json())
             .then(result => {
                 if (result.success) { // result.ok?

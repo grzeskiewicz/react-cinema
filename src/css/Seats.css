@@ -4,6 +4,12 @@
 
 #room-icon {
   flex: 0;
+  cursor:pointer;
+}
+
+
+#room-icon:hover {
+  background-color: rgba(155, 143, 143, 0.3);
 }
 
 #room-icon svg {

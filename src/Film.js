@@ -1,5 +1,5 @@
 import React from 'react';
-import './Film.css';
+import './css/Film.css';
 
 class Film extends React.Component {
     constructor(props) {
@@ -8,9 +8,16 @@ class Film extends React.Component {
     }
 
     showTimes(showingsGrouped) {
+        const roomABC = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
+
         const times = showingsGrouped.map((showing, index) => {
-            const cName = this.props.selectedShowing.id === showing.id ? 'hourSelected' : '';     //lifted up or state here?
-            return <p className={cName} key={index} onClick={() => this.props.handleSelectedShowing(showing)}>{showing.date}</p>
+            const room = roomABC[showing.room];
+            const time = showing.date.split(":");
+            const timeNow = new Date().getHours();
+            const isSelectable = time[0] >= timeNow ? 'selectable' : 'not-selectable';
+            let cName = this.props.selectedShowing.id === showing.id ? 'hourSelected' : '';     //lifted up or state here?
+            cName=cName + " " + isSelectable;
+            return <p className={cName} key={index} onClick={() => cName.includes('selectable') ? this.props.handleSelectedShowing(showing) : false}>{showing.date}-{room}</p>
         });
         return times;
     }
@@ -24,8 +31,8 @@ class Film extends React.Component {
         const cName = this.props.isSelected || this.state.detailsVisible ? 'filmSelected' : '';
         return (
             <div className="film">
-                    <div className="filmTitle" onClick={()=>this.props.handleSelectedShowing(filmSpecs)}><p>{filmTitle}</p></div>
-                    <div className={"filmTimes " + cName}>{renderTimes}</div>
+                <div className="filmTitle" onClick={() => this.props.handleSelectedShowing(filmSpecs)}><p>{filmTitle}</p></div>
+                <div className={"filmTimes " + cName}>{renderTimes}</div>
             </div>
         );
 

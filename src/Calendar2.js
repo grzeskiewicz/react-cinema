@@ -1,5 +1,5 @@
 import React from "react";
-import "./Calendar2.css";
+import "./css/Calendar2.css";
 
 // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
 let vh = window.innerHeight * 0.01;
@@ -90,7 +90,6 @@ class Calendar2 extends React.Component {
       return <p className="day-name" key={index}>{day}</p>;
     });
 
-    console.log(calendar);
 
     const renderMonth = calendar.map((week, index) => {
       let renderWeek = week.map((day, index2) => {
@@ -108,12 +107,13 @@ class Calendar2 extends React.Component {
         if (className.includes("today")) {
           className = className.replace("not-selectable", "");
         }
+        
         return (
           <div
             key={index2}
             date={day.date}
             className={"day " + className}
-            onClick={() => this.handleDaySelection(day.date)}
+            onClick={() => !className.includes('not-selectable') ? this.handleDaySelection(day.date) : false}
           >
             <p>{day.date.getDate()}</p>
           </div>

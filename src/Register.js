@@ -55,7 +55,9 @@ class Register extends React.Component {
         authServices.register(user)
             .then(res => {
                 if (res.success) {
-
+                    this.props.hideRegister();
+                    console.log("Po rejestracji",user)
+                    this.props.setUsername(user);
                 } else {
                     this.setState({ error: res.msg })
                     console.log(res);

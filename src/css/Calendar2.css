@@ -51,8 +51,8 @@
 }
 
 .day p {
-  width:100%;
-  text-align:center
+  width: 100%;
+  text-align: center;
 }
 
 /* ================================== */
@@ -63,6 +63,11 @@
 
 #cal-icon {
   flex: 0;
+  cursor: pointer;
+}
+
+#cal-icon:hover {
+  background-color: rgba(155, 143, 143, 0.3);
 }
 
 /* ==========================================*/
@@ -78,13 +83,11 @@
 
 .today {
   cursor: pointer;
-color: red;
+  color: red;
 }
-.today:hover{
+.today:hover {
   border: 1px double black;
- 
 }
-
 
 .selectable:hover {
   cursor: pointer;
@@ -96,7 +99,7 @@ color: red;
 }
 
 .not-selectable {
-  color: #f5821e;;
+  color: #f5821e;
   opacity: 0.5;
 }
 

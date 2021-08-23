@@ -19,6 +19,12 @@
 
 #showing-icon {
   flex: 0;
+  cursor: pointer;
+}
+
+
+#showing-icon:hover {
+  background-color: rgba(155, 143, 143, 0.3);
 }
 
 #scroll-to-seats {

@@ -7,8 +7,15 @@ class Login extends React.Component {
         this.handleUsername = this.handleUsername.bind(this);
         this.handlePassword = this.handlePassword.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
-        this.state = { username: '', password: '', error: '' };
+        this.state = { username: this.props.username || '', password: '', error: '' };
+        console.log(this.props);
     }
+
+
+    componentDidMount(){
+        console.log(this.props);
+    }
+
     handleLogin(event) {
         event.preventDefault();
         const user = {
@@ -21,7 +28,7 @@ class Login extends React.Component {
                     authServices.getInfo().then(res => {
                         if (res.success) {
                             console.log("Zalogowano");
-                            this.props.getUserData(user.email);
+                            this.props.getUserData(res.msg);
                         } else {
                             console.log(res);
                             this.setState({ authorised: false, error: "Login error, probably wrong password!" });
