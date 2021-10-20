@@ -1,4 +1,4 @@
-#react-cinema
+# react-cinema
 Cinema Project - frontend created in ReactJS. To try it out:
 1. Just git clone
 2. npm install
